@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,88 +7,47 @@
     <title>고정된 Kakao 지도</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac0b6c80466a2f9f681b4021d09253c3"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="/static/js/map copy.js"></script>
+    <link rel="stylesheet" href="{% static 'css/main_map_info.css'%}">
 </head>
 <body>
-    <!-- 지도 표시 영역 -->
-    <div id="map" style="width:1000px; height:1200px;"></div>
-
-    <script>
-        // 위에서 제공한 Kakao 지도 관련 스크립트
-        let mapContainer = document.getElementById('map'),
-            mapOption = {
-                center: new kakao.maps.LatLng(37.566826, 126.9786567),
-                level: 13
-            };
-
-        let map = new kakao.maps.Map(mapContainer, mapOption),
-            customOverlay = new kakao.maps.CustomOverlay({});
-        
-        let polygons = [];
-        init("/static/json/sido.json");
-
-        map.setZoomable(false);
-
-        function removePolygon() {
-            for (let i = 0; i < polygons.length; i++) {
-                polygons[i].setMap(null);
-            }
-            polygons = [];
-        }
-
-        function init(path) {
-            $.getJSON(path, function (geojson) {
-                var units = geojson.features;
-
-                $.each(units, function (index, unit) {
-                    var coordinates = unit.geometry.coordinates;
-                    var name = unit.properties.SIG_KOR_NM;
-
-                    var ob = new Object();
-                    ob.name = name;
-                    ob.path = [];
-
-                    $.each(coordinates[0], function (index, coordinate) {
-                        ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
-                    });
-
-                    polygons.push(displayArea(ob));
-                });
-            });
-        }
-
-        function displayArea(area) {
-            var polygon = new kakao.maps.Polygon({
-                map: map,
-                path: area.path,
-                strokeWeight: 2,
-                strokeColor: '#004c80',
-                strokeOpacity: 0.8,
-                fillColor: '#fff',
-                fillOpacity: 0.7
-            });
-
-            kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
-                polygon.setOptions({fillColor: '#09f'});
-                customOverlay.setContent('<div class="area">' + area.name + '</div>');
-                customOverlay.setPosition(mouseEvent.latLng);
-                customOverlay.setMap(map);
-            });
-
-            kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
-                customOverlay.setPosition(mouseEvent.latLng);
-            });
-
-            kakao.maps.event.addListener(polygon, 'mouseout', function () {
-                polygon.setOptions({fillColor: '#fff'});
-                customOverlay.setMap(null);
-            });
-
-            kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-                console.log('Clicked region:', area.name);
-            });
-
-            return polygon;
-        }
-    </script>
+	<div class="Map_API" style="width: 100%; height: 600px; background-color: lightgray; border: 1px solid black; display: flex; justify-content: center;">
+        <!-- 설명 부분 50% -->
+        <div style="width: 30%; height: 100%; padding: 10px; overflow-y: auto;">
+            <h2 style="font-weight: 800; font-size: 45px; color: black;">한국의 지역</h2>
+            <h2 id='descriptionText' style="font-weight: 800; font-size: 40px; color: black;"></h2>
+                    <!--<div id = 'main_info_image'></div>-->
+                    <section id="sliderType04">
+                        <div class="slider__wrap">
+                            <div id="slider__img" class="slider__img">
+                                <div class="slider__inner">
+                                    <!-- 슬라이더 이미지가 JavaScript로 동적으로 추가됩니다. -->
+                                </div>
+                            </div>
+                            <div class="slider__btn">
+                                <a href="#" class="prev" role="button">‹</a>
+                                <a href="#" class="next" role="button">›</a>
+                            </div>
+                        </div>
+                    </section>
+        </div>
+    
+        <!-- 지도 표시 영역 50% -->
+        <div id="map" style="width: 40%; height: 100%;"></div>
+            <script>
+                let mapContainer = document.getElementById('map'),
+                mapOption = {
+                center: new kakao.maps.LatLng(35.966826, 127.9786567),
+                level: 13   
+                };
+    
+                let map = new kakao.maps.Map(mapContainer, mapOption),
+                customOverlay = new kakao.maps.CustomOverlay({});
+    
+                map.setZoomable(false);
+                map.setDraggable(false);
+            </script>
+        </div>
+        <script type="module" src="/static/js/main_map_info_slider.js"></script>
 </body>
 </html>

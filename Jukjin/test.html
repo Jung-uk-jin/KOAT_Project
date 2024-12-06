@@ -1,72 +1,178 @@
-<style>
-  .slider {
-      width: 90px; /* 슬라이드 영역 너비 */
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-  }
-  .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      width: calc(90px * 3); /* 3개의 이미지 */
-  }
-  .slides img {
-      width: 90px; /* 각 이미지 너비 */
-      height: 200px;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider__wrap {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slider__img {  /* 이미지가 보이는 영역 */
+            position: relative;
+            width: 800px;
+            height: 450px;
+            overflow: hidden;
+        }
+        .slider__inner {/* 전체 이미지를 감싸고 있는 부모 : 움직이는 부분 속성주기 */
+            display: flex;
+            flex-wrap: nowrap;
+            width: 4800px; /* 총 여섯개의 이미지 */
+            height: 450px;
+        }
+        .slider {   /* 개별적인 이미지 (각각의 이미지 설정) */
+            position: relative;
+            width: 800px;
+            height: 450px;
+        }
+        @media(max-width : 800px){
+            .slider__img {
+                width: 400px;
+                height: 250px;
+            }
+            .slider {
+                width: 400px;
+                height: 250px;
+            }
+        }
+        .slider__btn a {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.4);
+            text-align: center;
+            line-height: 50px;
+            transition: all 0.2s;
+            display: block;
+            color: #fff;
+        }
+        .slider__btn a:hover {
+            border-radius: 50px;
+            background: rgba(38, 52, 103, 0.4);
+        }
+        .slider__btn a.prev {
+            left: 0;
+        }
+        .slider__btn a.next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <section id="sliderType04">
+        <div class="slider__wrap">
+            <div class="slider__img">
+                <div class="slider__inner">
+                    <!-- 슬라이더 이미지가 JavaScript로 동적으로 추가됩니다. -->
+                </div>
+            </div>
+            <div class="slider__btn">
+                <a href="#" class="prev" role="button" aria-label="왼쪽 이미지">prev</a>
+                <a href="#" class="next" role="button" aria-label="오른쪽 이미지">next</a>
+            </div>  
+        </div>
+    </section>
+    <script>
+        // 이미지 데이터
+        const images = {
+            "서울": "/static/images/서울.jpg",
+            "경기": "/static/images/경기도.jpg",
+            "강원": "/static/images/강원도.jpg",
+            "인천": "/static/images/인천.jpg",
+            "충북": "/static/images/충청북도.jpg",
+            "충남": "/static/images/충청남도.jpg"
+        };
 
-  /* 라디오 버튼 숨기기 */
-  input[type="radio"] {
-      display: none;
-  }
+        const sliderInner = document.querySelector(".slider__inner");
 
-  /* 슬라이드 컨트롤 */
-  .navigation {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-  }
-  .navigation label {
-      width: 10px;
-      height: 10px;
-      background-color: gray;
-      border-radius: 50%;
-      cursor: pointer;
-  }
-  input#slide1:checked ~ .slides {
-      transform: translateX(0); /* 첫 번째 슬라이드 */
-  }
-  input#slide2:checked ~ .slides {
-      transform: translateX(-90px); /* 두 번째 슬라이드 */
-  }
-  input#slide3:checked ~ .slides {
-      transform: translateX(-180px); /* 세 번째 슬라이드 */
-  }
-  input:checked + label {
-      background-color: black;
-  }
-</style>
+        // 슬라이더 동적 생성
+        function generateSlider(images) {
+            Object.keys(images).forEach((region, index) => {
+                const sliderDiv = document.createElement("div");
+                sliderDiv.classList.add("slider");
+                sliderDiv.setAttribute("role", "group");
+                sliderDiv.setAttribute("aria-label", `${index + 1}/${Object.keys(images).length}`);
 
-<div class="slider">
-  <!-- 라디오 버튼 -->
-  <input type="radio" name="slide" id="slide1" checked>
-  <input type="radio" name="slide" id="slide2">
-  <input type="radio" name="slide" id="slide3">
+                const img = document.createElement("img");
+                img.src = images[region];
+                img.alt = region;
 
-  <!-- 슬라이드 이미지 -->
-  <div class="slides">
-      <img src="image1.jpg" alt="Image 1">
-      <img src="image2.jpg" alt="Image 2">
-      <img src="image3.jpg" alt="Image 3">
-  </div>
+                sliderDiv.appendChild(img);
+                sliderInner.appendChild(sliderDiv);
+            });
+        }
 
-  <!-- 네비게이션 -->
-  <div class="navigation">
-      <label for="slide1"></label>
-      <label for="slide2"></label>
-      <label for="slide3"></label>
-  </div>
-</div>
+        generateSlider(images); // 슬라이더 생성
+
+        const sliderWrap = document.querySelector(".slider__wrap");
+        const sliderImg = document.querySelector(".slider__img"); // 보여지는 영역
+        const sliderBtnPrev = document.querySelector(".prev"); // 왼쪽 버튼
+        const sliderBtnNext = document.querySelector(".next"); // 오른쪽 버튼
+
+        let sliderWidth = sliderImg.offsetWidth; // 이미지 가로값
+        let currentIndex = 1;
+
+        // 슬라이드 초기화: 첫 번째와 마지막 슬라이드 복사
+        function initSlider() {
+            const sliders = document.querySelectorAll(".slider");
+            const sliderCount = sliders.length;
+
+            const firstClone = sliders[0].cloneNode(true); // 첫 번째 이미지 복사
+            const lastClone = sliders[sliderCount - 1].cloneNode(true); // 마지막 이미지 복사
+
+            sliderInner.appendChild(firstClone); // 첫 번째 이미지 복사를 맨 뒤에 추가
+            sliderInner.insertBefore(lastClone, sliders[0]); // 마지막 이미지 복사를 맨 앞에 추가
+
+            sliderInner.style.width = `${sliderWidth * (sliderCount + 2)}px`; // 복사된 슬라이드 포함한 너비 설정
+            sliderInner.style.transform = `translateX(-${sliderWidth}px)`; // 복사된 첫 슬라이드 위치로 이동
+        }
+
+        // 슬라이드 이동 함수
+        function gotoSlider(num) {
+            sliderInner.style.transition = "all 400ms ease-in-out"; // 애니메이션 추가
+            sliderInner.style.transform = `translateX(-${sliderWidth * num}px)`;
+            currentIndex = num; // 현재 슬라이드 업데이트
+        }
+
+        // 무한 루프 처리
+        sliderInner.addEventListener("transitionend", () => {
+            const sliders = document.querySelectorAll(".slider");
+            const sliderCount = sliders.length - 2;
+
+            if (currentIndex === 0) {
+                sliderInner.style.transition = "none"; // 애니메이션 제거
+                currentIndex = sliderCount; // 실제 마지막 슬라이드로 이동
+                sliderInner.style.transform = `translateX(-${sliderWidth * currentIndex}px)`;
+            } else if (currentIndex === sliderCount + 1) {
+                sliderInner.style.transition = "none"; // 애니메이션 제거
+                currentIndex = 1; // 실제 첫 번째 슬라이드로 이동
+                sliderInner.style.transform = `translateX(-${sliderWidth * currentIndex}px)`;
+            }
+        });
+
+        // 왼쪽 버튼 클릭
+        sliderBtnPrev.addEventListener("click", () => {
+            gotoSlider(currentIndex - 1);
+        });
+
+        // 오른쪽 버튼 클릭
+        sliderBtnNext.addEventListener("click", () => {
+            gotoSlider(currentIndex + 1);
+        });
+
+        // 창 크기 변경 시 슬라이드 너비 재계산
+        window.addEventListener("resize", () => {
+            sliderWidth = sliderImg.offsetWidth;
+            gotoSlider(currentIndex); // 현재 슬라이드 위치 유지
+        });
+
+        initSlider(); // 슬라이더 초기화 호출
+    </script>
+</body>
+</html>

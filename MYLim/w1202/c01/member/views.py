@@ -18,6 +18,7 @@ def loginChk(request):
     request.session['session_m_id'] = qs[0].m_id
     request.session['session_m_nickName'] = qs[0].m_nickName
     list_qs = list(qs.values())
+    print('세션 아이디 확인 : ',request.session['session_m_id'])
     context = {'result':'success','member':list_qs}
   else:
     context = {'result':'fail'}

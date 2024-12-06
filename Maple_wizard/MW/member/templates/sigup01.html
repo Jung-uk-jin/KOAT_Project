@@ -4,6 +4,7 @@
 * Tempalte URI: https://untree.co/
 * License: https://creativecommons.org/licenses/by/3.0/
 */ -->
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,14 +22,14 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="fonts/icomoon/style.css">
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
 
-	<link rel="stylesheet" href="css/tiny-slider.css">
-	<link rel="stylesheet" href="css/aos.css">
-	<link rel="stylesheet" href="css/flatpickr.min.css">
-	<link rel="stylesheet" href="css/glightbox.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
+	<link rel="stylesheet" href="{% static 'css/aos.css'%}">
+	<link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
+	<link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -51,7 +52,7 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">Sterial</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
@@ -187,12 +188,23 @@
 								
 							}); // 제이쿼리 선언
 							
-							function dpchk(){
-								if($("#p1no").prop("checked") || $("#p2no").prop("checked")){
-									alert("모두 동의를 해 주셔야 합니다.");
-									return false;
-								}
-							};
+							function dpchk(){ // 다음단계 클릭
+								alert('클릭')
+								chk = 2
+								$(".dcchk").each(function(){ //체크 확인
+									if ($(this).is(":checked")) {   
+										chk += 1                          //  동의를 한 경우
+									} else {				
+										chk -= 1													// 동의가 안된경우
+									}
+								});
+								if(chk < 3){                     // 체크에 따른 값으로 판별
+									alert('모두 동의를 해 주셔야 합니다.')	
+								}else{
+									alert('다음 단계로 넘어갑니다')
+										location.href = "/member/sigup02/"
+									}
+							}; // 다음단계 클릭
 
 							</script>	
 
@@ -289,14 +301,14 @@
 		</div>
 
 
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<script src="js/tiny-slider.js"></script>
-		<script src="js/aos.js"></script>
-		<script src="js/navbar.js"></script>
-		<script src="js/counter.js"></script>
-		<script src="js/rellax.js"></script>
-		<script src="js/flatpickr.js"></script>
-		<script src="js/glightbox.min.js"></script>
-		<script src="js/custom.js"></script>
+		<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+		<script src="{% static 'js/tiny-slider.js'%}"></script>
+		<script src="{% static 'js/aos.js'%}"></script>
+		<script src="{% static 'js/navbar.js'%}"></script>
+		<script src="{% static 'js/counter.js'%}"></script>
+		<script src="{% static 'js/rellax.js'%}"></script>
+		<script src="{% static 'js/flatpickr.js'%}"></script>
+		<script src="{% static 'js/glightbox.min.js'%}"></script>
+		<script src="{% static 'js/custom.js'%}"></script>
 	</body>
 	</html>

@@ -1,25 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>다음 지도 API</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고정된 Kakao 지도</title>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac0b6c80466a2f9f681b4021d09253c3"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<div id="map" style="width:750px;height:350px;"></div>
+    <!-- 지도 표시 영역 -->
+    <div id="map" style="width:1000px; height:1200px;"></div>
 
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac0b6c80466a2f9f681b4021d09253c3"></script>
-	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(36.47950, 128.72928), // 지도의 중심좌표
-		        level: 14, // 지도의 확대 레벨
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		    }; 
+    <script>
+        // 위에서 제공한 Kakao 지도 관련 스크립트
+        let mapContainer = document.getElementById('map'),
+            mapOption = {
+                center: new kakao.maps.LatLng(37.566826, 126.9786567),
+                level: 13
+            };
 
-		// 지도를 생성한다 
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
+        let map = new kakao.maps.Map(mapContainer, mapOption),
+            customOverlay = new kakao.maps.CustomOverlay({});
+        
+        let polygons = [];
+        init("/static/json/sido.json");
 
-	</script>
+        map.setZoomable(false);
+
+        function removePolygon() {
+            for (let i = 0; i < polygons.length; i++) {
+                polygons[i].setMap(null);
+            }
+            polygons = [];
+        }
+
+        function init(path) {
+            $.getJSON(path, function (geojson) {
+                var units = geojson.features;
+
+                $.each(units, function (index, unit) {
+                    var coordinates = unit.geometry.coordinates;
+                    var name = unit.properties.SIG_KOR_NM;
+
+                    var ob = new Object();
+                    ob.name = name;
+                    ob.path = [];
+
+                    $.each(coordinates[0], function (index, coordinate) {
+                        ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
+                    });
+
+                    polygons.push(displayArea(ob));
+                });
+            });
+        }
+
+        function displayArea(area) {
+            var polygon = new kakao.maps.Polygon({
+                map: map,
+                path: area.path,
+                strokeWeight: 2,
+                strokeColor: '#004c80',
+                strokeOpacity: 0.8,
+                fillColor: '#fff',
+                fillOpacity: 0.7
+            });
+
+            kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+                polygon.setOptions({fillColor: '#09f'});
+                customOverlay.setContent('<div class="area">' + area.name + '</div>');
+                customOverlay.setPosition(mouseEvent.latLng);
+                customOverlay.setMap(map);
+            });
+
+            kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+                customOverlay.setPosition(mouseEvent.latLng);
+            });
+
+            kakao.maps.event.addListener(polygon, 'mouseout', function () {
+                polygon.setOptions({fillColor: '#fff'});
+                customOverlay.setMap(null);
+            });
+
+            kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+                console.log('Clicked region:', area.name);
+            });
+
+            return polygon;
+        }
+    </script>
 </body>
-</html>
 </html>

@@ -48,7 +48,7 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">Sterial</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
@@ -115,15 +115,23 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-					<form action="#">
+					<form action="{% url 'member:login' %}" method="post" name="loginFrm">
 						<div class="row">
 							<div class="col-6 mb-3">
 								<input type="text" id="id" class="form-control loginType" placeholder="Id">
 								<br>
 								<input type="password" id="pw" class="form-control passType" placeholder="Password">
 								<br>
-								<input type="checkbox">아이디저장
-							</div>
+							<div id="logbtm">
+								<div id="idcoki">
+									<input type='checkbox' name="saveId" id="saveId" value="1" {% if saveId %} checked {% endif %} >
+									<label for="saveId">아이디저장</label>
+								</div>	
+								<div id="scidpw">
+									<p><a href="/member/srchid/">아이디 찾기</a></p>&nbsp;|&nbsp;<p><a href="/member/srchpw/">비밀번호 찾기</a></p>
+								</div>
+							</div>	
+						</div>	
 
 							<script>
 								$(function(){
@@ -132,12 +140,12 @@
 										//alert("로그인 진행"+$("#id").val()+$("#pw").val())
 										m_id = $("#id").val()
 										m_password = $("#pw").val()
-
+										saveId = $("#saveId").prop(":checked") ? "0" : "1";
 										$.ajax({
 											headers:{"X-CSRFToken":csrfToken},
 											url:"/member/loginChk/",
 											type:"post",
-											data:{"m_id":m_id,"m_password":m_password},
+											data:{"m_id":m_id,"m_password":m_password,"saveId":saveId},
 											success:function(data){
 												if (data.result == "success"){
 													alert("로그인이 되었습니다.")

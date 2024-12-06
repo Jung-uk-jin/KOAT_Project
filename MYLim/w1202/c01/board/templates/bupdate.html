@@ -159,7 +159,7 @@
 		<div id="location">
 			<ol>
 				<li><a href="#">HOME</a></li>
-				<li><a href="#">게시판</a></li>
+				<li><a href="/board/blist/">게시판</a></li>
 				<li class="last">여행 후기</li>
 			</ol>
 		</div>
@@ -235,9 +235,9 @@
 												<input type="checkbox" name="delete_image" id="delete_image">
 												<label for="delete_image">현재 이미지를 삭제합니다</label>
 										</td>
-								</tr>
+									</tr>
 								<!-- 이미지 미리보기 -->
-								<tr>
+									<tr>
 										<th><span>이미지</span></th>
 										<td id='txt'>
 											<img id="preview" 
@@ -247,7 +247,7 @@
 											src="{% if board.b_file %}{{ board.b_file.url }}{% else %}#{% endif %}" 
 											alt="이미지 미리보기">
 										</td>
-								</tr>
+									</tr>
 							</tbody>
 							
 							<script>

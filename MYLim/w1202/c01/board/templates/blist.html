@@ -36,6 +36,7 @@
 		alert('{{dmsg}}번 게시글이 삭제되었습니다.')
 		location.href='/board/blist/'
 	}
+
 </script>
 </head>
 <body>
@@ -142,7 +143,7 @@
 			<!-- contents -->
 			<div id="contents">
 				<div id="mypage">
-					<h2><strong>여행 후기 게시판</strong><span>특별했던 순간과 경험을 후기로 공유해보자!!</span></h2>
+					<h2><strong>여행 후기 게시판</strong><span>{{request.session.session_m_nickName}}님의 특별했던 순간과 경험을 후기로 공유해보자!!</span></h2>
 					<div class="searchWrap">
 						<form method='get' action="{% url 'board:blist' %}">
 							<div class="search">
@@ -194,7 +195,7 @@
 								</div>	
 								<div class="txt">
 									<div class="subject">
-										<a href="/board/bview/{{board.b_no}}/"><span class="orange">{{board.b_header}}</span> {{board.b_title}}</a>
+										<a href="/board/bview/{{board.b_no}}/"><span class="orange">{{board.b_header}}</span> {{board.b_title}} [{{clist.count}}]</a>
 									</div>
 									<div class="conf">
 										<a href='/board/bview/{{board.b_no}}/'>

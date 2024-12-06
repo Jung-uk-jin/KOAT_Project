@@ -6,6 +6,7 @@ class Board(models.Model):
   b_no = models.AutoField(primary_key=True)
   member = models.ForeignKey(Member,on_delete=models.DO_NOTHING, null=True)
   b_like_members = models.ManyToManyField(Member,default='', related_name='like_member')
+  b_dislike_members = models.ManyToManyField(Member,default='', related_name='dislike_member')
   b_title = models.CharField(max_length=30)
   b_content = models.TextField()
   b_hit = models.IntegerField(default=0)

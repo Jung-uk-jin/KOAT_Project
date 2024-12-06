@@ -10,7 +10,7 @@ from comment.models import Comment
 def cwrite(request):
   m_id = request.session['session_m_id']
   member = Member.objects.get(m_id=m_id)
-  b_no = request.POST.get('b_no',1)
+  b_no = request.POST.get('b_no')
   board = Board.objects.get(b_no=b_no)
   c_pw = request.POST.get('c_pw','')
   c_content = request.POST.get('c_content','')

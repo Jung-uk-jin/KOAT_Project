@@ -36,10 +36,19 @@
 <style>a{cursor: pointer;}</style>
 <script type="text/javascript">
   function deleteBtn(){
-    if (confirm('{{board.bno}} 게시글을 삭제하시겠습니까?')){
+    if (confirm('{{board.b_no}} 게시글을 삭제하시겠습니까?')){
       location.href = '/board/bdelete/{{board.b_no}}/';
     }
   }
+
+	if ('{{rq_login}}'=='True'){
+		if(confirm('로그인을 하셔야 게시글을 확인할 수 있습니다. 로그인 하시겠습니까?')){
+			location.href='/member/login/'
+		}else{
+			location.href='/board/blist/'
+		}
+	}
+
 </script>
 </head>
 <body>
@@ -153,7 +162,7 @@
 						<div class="viewHead">
 							<div class="subject">
 								<ul>
-									<li id='sub1'>{{board.b_title}}</li>
+									<li id='sub1'>{{board.b_title}}<a href='#'>[{{clist.count}}]</a></li>
 									<li id='sub2' class="tnone"><span>{{board.b_date|date:'Y-m-d H:i'}}</span></li>
 									<li id='sub3' class="tnone">조회수 : <span>{{board.b_hit}}</span></li>
 								</ul>
@@ -179,6 +188,7 @@
 
 					<script>
 						$(function(){
+							// 좋아요 버튼
 							$("#greatBtn").click(function(){
 								const csrfToken = $("meta[name='csrf-token']").attr("content");
 								let b_no = "{{board.b_no}}";
@@ -192,16 +202,42 @@
 										console.log("결과 data.result : "+data.result)
 
 										if(data.result == "remove"){
-											$('.g_count').text(data.count)
+											$('.g_count').text('좋아요 '+data.count)
 										}else{
-											$('.g_count').text(data.count)
-										}							
+											$('.g_count').text('좋아요 '+data.count)
+										}
+										$('.b_count').text('싫어요 '+data.dis_count)						
 									},
 									error:function(){
 										alert("실패")
 									}
 								})//ajax
-							})
+							});
+
+							$("#badBtn").click(function(){
+								const csrfToken = $("meta[name='csrf-token']").attr("content");
+								let b_no = "{{board.b_no}}";
+								//ajax
+								$.ajax({
+									headers:{"X-CSRFToken":csrfToken},
+									url:"/board/dislikes/",
+									type:"post",
+									data:{"b_no":b_no},
+									success:function(data){
+										console.log("결과 data.dis_result : "+data.dis_result)
+
+										if(data.dis_result == "remove"){
+											$('.b_count').text('싫어요 '+data.dis_count)
+										}else{
+											$('.b_count').text('싫어요 '+data.dis_count)
+										}					
+										$('.g_count').text('좋아요 '+data.count)		
+									},
+									error:function(){
+										alert("실패")
+									}
+								})//ajax
+							});
 						});
 
 					</script>
@@ -217,7 +253,7 @@
 						<a id='badBtn'>
 							<div class="bad">
 								<span id="thumbs_down"><i class="fa-regular fa-thumbs-down fa-3x"></i></span>
-								<p class="b_count">싫어요</p>
+								<p class="b_count">{{dis_count}}</p>
 							</div>
 						</a>
 					</div>
@@ -234,6 +270,7 @@
 						</div>
 					</div>
 					<!-- //Btn Area -->
+
 					<script>
 						$(function(){
 							const csrfToken = $("meta[name='csrf-token']").attr("content");
@@ -249,12 +286,13 @@
 								c_pw = $('.replynum').val()
 								c_content = $('.replyType').val()
 								b_no = '{{board.b_no}}'
+								console.log('b_no :', b_no);
 
 								$.ajax({
 									headers:{'X-CSRFToken':csrfToken},
 									url:'/comment/cwrite/',
 									type:'post',
-									data:{'c_pw':c_pw,'c_content':c_content},
+									data:{'c_pw':c_pw,'c_content':c_content, 'b_no':b_no},
 									success:function(data){
 										if(data.result == 'success'){
 											alert('댓글이 등록되었습니다.')
@@ -294,7 +332,7 @@
 							// $('.dBtn').click(function(){}) : 처음불러온 데이터는 삭제 가능, 제이쿼리로 추가한 데이터는 삭제 불가(정적클릭)
 							$(document).on('click','.dBtn',function(){
 								let c_no = $(this).closest('ul').attr('id');
-								if (confirm(c_no+ '번 댓글을 삭제하시겠습니까?')){
+								if (confirm('댓글을 삭제하시겠습니까?')){
 									// ajax 데이터 넘기기
 									$.ajax({
 										headers:{'X-CSRFToken':csrfToken},
@@ -303,7 +341,7 @@
 										data:{'c_no':c_no},
 										success:function(data){
 											if(data.result == 'success'){
-												alert(c_no+ '번 댓글이 삭제되었습니다.')
+												alert('댓글이 삭제되었습니다.')
 												$('#'+c_no).remove()
 												let cnt = $('#cnt').text()
 												$('#cnt').text((Number(cnt)-1)) 

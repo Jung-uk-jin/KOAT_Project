@@ -28,8 +28,9 @@
 		#text_div{
 			width:45%;
 			margin: 150px auto;
+
 		}
-		#text_div1{
+		#text_div1, #text_div3{
 			margin-bottom: 10px;
 		}
 
@@ -41,7 +42,7 @@
 
 /*주요관광지 스타일*/
 		#foodtable {	
-			margin: 350px auto;   
+			margin: 200px auto;   
       table-layout: fixed; /* 셀 크기를 고정 */
 		}
 		
@@ -125,7 +126,6 @@
 							<li><a href="/admin/">admin관리자</a></li>
 							<li><a href="/board/bview/{{board.bview}}">상세보기</a></li>
 							<li><a href="/board/blist/">게시판</a></li>
-
 						</ul>
 					</div>
 					<div class="col-6 col-lg-3 text-lg-end">
@@ -142,10 +142,7 @@
 		</div>
 	</nav>
 
-	
-
 	<div class="hero overlay">
-
 		<div class="img-bg rellax">
 			<img src="/static/images/확장불고기.jpg" alt="Image" class="img-fluid">
 		</div>
@@ -154,16 +151,16 @@
 			<div class="row align-items-center justify-content-start">
 				<div class="col-lg-5">
 					<h1 class="heading" data-aos="fade-up">불고기</h1>
-					
 				</div>
 			</div>
 		</div>
 	</div>
 	
+
   <!--푸드 페이지-->
 	<div id="text_div">
 		<div id ="text_div1">
-			<h3 id = "font">
+			<h3 id = "font" style="font-size: 50px;">
 				불고기란?<br><br>
 			</h3>
 		</div>
@@ -175,12 +172,14 @@
 		</div>
 	</div>
 
+	
+
 	<!--판매점 테이블-->
 	<div class="center-container">
 		<table id="foodtable">
 			<tr>
-				<td colspan="2" class="foodltitle">
-					<h3 id = "font">
+				<td colspan="2" class="foodtitle">
+					<h3 id = "font" style="font-size: 40px;">
 						판매점
 					</h3>
 				</td>
@@ -241,6 +240,26 @@
 								<div class="image-info">
 										<div class="name">불고기미식관</div>
 										<div class="description">주소 : 제주도 성남시 분당구 정자동 15-7<br>전화번호 : 0507-1313-8121</div>
+								</div>
+						</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="foodtd">
+						<div class="image-container">
+								<img class="store_img" src="/static/images/북성우로.jpg" alt="강경불고기">
+								<div class="image-info">
+										<div class="name">원조 북성로우동불고기</div>
+										<div class="description">주소 : 대구 중구 서내동 35 백세촌 건물뒷편<br>전화번호 : 053-255-9199</div>
+								</div>
+						</div>
+				</td>
+				<td class="foodtd">
+						<div class="image-container">
+								<img class="store_img" src="/static/images/다락.jpg" alt="불고기미식관">
+								<div class="image-info">
+										<div class="name">다락</div>
+										<div class="description">주소 : 충청북도 청주시 흥덕구 오송읍 오송생명3로<br>전화번호 : 043-231-9003</div>
 								</div>
 						</div>
 				</td>

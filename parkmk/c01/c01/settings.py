@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'member',
     'inside',
     'food',
-    'locate',
+    'heritage',
+  
 ]
 
 MIDDLEWARE = [

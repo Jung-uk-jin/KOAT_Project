@@ -13,4 +13,4 @@ class Member(models.Model):
   m_auth = models.IntegerField(default=1)
   
   def __str__(self):
-    return f"{self.m_username},{self.m_nickName},{self.m_gender}"
+    return f"{self.m_id},{self.m_password},{self.m_username},{self.m_nickName},{self.m_gender},{self.m_email},{self.m_date},{self.m_auth},"

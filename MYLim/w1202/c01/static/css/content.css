@@ -757,6 +757,7 @@
 .greatbox p {
   font-size: 14px;
   margin: 0; /* 기본 여백 제거 */
+  text-align: center;
 }
 
 .greatbox .g_count {

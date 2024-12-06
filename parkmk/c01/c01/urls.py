@@ -10,7 +10,8 @@ urlpatterns = [
     path('member/', include('member.urls')),
     path('inside/', include('inside.urls')),
     path('food/', include('food.urls')),
-    path('locate/', include('locate.urls')),
+    path('heritage/', include('heritage.urls')),
+   
     
     
 ]

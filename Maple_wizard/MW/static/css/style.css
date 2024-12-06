@@ -10577,6 +10577,10 @@ span.typex {
   border: none;
 }
 
+span.memup{
+  text-align: center;
+}
+
 .gdst{
   font: caption;
   display: flex;
@@ -10586,4 +10590,13 @@ span.typex {
 
 .gdst>label{
   margin-right: 15px;
+}
+
+div#logbtm {
+  display: flex;
+  justify-content: space-between;
+}
+
+div#scidpw {
+  display: flex;
 }

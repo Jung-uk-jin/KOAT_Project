@@ -48,36 +48,66 @@ def bwrite(request):
 
 ### 게시판 글보기
 def bview(request,b_no):
-  npage = request.GET.get('npage',1)
-  qs = Board.objects.get(b_no=b_no)
-  c_qs = Comment.objects.filter(board=qs).order_by('c_no')
-  
-  ## 이전글, 다음글
-  prev_qs = Board.objects.filter(b_no__lt=qs.b_no).order_by('-b_no').first()
-  next_qs = Board.objects.filter(b_no__gt=qs.b_no).order_by('b_no').first()
-  
-  ## 조회수 증가 방지, 날짜 설정 (쿠키기간)
-  day1 = datetime.replace(datetime.now(),hour=23,minute=59,second=59)
-  expires = datetime.strftime(day1,'%a, %d-%b-%Y %H:%M:%S GMT')
-  print('날짜 : ',expires)
-  context = {'board':qs, 'prev_board':prev_qs, 'next_board':next_qs, 'npage':npage, 'clist':c_qs}
-  response = render(request,'bview.html',context)
-  ## 쿠키확인
-  if request.COOKIES.get('cookie_boardNo') is not None:
-    cookies = request.COOKIES.get('cookie_boardNo') # 1|5|6|2
-    cookies_list = cookies.split('|')
-    if str(b_no) not in cookies_list:
-      response.set_cookie('cookie_boardNo',cookies+f"|{b_no}",expires=expires)
+  m_id = request.session.get('session_m_id')
+  print('세션아이디 : ',m_id)
+  if not m_id:
+    # m_id 가 없을경우
+    return render(request,'bview.html',{'rq_login': True})
+  else:
+    member = Member.objects.get(m_id=m_id)
+    npage = request.GET.get('npage',1)
+    qs = Board.objects.get(b_no=b_no)
+    c_qs = Comment.objects.filter(board=qs).order_by('c_no')
+    
+    ## 이전글, 다음글
+    prev_qs = Board.objects.filter(b_no__lt=qs.b_no).order_by('-b_no').first()
+    next_qs = Board.objects.filter(b_no__gt=qs.b_no).order_by('b_no').first()
+    
+    count = f"좋아요 {qs.b_like_members.count()}"
+    # 좋아요 상태를 확인
+    if qs.b_like_members.filter(pk=m_id).exists():
+      result = '1'
+      print("좋아요 상태: 클릭됨")
+      count = f"좋아요 {qs.b_like_members.count()}"
+    else:
+      result = '0'
+      print("좋아요 상태: 클릭되지 않음")
+
+    dis_count = f"싫어요 {qs.b_dislike_members.count()}"
+    # 싫어요 상태를 확인
+    if qs.b_dislike_members.filter(pk=m_id).exists():
+      dis_result = '1'
+      print("싫어요 상태: 클릭됨")
+      dis_count = f"싫어요 {qs.b_dislike_members.count()}"
+    else:
+      dis_result = '0'
+      print("싫어요 상태: 클릭되지 않음")
+    
+    ## 조회수 증가 방지, 날짜 설정 (쿠키기간)
+    day1 = datetime.replace(datetime.now(),hour=23,minute=59,second=59)
+    expires = datetime.strftime(day1,'%a, %d-%b-%Y %H:%M:%S GMT')
+    print('날짜 : ',expires)
+    context = {'board':qs, 'prev_board':prev_qs, 'next_board':next_qs,
+               'npage':npage, 'clist':c_qs, 'result': result, 'count':count,
+               'dis_result':dis_result, 'dis_count':dis_count}
+    response = render(request,'bview.html',context)
+    ## 쿠키확인
+    if request.COOKIES.get('cookie_boardNo') is not None:
+      cookies = request.COOKIES.get('cookie_boardNo') # 1|5|6|2
+      cookies_list = cookies.split('|')
+      if str(b_no) not in cookies_list:
+        response.set_cookie('cookie_boardNo',cookies+f"|{b_no}",expires=expires)
+        # 조회수 1증가
+        qs.b_hit += 1
+        qs.save() 
+    else:
+      # 쿠키저장
+      response.set_cookie('cookie_boardNo',b_no,expires=expires) # 쿠키에 bno 저장 / 기간 expires
       # 조회수 1증가
       qs.b_hit += 1
-      qs.save() 
-  else:
-    # 쿠키저장
-    response.set_cookie('cookie_boardNo',b_no,expires=expires) # 쿠키에 bno 저장 / 기간 expires
-    # 조회수 1증가
-    qs.b_hit += 1
-    qs.save() 
-  return response
+      qs.save()
+      
+    return response
 
 ### 게시판 글 수정
 def bupdate(request,b_no):
@@ -98,7 +128,7 @@ def bupdate(request,b_no):
         image_path = os.path.join(settings.MEDIA_ROOT, qs.b_file.name)
         if os.path.exists(image_path):  # 파일이 존재하면 삭제
           os.remove(image_path)
-          qs.b_file = None  # 모델 필드 값 초기화
+          qs.b_file = None  # 초기화
       
     qs.b_title = b_title
     qs.b_content = b_content
@@ -120,9 +150,12 @@ def likes(request):
   member = Member.objects.get(m_id=m_id)
   b_no = request.POST.get("b_no")
   board = Board.objects.get(b_no=b_no)
+
+  if board.b_dislike_members.filter(pk=m_id).exists(): # 싫어요클릭한 상태
+    board.b_dislike_members.remove(member)
   
   # 저장 board.b_no, board.member.m_id
-  if board.b_like_members.filter(pk=m_id).exists(): # 좋아요클릭을 했으면
+  if board.b_like_members.filter(pk=m_id).exists(): # 좋아요클릭한 상태
     board.b_like_members.remove(member)
     result = "remove" # 좋아요취소
   else:
@@ -130,6 +163,31 @@ def likes(request):
     result = "add"    # 좋아요추가  
   
   print("좋아요 개수 확인 : ",board.b_like_members.count())
-  context = {"result":result,"count":board.b_like_members.count()}
+  context = {"result":result,"count":board.b_like_members.count(), "dis_count":board.b_dislike_members.count()}
+  
+  return JsonResponse(context)
+
+### 싫어요
+def dislikes(request):
+  m_id = request.session["session_m_id"]
+  member = Member.objects.get(m_id=m_id)
+  b_no = request.POST.get("b_no")
+  board = Board.objects.get(b_no=b_no)
+
+  if board.b_like_members.filter(pk=m_id).exists(): # 좋아요클릭한 상태
+    board.b_like_members.remove(member)
+    
+  # 저장 board.b_no, board.member.m_id
+  if board.b_dislike_members.filter(pk=m_id).exists(): # 싫어요클릭한 상태
+    board.b_dislike_members.remove(member)
+    result = "remove" # 싫어요취소
+  else:
+    board.b_dislike_members.add(member)
+    result = "add"    # 싫어요추가  
+    
+  
+  
+  print("싫어요 개수 확인 : ",board.b_dislike_members.count())
+  context = {"dis_result":result, "count":board.b_like_members.count(), "dis_count":board.b_dislike_members.count()}
   
   return JsonResponse(context)

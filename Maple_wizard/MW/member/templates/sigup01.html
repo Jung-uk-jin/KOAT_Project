@@ -52,7 +52,7 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">Sterial</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
@@ -188,15 +188,23 @@
 								
 							}); // 제이쿼리 선언
 							
-							function dpchk(){
-								if($("#p1no").prop("checked") || $("#p2no").prop("checked")){
-									alert("모두 동의를 해 주셔야 합니다.");
-									return false;
-								}else if($("#p1no").prop("checked") && $("#p2no").prop("checked")){
-									alert("다음")
-									// location.href = "/member/sigup02/"
-								}
-							};
+							function dpchk(){ // 다음단계 클릭
+								alert('클릭')
+								chk = 2
+								$(".dcchk").each(function(){ //체크 확인
+									if ($(this).is(":checked")) {   
+										chk += 1                          //  동의를 한 경우
+									} else {				
+										chk -= 1													// 동의가 안된경우
+									}
+								});
+								if(chk < 3){                     // 체크에 따른 값으로 판별
+									alert('모두 동의를 해 주셔야 합니다.')	
+								}else{
+									alert('다음 단계로 넘어갑니다')
+										location.href = "/member/sigup02/"
+									}
+							}; // 다음단계 클릭
 
 							</script>	
 

@@ -118,17 +118,16 @@
 	<div class="t_table1" >
 		<table id="l_city">
 			<tbody>
-				<tr class="t_tr">
-					<td id="img_td"><a href ="/inside/up/"><img src="/static/images/서울.jpg" class = "t_img">서울</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/인천.jpg" class = "t_img">인천</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/대구.jpg" class = "t_img">대구</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/부산.jpg" class = "t_img">부산</a></td>
-				</tr>
-				<tr class="t_tr">
-					<td id="img_td"><a href=""><img src="/static/images/광주.jpg" class = "t_img">광주</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/대전.jpg" class = "t_img">대전</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/울산.jpg" class = "t_img">울산</a></td>
-				</tr>
+				{%if llist%}
+						<tr class="t_tr">
+							{%for list in llist%}
+								{% if forloop.counter0|divisibleby:4 and not forloop.first %}
+									</tr><tr class="t_tr">
+								{%endif%}
+								<td id="img_td"><a href ="/inside/up/{{list.lo_name}}/"><img src="/static/images/서울.jpg" class = "t_img">{{list.lo_name}}</a></td>
+							{%endfor%}
+						</tr>
+					{%endif%}
 			</tbody>
 		</table>
 	</div>

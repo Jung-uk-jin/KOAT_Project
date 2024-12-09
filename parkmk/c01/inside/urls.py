@@ -3,6 +3,6 @@ from . import views
 
 app_name = 'inside'
 urlpatterns = [
-    path('up/',views.up,name='up'),
+    path('up/<str:lo_name>/',views.up,name='up'),
 
 ]

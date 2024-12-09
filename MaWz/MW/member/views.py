@@ -43,7 +43,7 @@ def signcp(request):
     gender = request.POST.get('gender')
     email = request.POST.get('이메일')
     print("변수", id, pw, name, nicName, gender, email)
-    Member.objects.create(m_id=id, m_password=pw, m_username=name, m_nickName=nicName, m_gender=gender, m_email=email)  # 여기 주석 해제하면 정보 DB에 저장됨
+    # Member.objects.create(m_id=id, m_password=pw, m_username=name, m_nickName=nicName, m_gender=gender, m_email=email)  # 여기 주석 해제하면 정보 DB에 저장됨
     return redirect("member:sigcomp")
   else:  
     return render(request, 'signup02.html')

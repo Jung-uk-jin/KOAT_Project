@@ -10,6 +10,7 @@
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
+	<meta name="csrf-token" content="{{ csrf_token }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<meta name="author" content="Untree.co">
@@ -22,19 +23,22 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="fonts/icomoon/style.css">
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
 
 	<link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
 	<link rel="stylesheet" href="{% static 'css/aos.css'%}">
 	<link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
 	<link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
 	<link rel="stylesheet" href="{% static 'css/style.css'%}">
-
-
 	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 <body>
+
+	
 
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
@@ -101,72 +105,119 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-start">
 				<div class="col-lg-6 mx-auto text-center">
-					<h1 class="heading" data-aos="fade-up">가입 성공</h1>
-					<p data-aos="fade-up">회원가입 성공</p>
+					<h1 class="heading" data-aos="fade-up">회원정보 수정</h1>
+					<p data-aos="fade-up">가입하신 정보를 수정합니다.</p>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
+	<!-- Header -->
+
 
 	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-12"	data-aos="fade-up" data-aos-delay="0">
 					
-					<h2 class="heading mb-5">가입을 환영합니다.</h2>
+					<h2 class="heading mb-5">Member Information Commit</h2>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
-					<div class="contact-info">
 
-						<div class="address mt-4">
-							<i class="icon-room"></i>
-							<h4 class="mb-2">Location:</h4>
-							<p>43 Raymouth Rd. Baltemoer, London 3910</p>
-						</div>
+				<script>
+					$(function(){
+						pwtoken = "0"  // pw입력확인
+						emailtoken = "0" // emaill입력 확인
+						const csrfToken = $("meta[name='csrf-token']").attr("content");
+						
+						$("#yourpw2").on("input", function () {  // 비밀번호 재확인
+							const pw1 = $("#yourpw").val();
+							const pw2 = $(this).val();
+					
+							if (pw1 !== pw2) {
+									$(this).css("border-color", "red");
+									$("#pwmore").css("color", "red");
+									$("#pwmore").text("비밀번호가 일치하지 않습니다.");
+								} else {
+									$(this).css("border-color", "green");
+									$("#pwmore").css("color", "green");
+									$("#pwmore").text("비밀번호가 일치합니다.");
+								}
+							}); // 비밀번호 재확인
+							
+							$("#youremail").on("input", function () {  // 이메일 확인
+								const email = $(this).val();
+								const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+								
+								if (!emailRegex.test(email)) {
+									$(this).css("border-color", "red");
+									$("#eemail").css("color", "red");
+									$("#eemail").text("올바른 이메일 형식을 입력하세요.");
+								} else {
+									$(this).css("border-color", "green");
+									$("#eemail").css("color", "green");
+									$("#eemail").text("이메일 형식이 올바릅니다.");
+							}
+					}); // 이메일 확인
+					
+						// 정보 입력 확인
+						chtoken = 0
+						$("#mon").click(function(){  // 수정 완료 버튼을 누른다면
+							$("input[required]").each(function(){ // 입력 항목 다 채웠는지 확인
+								if(!$(this).val()) {
+									alert($(this).attr("name") + "을(를) 입력해주세요");
+									chtoken -= 1
+									return false;
+								}else{
+									chtoken += 1
+								};
+								if (chtoken == 7){
+									alert("정보를 수정합니다.")
+									$("#memberform").submit();  // 입력된 정보 전송
+								};
+							}); // 필수 채움 항목 채웠는지 확인
+						}); //가입완료 버튼 클릭
 
-						<div class="open-hours mt-4">
-							<i class="icon-clock-o"></i>
-							<h4 class="mb-2">Open Hours:</h4>
-							<p>
-								Sunday-Friday:<br>
-								11:00 AM - 2300 PM
-							</p>
-						</div>
 
-						<div class="email mt-4">
-							<i class="icon-envelope"></i>
-							<h4 class="mb-2">Email:</h4>
-							<p>info@</p>
-						</div>
-
-						<div class="phone mt-4">
-							<i class="icon-phone"></i>
-							<h4 class="mb-2">Call:</h4>
-							<p>+1 1234 55488 55</p>
-						</div>
-
-					</div>
-				</div>
+					})// 제이쿼리 선언
+				</script>
 				<div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-					<form action="#">
+					<form action="/member/infoupd/" method="POST" id="memberform">
+						{% csrf_token %}
 						<div class="row">
+							<label>모두 필수 입력 항목입니다.</label>
 							<div class="col-6 mb-3">
-								<input type="text" class="form-control" placeholder="Your Name">
+								<label></label><input type="text" class="form-control" value="{{mem.m_id}}" id="yourid" name="아이디" readonly>
+								<label></label><input type="text" class="form-control" value="{{mem.m_password}}" id="yourpw" name="비밀번호" required>
+								<label></label><input type="text" class="form-control" placeholder="비밀번호 확인" id="yourpw2" name="비밀번호2" required>
+								<label></label><input type="text" class="form-control" value="{{mem.m_username}}" id="realname" name="실명" required>
+								<label></label><input type="text" class="form-control" value="{{mem.m_nickName}}" id="nickName" name="별명" required>
+								<br>
+								<div class="gdst">
+									<label for="male"><input type="radio" name="gender" id="male" value="male"{% if mem.m_gender == 'male' %}checked{% endif %}>남자</label>
+									<label for="female"><input type="radio" name="gender" id="female" value="female"{% if mem.m_gender == 'female' %}checked{% endif %}>여자</label>
+									<label for="other"><input type="radio" name="gender" id="other" value="other"{% if mem.m_gender == 'other' %}checked{% endif %}>기타</label>
+								</div>
+								
+								<label></label><input type="text" class="form-control" value="{{mem.m_email}}" id="youremail" name="이메일" required>
 							</div>
 							<div class="col-6 mb-3">
-								<input type="email" class="form-control" placeholder="Your Email">
+								<br>
+								<input type="button" value="중복확인" id="dup" class="btn btn-primary idchk">
+								<br>
+								<label></label><span class="form-control typex">비밀번호를 입력해 주세요</span>
+								<label></label><span class="form-control typex" id="pwmore">비밀번호를 한 번 더 입력해 주세요</span>
+								<label></label><span class="form-control typex">실명을 입력해 주세요</span>
+								<label></label><span class="form-control typex">별명을 입력해 주세요</span>
+								<label></label><span class="form-control typex">성별을 선택해 주세요</span>
+								<label></label><span class="form-control typex" id="eemail">이메일을 입력해 주세요</span>
 							</div>
-							<div class="col-12 mb-3">
-								<input type="text" class="form-control" placeholder="Subject">
-							</div>
-							<div class="col-12 mb-3">
-								<textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-							</div>
-
 							<div class="col-12">
-								<input type="submit" value="Send Message" class="btn btn-primary">
+								<input type="button" value="정보 수정" id="mon" class="btn btn-primary dpchk">
 							</div>
 						</div>
 					</form>
@@ -174,6 +225,15 @@
 			</div>
 		</div>
 	</div> <!-- /.untree_co-section -->
+
+
+
+
+
+
+
+
+	<!-- Footer 부분 -->
 
 	<div class="site-footer">
 		<div class="container">

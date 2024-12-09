@@ -43,7 +43,7 @@ def signcp(request):
     gender = request.POST.get('gender')
     email = request.POST.get('이메일')
     print("변수", id, pw, name, nicName, gender, email)
-    # Member.objects.create(m_id=id, m_password=pw, m_username=name, m_nickName=nicName, m_gender=gender, m_email=email)  # 여기 주석 해제하면 정보 DB에 저장됨
+    Member.objects.create(m_id=id, m_password=pw, m_username=name, m_nickName=nicName, m_gender=gender, m_email=email)  # 여기 주석 해제하면 정보 DB에 저장됨
     return redirect("member:sigcomp")
   else:  
     return render(request, 'signup02.html')
@@ -72,19 +72,19 @@ def loginChk(request):
   
   print(qs)
   if qs:
-      # 로그인 성공: 세션 추가 및 응답 생성
-      request.session['session_m_id'] = qs[0].m_id
-      request.session['session_m_nickName'] = qs[0].m_nickName
-      
-      # 쿠키 처리
-      response = JsonResponse({"result": "success", "member": list(qs.values())})
-      if saveId == "1":
-          response.set_cookie('cookId', m_id, max_age=60*60)  # 쿠키에 ID 저장
-      else:
-          response.delete_cookie('cookId')
+    # 로그인 성공: 세션 추가 및 응답 생성
+    request.session['session_m_id'] = qs[0].m_id
+    request.session['session_m_nickName'] = qs[0].m_nickName
+    
+    # 쿠키 처리
+    response = JsonResponse({"result": "success", "member": list(qs.values())})
+    if saveId == "1":
+      response.set_cookie('cookId', m_id, max_age=60*60)  # 쿠키에 ID 저장
+    else:
+      response.delete_cookie('cookId')
   else:
-      # 로그인 실패
-      response = JsonResponse({"result": "fail"})
+    # 로그인 실패
+    response = JsonResponse({"result": "fail"})
   print(response)
   return response
 

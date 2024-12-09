@@ -28,7 +28,7 @@
 			let pw = $("#yourpw").val();
 			let num = pw.search(/[0-9]/g);
 			let eng = pw.search(/[A-Za-z]/g);
-			let spc = pw.search(/[~!@#%^*]/g);
+			let spc = pw.search(/[!@#$%^&*]/g);
 
 			if (pw.length < 4 || pw.length > 15) {
 				$(this).css("border-color", "red");
@@ -118,8 +118,8 @@
 						<label>모두 필수 입력 항목입니다.</label>
 						<div class="col-6 mb-3">
 							<label></label><input type="text" class="form-control" value="{{mem.m_id}}" id="yourid" name="아이디" readonly>
-							<label></label><input type="text" class="form-control" value="{{mem.m_password}}" id="yourpw" name="비밀번호" required>
-							<label></label><input type="text" class="form-control" placeholder="비밀번호 확인" id="yourpw2" name="비밀번호2" required>
+							<label></label><input type="password" class="form-control" value="{{mem.m_password}}" id="yourpw" name="비밀번호" required>
+							<label></label><input type="password" class="form-control" placeholder="비밀번호 확인" id="yourpw2" name="비밀번호2" required>
 							<label></label><input type="text" class="form-control" value="{{mem.m_username}}" id="realname" name="실명" required>
 							<label></label><input type="text" class="form-control" value="{{mem.m_nickName}}" id="nickName" name="별명" required>
 							<br>

@@ -57,7 +57,7 @@
 			let pw = $("#yourpw").val();
 			let num = pw.search(/[0-9]/g);
 			let eng = pw.search(/[A-Za-z]/g);
-			let spc = pw.search(/[~!@#%^*]/g);
+			let spc = pw.search(/[!@#$%^&*]/g);
 
 			if (pw.length < 4 || pw.length > 15) {
 				$(this).css("border-color", "red");
@@ -70,7 +70,7 @@
 			}else if ( (num < 0 && eng < 0) || (num < 0 && spc < 0) || (eng < 0 && spc < 0) ) {
 				$(this).css("border-color", "red");
 				$("#pwft").css("color", "red");
-				$("#pwft").text("영문자, 숫자, 특수문자(~!@#%^*) 중 2가지 이상 혼합해 주세요.")
+				$("#pwft").text("영문자, 숫자, 특수문자(!@#$%^&*) 중 2가지 이상 혼합해 주세요.")
 			}else {
 				$(this).css("border-color", "green");
 				$("#pwft").css("color", "green");
@@ -113,10 +113,11 @@
 	
 
 		$("#mon").click(function(){  // 가입 완료 버튼 클릭
+			
 			if(idtoken == "0"){
-				alert('id 중복 확인을 해 주세요')
-				return false;
-			};
+					alert('id 중복 확인을 해 주세요')
+					return false;
+				};
 			if(pwtoken == "0"){
 				alert('pw 입력 확인을 해 주세요')
 				return false;
@@ -125,24 +126,25 @@
 				alert('email 입력 확인을 해 주세요')
 				return false;
 			};
+			
+			if(!$("input[name='gender']:checked").length) {  // 성별 선택을 했는지 확인
+				alert("성별을 선택해 주세요.");
+				return false;
+			};
+				
 			let temp = 0 // 입력 항목 체크 변수
 			$("input[required]").each(function(){ // 입력 항목 다 채웠는지 확인
 				if(!$(this).val()) {
 					alert($(this).attr("name") + "을(를) 입력해주세요");
 					$(this).focus();
 					temp=1;
+					return false;
 				};
+
 			}); // 입력 항목 다 채웠는지 확인
-
-			if(!$("input[name='gender']:checked").length) {  // 성별 선택을 했는지 확인
-				alert("성별을 선택해 주세요.");
-				return false;
-			};
-
 			if (temp == 1){
 				return false;
-			}
-
+			};
 			alert('가입이 완료되었습니다.')
 			$("#memberform").submit();  // 입력된 정보 전송
 		}); // 가입 완료 버튼 클릭

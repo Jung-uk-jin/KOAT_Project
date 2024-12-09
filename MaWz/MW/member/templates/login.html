@@ -21,9 +21,12 @@
 	$(document).ready(function () {
 		const csrfToken = $("meta[name='csrf-token']").attr("content");
 		$("#sBtn").click(function(){  //
-
 			m_id = $("#id").val()
 			m_password = $("#pw").val()
+			if (m_id.length < 1 || m_password.length < 1) {
+				alert('아이디 또는 패스워드를 입력해 주세요');
+				return false;
+			}
 			saveId = $("#saveId").prop(":checked") ? "0" : "1";
 			$.ajax({
 				headers:{"X-CSRFToken":csrfToken},

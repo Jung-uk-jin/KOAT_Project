@@ -10600,3 +10600,9 @@ div#logbtm {
 div#scidpw {
   display: flex;
 }
+
+.icoct>li{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 13px;
+}

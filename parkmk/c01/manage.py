@@ -3,6 +3,14 @@
 import os
 import sys
 
+from django.db.backends.oracle import base, features
+
+
+class DatabaseFeatures(features.DatabaseFeatures):
+    minimum_database_version = (12,)
+
+class DatabaseWrapper(base.DatabaseWrapper):
+    features_class = DatabaseFeatures
 
 def main():
     """Run administrative tasks."""
@@ -20,3 +28,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

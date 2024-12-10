@@ -6,7 +6,7 @@ from inside.models import Attraction
 
 @admin.register(Location_inform)
 class Location_informAdmin(admin.ModelAdmin):
-  list_display = ['l_no','l_description','l_location']
+  list_display = ['l_no','l_description','l_location','l_subtitle']
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):

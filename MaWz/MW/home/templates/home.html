@@ -22,10 +22,10 @@
 	<link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
 	<link rel="stylesheet" href="{% static 'css/aos.css'%}">
 	<link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
-	<link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
+	{% comment %} <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}"> {% endcomment %}
 	<link rel="stylesheet" href="{% static 'css/style.css'%}">
 
-
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
 </head>
 <body>
@@ -39,13 +39,13 @@
 		<div class="site-mobile-menu-body"></div>
 	</div>
 
-	<nav class="site-nav mt-3">
+	<nav class="site-nav mt-3 hhead" id="tophead">
 		<div class="container">
 
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">Sterial</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
@@ -73,7 +73,7 @@
 					</div>
 					<div class="col-6 col-lg-3 text-lg-end">
 						<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
-							<li class="cta-button"><a href="contact.html">Contact Us</a></li>
+							<li class="cta-button"><a href="/member/login/">Log In</a></li>
 						</ul>
 
 						<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
@@ -82,16 +82,37 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</nav>
+	<script>
+		$(document).ready(function () {
+			const $video = $('#backvd'); // 비디오 요소 선택
+			const $playPauseBtn = $('#vdcont'); // 버튼 요소 선택
+			const $playI = $("#playIc");
+			const $puseI = $("#puseIc");
 
-	
+			$puseI.hide()
+
+			// 버튼 클릭 시 재생/정지 토글
+			$playPauseBtn.on('click', function () {
+				if ($video[0].paused) {
+					$video[0].play(); // 재생
+					$playI.show()
+					$puseI.hide()
+				} else {
+					$video[0].pause(); // 정지
+					$playI.hide()
+					$puseI.show()
+				}
+			});
+		});
+	</script>
 
 	<div class="hero overlay">
 
 		<div class="img-bg rellax">
-			<img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid">
+			{% comment %} <img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid"> {% endcomment %}
+			<video class="dvd-fluid" id="backvd" src="/static/images/mainhead.mp4" autoplay muted loop ></video>
 		</div>
 
 		<div class="container">
@@ -101,12 +122,13 @@
 					<h1 class="heading" data-aos="fade-up">It's a Big World Out There, Go Explore</h1>
 					<p class="mb-5" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
 
-					<div data-aos="fade-up">
-						<a href="https://youtu.be/3P1CnWI62Ik?si=IqEDS-2dOJLLyPQ_" class="play-button align-items-center d-flex glightbox3" >
-							<span class="icon-button me-3">
-								<span class="icon-play"></span>
+					<div data-aos="">  <!--fade-up-->
+						<a class="play-button align-items-center d-flex glightbox3" >  <!-- href="https://youtu.be/3P1CnWI62Ik?si=IqEDS-2dOJLLyPQ_"-->
+							<span class="icon-button me-3" id="vdcont">
+								<span class="icon-play" id="playIc" ></span>
+								<span class="icon-pause" id="puseIc" ></span>
 							</span>
-							<span class="caption">Watch Video</span>
+							{% comment %} <span class="caption">Watch Video</span> {% endcomment %}
 						</a>
 					</div>
 				</div>
@@ -674,12 +696,12 @@
 					<div class="widget">
 						<h3>연락</h3>
 						<ul class="list-unstyled social icoct">
-							<li><a href="https://www.instagram.com/kto9suk9suk"><span class="icon-instagram"></span></a></li>
-							<li><a href="https://x.com/kor_visitkorea"><span class="icon-twitter"></span></a></li>
-							<li><a href="https://www.facebook.com/welcometoKTO"><span class="icon-facebook"></span></a></li>
-							<li><a href="https://open.spotify.com/track/1IlMgzxAtjoNUPUmp8Omki?si=3d0feb86bdc54c9b"><span class="icon-spotify"></span></a></li>
-							<li><a href="#"><span class="icon-pinterest"></span></a></li>
-							<li><a href="#"><span class="icon-dribbble"></span></a></li>
+							<li><a target="_blank" href="https://www.instagram.com/kto9suk9suk"><span class="icon-instagram"></span></a></li>
+							<li><a target="_blank" href="https://x.com/kor_visitkorea"><span class="icon-twitter"></span></a></li>
+							<li><a target="_blank" href="https://www.facebook.com/welcometoKTO"><span class="icon-facebook"></span></a></li>
+							<li><a target="_blank" href="https://open.spotify.com/track/1IlMgzxAtjoNUPUmp8Omki?si=3d0feb86bdc54c9b"><span class="icon-youtube-play"></span></a></li>
+							<li><a target="_blank" href="https://g.co/finance/USD-KRW"><span class="icon-usd"></span></a></li>
+							<li><a target="_blank" href="#"><span class="icon-dribbble"></span></a></li>
 						</ul>
 					</div> <!-- /.widget -->
 					{% comment %} <div class="widget">
@@ -714,7 +736,7 @@
 		<script src="{% static 'js/counter.js'%}"></script>
 		<script src="{% static 'js/rellax.js'%}"></script>
 		<script src="{% static 'js/flatpickr.js'%}"></script>
-		<script src="{% static 'js/glightbox.min.js'%}"></script>
+		{% comment %} <script src="{% static 'js/glightbox.min.js'%}"></script> {% endcomment %}
 		<script src="{% static 'js/custom.js'%}"></script>
 	</body>
 	</html>

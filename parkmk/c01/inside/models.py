@@ -17,6 +17,8 @@ class Location_inform(models.Model):
 class Location(models.Model):
   lo_name = models.CharField(max_length=30, primary_key=True)
 
+class Location1(models.Model):
+  lo_name = models.CharField(max_length=30, primary_key=True)
 
 class Attraction(models.Model):
   a_location = models.ForeignKey(Location_inform, on_delete = models.CASCADE, null=True)

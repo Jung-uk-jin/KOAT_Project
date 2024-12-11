@@ -1,6 +1,7 @@
 from django.contrib import admin
 from inside.models import Location_inform
 from inside.models import Location
+from inside.models import Location1
 from inside.models import Attraction
 
 
@@ -10,6 +11,10 @@ class Location_informAdmin(admin.ModelAdmin):
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
+  list_display = ['lo_name']
+  
+@admin.register(Location1)
+class Location1Admin(admin.ModelAdmin):
   list_display = ['lo_name']
 
 @admin.register(Attraction)

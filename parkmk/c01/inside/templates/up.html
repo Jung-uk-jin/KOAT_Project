@@ -145,13 +145,14 @@
 	<div class="hero overlay">
 
 		<div class="img-bg rellax">
-			<img src="/static/images/서울야경.jpg" alt="Image" class="img-fluid">
+			{% for locate in location %}
+				<img src="{{locate.l_file.url}}" alt="Image" class="img-fluid">
 		</div>
 
 		<div class="container">
 			<div class="row align-items-center justify-content-start">
 				<div class="col-lg-5">
-					{% for locate in location %}
+					
 					<h1 class="heading" data-aos="fade-up">{{locate.l_location}}</h1>
 					
 					<p class="mb-5" data-aos="fade-up">{{locate.l_subtitle}}</p>
@@ -166,7 +167,7 @@
 		{% for locate in location %}
 			<div id ="text_div1">
 				<h3 id = "font">
-					{{locate.l_location }}은 어떤 곳인가? <br><br>
+					{{locate.l_location }}, 어떤 곳인가? <br><br>
 				</h3>
 			</div>
 			<div>

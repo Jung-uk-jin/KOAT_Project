@@ -28,6 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'region',
+    'board',
+    'member',
+    'inside',
+    'food',
+    'heritage',
 ]
 
 MIDDLEWARE = [

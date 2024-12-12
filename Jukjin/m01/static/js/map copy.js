@@ -99,7 +99,7 @@ function displayArea(area) {
         console.log('Clicked region:', area.name);
         polygon.setOptions({ fillColor: '#21d12b' });
         // 지역 이름을 기반으로 이동할 URL 설정
-        let regionPage = `/region/${encodeURIComponent(area.name)}`;
+        let regionPage = `/inside/up/${encodeURIComponent(area.name)}`;
 
         // 해당 URL로 페이지 이동
          window.location.href = regionPage;

@@ -8,6 +8,7 @@ class Location_inform(models.Model):
   l_member = models.ForeignKey(Member,on_delete = models.DO_NOTHING,null=True)
   l_location = models.CharField(max_length=30)
   l_description = models.TextField(null=True)
+  l_like_members = models.ManyToManyField(Member,default='', related_name='like_member')
   l_subtitle = models.CharField(max_length=50, null=True)
   l_file = models.ImageField(null=True,upload_to='board/')
   
@@ -17,6 +18,8 @@ class Location_inform(models.Model):
 class Location(models.Model):
   lo_name = models.CharField(max_length=30, primary_key=True)
 
+class Location1(models.Model):
+  lo_name = models.CharField(max_length=30, primary_key=True)
 
 class Attraction(models.Model):
   a_location = models.ForeignKey(Location_inform, on_delete = models.CASCADE, null=True)

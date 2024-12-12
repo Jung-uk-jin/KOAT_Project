@@ -70,6 +70,8 @@
 								</ul>
 							</li>
 							<li><a href="/admin/">admin관리자</a></li>
+							<li><a href="/member/login/">로그인</a></li>
+							<li><a href="/member/logout/">로그아웃</a></li>
 							<li><a href="/board/bview/{{board.bview}}">상세보기</a></li>
 							<li><a href="/board/blist/">게시판</a></li>
 						</ul>
@@ -134,19 +136,16 @@
 	<div class="t_table2">
 		<table id="l_city">
 			<tbody>
-				<tr class="t_tr">
-					<td id="img_td"><a href=""><img src="/static/images/경기도.jpg" class = "t_img">경기도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/강원도.jpg" class = "t_img">강원도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/충청북도.jpg" class = "t_img">충청북도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/충청남도.jpg" class = "t_img">충청남도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/전라북도.jpg" class = "t_img">전라북도</a></td>
-				</tr>
-				<tr class="t_tr">
-					<td id="img_td"><a href=""><img src="/static/images/전라남도.jpg" class = "t_img">전라남도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/경상남도.jpg" class = "t_img">경상남도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/경상북도.jpg" class = "t_img">경상북도</a></td>
-					<td id="img_td"><a href=""><img src="/static/images/제주도.jpg" class = "t_img">제주도</a></td>
-				</tr >
+				{%if 1list%}
+						<tr class="t_tr">
+							{%for list in 1list%}
+								{% if forloop.counter0|divisibleby:5 and not forloop.first %}
+									</tr><tr class="t_tr">
+								{%endif%}
+								<td id="img_td"><a href ="/inside/up/{{list.lo_name}}/"><img src="/static/images/{{list.lo_name}}.jpg" class = "t_img">{{list.lo_name}}</a></td>
+							{%endfor%}
+						</tr>
+					{%endif%}
 			</tbody>
 		</table>
 	</div>

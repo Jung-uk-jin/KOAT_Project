@@ -2,6 +2,7 @@
 
 
 let polygons = [];
+let lastHoveredPolygon = null;  // 마지막으로 마우스가 올라갔던 폴리곤을 저장
 init("/static/json/sido_2.json");
 
 
@@ -14,8 +15,8 @@ polygons = [];
 }
 
 function init(path) {
-$.getJSON(path, function (geojson) {
-    var units = geojson.features;
+    $.getJSON(path, function (geojson) {
+        var units = geojson.features;
 
     $.each(units, function (index, unit) {
         var coordinates = unit.geometry.coordinates;

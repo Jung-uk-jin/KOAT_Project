@@ -9727,7 +9727,9 @@ textarea {
     position: absolute;
     -webkit-transform: scale(1.2) translate(5%, -5%);
     -ms-transform: scale(1.2) translate(5%, -5%);
-    transform: scale(1.2) translate(5%, -5%); }
+    transform: scale(1.2) translate(5%, -5%); 
+  }
+    
     @media (max-width: 1199.98px) {
       .hero img {
         -webkit-transform: scale(1.6) translate(10%, -5%);
@@ -9767,7 +9769,7 @@ textarea {
     background-color: rgba(0, 0, 0, 0.25);
     z-index: 1; }
   .hero .heading {
-    font-size: 60px;
+    font-size: 80px;
     color: #fff;
     font-weight: 700; }
     @media (max-width: 991.98px) {

@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('member/', include('member.urls')),
+    path('shop/', include('shop.urls')),
 ]
 # 파일업로드 : media연결
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

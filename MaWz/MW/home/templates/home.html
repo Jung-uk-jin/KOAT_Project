@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
 	<link rel="stylesheet" href="{% static 'css/aos.css'%}">
 	<link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
-	{% comment %} <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}"> {% endcomment %}
+	{% comment %} <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}"> {% endcomment %}   <!--이거 지워야지 영상멈춤버튼 누를시 fade 효과 안뜸-->
 	<link rel="stylesheet" href="{% static 'css/style.css'%}">
 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -111,7 +111,6 @@
 	<div class="hero overlay">
 
 		<div class="img-bg rellax">
-			{% comment %} <img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid"> {% endcomment %}
 			<video class="dvd-fluid" id="backvd" src="/static/images/mainhead.mp4" autoplay muted loop ></video>
 		</div>
 
@@ -123,7 +122,7 @@
 					<p class="mb-5" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
 
 					<div data-aos="">  <!--fade-up-->
-						<a class="play-button align-items-center d-flex glightbox3" >  <!-- href="https://youtu.be/3P1CnWI62Ik?si=IqEDS-2dOJLLyPQ_"-->
+						<a class="play-button align-items-center d-flex glightbox3" >
 							<span class="icon-button me-3" id="vdcont">
 								<span class="icon-play" id="playIc" ></span>
 								<span class="icon-pause" id="puseIc" ></span>
@@ -643,6 +642,7 @@
 		</div>		
 	</div>
 	<br>
+	<!-- trip 닷컴 위젯 -->
 	<div><script async src="https://tp.media/content?trs=371158&shmarker=590940&locale=en&curr=USD&powered_by=true&border_radius=0&plain=true&color_button=%23f17945&color_button_text=%23ffffff&color_border=%23f17945&promo_id=4132&campaign_id=121" charset="utf-8"></script></div>
 
 
@@ -736,7 +736,7 @@
 		<script src="{% static 'js/counter.js'%}"></script>
 		<script src="{% static 'js/rellax.js'%}"></script>
 		<script src="{% static 'js/flatpickr.js'%}"></script>
-		{% comment %} <script src="{% static 'js/glightbox.min.js'%}"></script> {% endcomment %}
+		{% comment %} <script src="{% static 'js/glightbox.min.js'%}"></script> {% endcomment %}  <!--위에랑 연관되는 fade효과-->
 		<script src="{% static 'js/custom.js'%}"></script>
 	</body>
 	</html>

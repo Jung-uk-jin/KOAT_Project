@@ -10601,13 +10601,18 @@ div#scidpw {
   display: flex;
 }
 
-.icoct>li{
-  display: flex;
+.icoct{
+  display: flex !important;
   justify-content: space-between;
-  margin: 0 13px;
 }
 
-/* 백그라운드 영상 */
+.icoct >li{
+  display: flex !important;
+  align-items: center !important;
+}
+
+
+/* 헤더 백그라운드 영상 */
 .dvd-fluid {
   width: 100%;
   height: 100vh;
@@ -10625,3 +10630,5 @@ hhead::before {
   background-color: rgba(0, 0, 0, 0.5); 
   margin-top: 0px !important;
 }
+
+/* 헤더 백그라운드 영상 */

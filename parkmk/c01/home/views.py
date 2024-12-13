@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from inside.models import Location
 from inside.models import Location1
-from food.models import Eat
+
 
 def index(request):
   qs = Location.objects.all()

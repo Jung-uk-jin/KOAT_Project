@@ -1324,8 +1324,6 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .infobtn li a{font-size:14px;}
 .infobtn li a span{display:block;}
 .infobtn li a.ty3{width:78px;}
-
-
 }
 
 
@@ -1335,14 +1333,17 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
   font-family: "Black Han Sans", serif;
   font-size:25px;
 }
+
 .t_table1{
   background-color: #F7F7F7;
 }
+
 #l_city {
   width: 50%;
   border-collapse: collapse;
   margin: 20px 30%;
 }
+
 #img_td {
     width: 150px; /* 셀의 너비 */
     height: 150px; /* 셀의 높이 */

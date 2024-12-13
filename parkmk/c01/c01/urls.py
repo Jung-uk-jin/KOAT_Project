@@ -11,6 +11,7 @@ urlpatterns = [
     path('inside/', include('inside.urls')),
     path('food/', include('food.urls')),
     path('heritage/', include('heritage.urls')),
+    path('chatbot/', include('chatbot.urls')),
    
     
     

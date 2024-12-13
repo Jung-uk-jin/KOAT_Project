@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'inside',
     'food',
     'heritage',
+    'chatbot',
   
 ]
 

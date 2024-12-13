@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .chat-container { max-width: 600px; margin: 50px auto; }
+        .messages { border: 1px solid #ddd; padding: 10px; height: 300px; overflow-y: scroll; }
+        .input-container { margin-top: 10px; }
+    </style>
+</head>
+<body>
+  <div class="chat-container">
+    <h1>챗봇 페이지</h1>
+      <div class="messages" id="messages"><p>챗봇과 대화를 시작하세요!</p></div>
+      <div class="input-container">
+          <input type="text" id="userInput" placeholder="Type your message..." style="width: 80%;"> 
+          <button onclick="sendMessage()">Send</button>
+      </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const userMessage = document.getElementById('userInput').value;
+      const messagesDiv = document.getElementById('messages');
+      
+      // CSRF 토큰을 meta 태그에서 가져오기
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      
+      // 사용자 메시지 출력
+      messagesDiv.innerHTML += `<div><strong>You:</strong> ${userMessage}</div>`;
+      document.getElementById('userInput').value = '';
+      
+      try {
+          // 서버로 메시지 전송
+          const response = await fetch('/chatbot/reply/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+              },
+              body: JSON.stringify({ message: userMessage })
+          });
+          
+          console.log('Response:', response);  // 응답 상태 확인
+  
+          // 응답 상태 코드 확인
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+  
+          const data = await response.json();
+  
+          if (data.reply) {
+              // 챗봇 응답 출력
+              messagesDiv.innerHTML += `<div><strong>Bot:</strong> ${data.reply}</div>`;
+          } else {
+              // 오류 처리
+              messagesDiv.innerHTML += `<div><strong>Bot:</strong> 오류가 발생했습니다.</div>`;
+          }
+      } catch (error) {
+          console.error("Error:", error);
+          messagesDiv.innerHTML += `<div><strong>Bot:</strong> 네트워크 오류가 발생했습니다.</div>`;
+      }
+  
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;  // 스크롤 아래로 이동
+  }
+  </script>
+
+</body>
+</html>

@@ -17,6 +17,7 @@ class Eat(models.Model):
 
 
 class Store(models.Model):
+  s_foodname = models.ForeignKey(Food_inform,on_delete= models.CASCADE, null=True)
   s_name = models.CharField(max_length=30, primary_key=True)
   s_address = models.CharField(max_length=100,null=True)
   s_number = PhoneNumberField(null=True, blank=True, region='KR')  # 한국 기준 전화번호

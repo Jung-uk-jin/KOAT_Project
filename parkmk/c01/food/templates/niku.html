@@ -144,13 +144,17 @@
 
 	<div class="hero overlay">
 		<div class="img-bg rellax">
-			<img src="/static/images/확장불고기.jpg" alt="Image" class="img-fluid">
+			{% for locate in location %}
+				<img src="{{locate.f_file.url}}" alt="Image" class="img-fluid">
+				{%endfor%}
 		</div>
 
 		<div class="container">
 			<div class="row align-items-center justify-content-start">
 				<div class="col-lg-5">
-					<h1 class="heading" data-aos="fade-up">불고기</h1>
+					{%for locate in location%}
+						<h1 class="heading" data-aos="fade-up">{{locate.f_name}}</h1>
+					{%endfor%}
 				</div>
 			</div>
 		</div>
@@ -162,14 +166,13 @@
 		<div id ="text_div1">
 			<h3 id = "font" style="font-size: 50px;">
 				{%for locate in location%}
-				{{locate.f_name}}<br><br>
-				{%endfor%}
+					{{locate.f_name}}<br><br>
 			</h3>
 		</div>
 		<div>
 			<div id ="text_div2">
-				<h5>"불고기"라는 이름은 과거에 "불에 구워 먹는 고기"라는 뜻으로 생겨 났다가 점차 "살코기를 얇게 저며 양념에 재었다가 구운 고기"라는 의미로 바뀌었다.<br><br>보통 "불고기"라 하면 간장 양념에 잰 쇠불고기를 가리킨다. 고추장 양념을 사용한 것은 고추장불고기라 부르며, 이외에도 돼지고기를 쓴 돼지불고기, 복어를 쓴 복불고기 등이 존재한다.
-				</h5>
+				<h5>{{locate.f_description|linebreaksbr}}</h5> <!--|linebreaksbr : 글 단락 나누기	--> 
+				{%endfor%}
 			</div>
 		</div>
 	</div>
@@ -186,86 +189,29 @@
 					</h3>
 				</td>
 			</tr>
-			<tr>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/한강회관.png" alt="한강회관">
-								<div class="image-info">
-										<div class="name">한강회관 이촌동</div>
-										<div class="description">주소 : 서울특별시 용산구 이촌동 301-145<br>전화번호 : 0507-1404-9855</div>
+			{%if informs%}
+				{% for inform in informs %}
+					{% if forloop.counter0|divisibleby:2 %} <!-- 새로운 행 시작 -->
+					<tr>
+					{%endif%}
+						<td class="foodtd">
+								<div class="image-container">
+										<img class="store_img" src="{{inform.s_file.url}}" alt="{{ inform.a_name }}">
+										<div class="image-info">
+												<div class="name">{{inform.s_name}}</div>
+												<div class="description">{{inform.s_address}}<br>전화번호 : {{inform.s_number}}</div>
+										</div>
 								</div>
-						</div>
-				</td>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/아리랑옛날불고기.jpg" alt="아리랑옛날불고기">
-								<div class="image-info">
-										<div class="name">아리랑 옛날 불고기 의정부</div>
-										<div class="description">주소 : 대구광역시 의정부시 의정부동 216-12<br>전화번호 : 031-848-9233</div>
-								</div>
-						</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/청춘구락부.jpg" alt="청춘구락부">
-								<div class="image-info">
-										<div class="name">청춘구락부</div>
-										<div class="description">주소 : 서울시 마포구 용강동 50-4<br>전화번호 : 0507-1389-1399</div>
-								</div>
-						</div>
-				</td>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/삼우정.jpg" alt="삼우정">
-								<div class="image-info">
-										<div class="name">삼우정</div>
-										<div class="description">주소 : 인천광역시 중구 서소문동 106<br>전화번호 : 0507-1363-8044</div>
-								</div>
-						</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/강경불고기.jpg" alt="강경불고기">
-								<div class="image-info">
-										<div class="name">강경불고기 장암본점</div>
-										<div class="description">주소 : 전라북도 의정부시 장암동 118-4<br>전화번호 : 031-877-9293</div>
-								</div>
-						</div>
-				</td>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/불고기미식관.jpg" alt="불고기미식관">
-								<div class="image-info">
-										<div class="name">불고기미식관</div>
-										<div class="description">주소 : 제주도 성남시 분당구 정자동 15-7<br>전화번호 : 0507-1313-8121</div>
-								</div>
-						</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/북성우로.jpg" alt="강경불고기">
-								<div class="image-info">
-										<div class="name">원조 북성로우동불고기</div>
-										<div class="description">주소 : 대구 중구 서내동 35 백세촌 건물뒷편<br>전화번호 : 053-255-9199</div>
-								</div>
-						</div>
-				</td>
-				<td class="foodtd">
-						<div class="image-container">
-								<img class="store_img" src="/static/images/다락.jpg" alt="불고기미식관">
-								<div class="image-info">
-										<div class="name">다락</div>
-										<div class="description">주소 : 충청북도 청주시 흥덕구 오송읍 오송생명3로<br>전화번호 : 043-231-9003</div>
-								</div>
-						</div>
-				</td>
-			</tr>
+						</td>
+						{% if forloop.counter|divisibleby:2 or forloop.last %} <!-- 행 닫기 -->
+					</tr>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+				<tr>
+					<td class="traveltd"> 데이터가 없습니다. </td>
+				</tr>
+			{%endif%}
 	</table>
 </div>
   <!--푸드 페이지-->

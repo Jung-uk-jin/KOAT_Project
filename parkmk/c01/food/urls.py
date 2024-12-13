@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'food'
 urlpatterns = [
-    path('eat/<str:e_name>/',views.eat,name='eat'),
-    path('niku/',views.niku,name='niku'),
+    path('eat/',views.eat,name='eat'),
+    path('niku/<str:e_name>/',views.niku,name='niku'),
 
 ]

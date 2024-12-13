@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'food',
     'heritage',
     'corsheaders',
+    'package_pay',
 ]
 
 MIDDLEWARE = [

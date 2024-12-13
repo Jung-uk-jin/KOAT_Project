@@ -152,25 +152,26 @@
     <div>
       <h2 id ="kfood">※ 코리안 트레디셔널 푸드 ※</h2>
     </div>
+
     <table id="food_table">
-      
-			<tbody>
-				<tr class="food_tr">
-					<td id="food_td"><a href ="/food/niku/"><img src="/static/images/불고기.jpg" class = "food_img">불고기</a></td>
-					<td id="food_td"><a href= ""><img src="/static/images/비빔밥.jpg" class = "food_img">비빔밥</a></td>
-					<td id="food_td"><a href= ""><img src="/static/images/삼겹살.jpg" class = "food_img">삼겹살</a></td>
-				</tr>
-				<tr class="food_tr">
-          <td id="food_td"><a href= ""><img src="/static/images/갈비.png" class = "food_img">갈비</a></td>
-					<td id="food_td"><a href =""><img src="/static/images/김치.png" class = "food_img">김치</a></td>
-					<td id="food_td"><a href= ""><img src="/static/images/된장찌개.jpg" class = "food_img">된장찌개</a></td>
-				</tr>
-				<tr class="food_tr">
-          <td id="food_td"><a href= ""><img src="/static/images/한우.jpg" class = "food_img">한우</a></td>
-          <td id="food_td"><a href= ""><img src="/static/images/삼계탕.jpg" class = "food_img">삼계탕</a></td>
-					<td id="food_td"><a href =""><img src="/static/images/국수.jpg" class = "food_img">국수</a></td>
-				</tr>
-			</tbody>
+    	<tbody>
+        {% for food in flist %}
+            {% if forloop.counter0|divisibleby:3 %}
+                <tr class="food_tr">
+            {% endif %}
+            
+            <td id="food_td">
+                <a href="/food/niku/{{ food.e_name }}/">
+                    <img src="/static/images/{{ food.e_name }}.jpg" class="food_img">
+                    {{ food.e_name }}
+                </a>
+            </td>
+            
+            {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+    	</tbody>
 		</table>
 	</div>
 

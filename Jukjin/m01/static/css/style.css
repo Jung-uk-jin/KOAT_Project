@@ -10501,3 +10501,33 @@ textarea {
       .site-footer .social li a:hover {
         background: #f59b74;
         color: #fff; }
+
+
+
+        .product-list {
+          display: flex;
+          flex-wrap: wrap;  /* 아이템들이 넘치면 자동으로 다음 줄로 넘어가게 설정 */
+          gap: 20px;  /* 각 아이템 간의 간격 */
+      }
+      
+      .product-item {
+          width: calc(25% - 20px);  /* 4개의 아이템이 가로로 배치되도록 100%를 4로 나누고, 간격을 빼서 설정 */
+          height: 300px;  /* 높이는 300px로 고정 */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          padding: 10px;
+          box-sizing: border-box;  /* 패딩을 포함한 크기를 정확하게 계산 */
+      }
+      
+      .product-image {
+          width: 100%;  /* 부모 요소의 너비를 100%로 설정 */
+          height: auto;  /* 이미지 비율에 맞게 높이 설정 */
+          max-width: 100%;  /* 최대 너비를 100%로 설정 */
+          max-height: 200px; /* 최대 높이는 200px로 제한 (필요시 조정) */
+          object-fit: cover; /* 이미지 비율에 맞게 잘리도록 설정 */
+      }
+      

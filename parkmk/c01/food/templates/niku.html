@@ -161,7 +161,9 @@
 	<div id="text_div">
 		<div id ="text_div1">
 			<h3 id = "font" style="font-size: 50px;">
-				불고기란?<br><br>
+				{%for locate in location%}
+				{{locate.f_name}}<br><br>
+				{%endfor%}
 			</h3>
 		</div>
 		<div>

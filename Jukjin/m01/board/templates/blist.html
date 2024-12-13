@@ -1,0 +1,387 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
+  <link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
+  <link rel="stylesheet" href="{% static 'css/aos.css'%}">
+  <link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/content.css'%}" />
+	<script type="text/javascript" src="{% static 'js/jquery.min.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/top_navi.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/left_navi.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/main.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/common.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/idangerous.swiper-2.1.min.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.anchor.js'%}"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+
+
+});
+</script>
+</head>
+<body>
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close">
+				<span class="icofont-close js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+	<nav class="site-nav mt-3">
+		<div class="container">
+
+			<div class="site-navigation">
+				<div class="row">
+					<div class="col-6 col-lg-3">
+						<a href="/" class="logo m-0 float-start">Sterial</a>
+					</div>
+					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
+						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="about.html">About us</a></li>
+							<li class="has-children">
+								<a href="#">Dropdown</a>
+								<ul class="dropdown">
+									<li><a href="#">Menu One</a></li>
+									<li class="has-children">
+										<a href="#">Menu Two</a>
+										<ul class="dropdown">
+											<li><a href="#">Sub Menu One</a></li>
+											<li><a href="#">Sub Menu Two</a></li>
+											<li><a href="#">Sub Menu Three</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Menu Three</a></li>
+								</ul>
+							</li>
+							<li><a href="services.html">Services</a></li>
+							<li><a href="/board/blist/">게시판</a></li>
+
+						</ul>
+					</div>
+					<div class="col-6 col-lg-3 text-lg-end">
+						<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
+							<li class="cta-button"><a href="contact.html">Contact Us</a></li>
+						</ul>
+
+						<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
+							<span></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</nav>
+	<div class="hero overlay">
+
+		<div class="img-bg rellax">
+			<img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid">
+		</div>
+
+		<div class="container">
+			<div class="row align-items-center justify-content-start">
+				<div class="col-lg-5">
+
+					<h1 class="heading" data-aos="fade-up">It's a Big World Out There, Go Explore</h1>
+					<p class="mb-5" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+
+					<div data-aos="fade-up">
+						<a href="https://www.youtube.com/watch?v=5n-e6lOhVq0" class="play-button align-items-center d-flex glightbox3" >
+							<span class="icon-button me-3">
+								<span class="icon-play"></span>
+							</span>
+							<span class="caption">Watch Video</span>
+						</a>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+
+		
+	</div>
+	<!-- container -->
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="/">HOME</a></li>
+				<li><a href="/board/blist/">여행 후기게시판</a></li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">게시판<span>Board</span></div>
+			</div><script type="text/javascript">initSubmenu(2,0);</script>
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="mypage">
+					<h2><strong>여행 후기 게시판</strong><span>특별했던 순간과 경험을 후기로 공유해보자!!</span></h2>
+					<div class="searchWrap">
+						<form method='get' action="{% url 'board:blist' %}">
+							<div class="search">
+								<ul>
+									<li class="web"><img src="/static/images/txt/txt_search.gif" alt="search" /></li>
+									<li class="se">
+										<select name='type'>
+											<option value="b_title" {% if searchType == "b_title" %}selected{% endif %}>제목</option>
+											<option value="b_content" {% if searchType == "b_content" %}selected{% endif %}>내용</option>
+											<option value="b_title_content" {% if searchType == "b_title_content" %}selected{% endif %}>제목+내용</option>
+										</select>
+									</li>
+									<li><input type="text" name='cl' class="searchInput" /></li>
+									<li class="web">
+                    <button type="submit"><img src="/static/images/btn/btn_search.gif" alt="검색" /></button>
+                	</li>
+                	<li class="mobile">
+                    <button type="submit"><img src="/static/images/btn/btn_search_m.gif" alt="검색" /></button>
+                	</li>
+								</ul>
+							</div>
+						</form>
+					</div>
+
+					<div class="productTab normaltab">
+						<ul>
+							<li><a href="#" class="on">인기</a></li>
+							<li class="last"><a href="#">지역</a></li>
+							<li class="last"><a href="#">관광지</a></li>
+							<li class="last"><a href="#">먹거리/맛집</a></li>
+						</ul>						
+					</div>
+					
+
+					<!-- 포토 구매후기 -->
+					<div class="imgListType">
+						<ul>
+							
+							<!-- List -->
+							{% if blist %}
+								{% for board in blist %}
+							<li>
+								<div class="img">
+									{% if board.b_file %}
+											<a href='/board/bview/{{board.b_no}}/'><img src="{{ board.b_file.url }}" width="155" height="160" alt="{{ board.b_file.name }}" /></a>
+									{% else %}
+											<img src="" width="155" height="160" alt="No Image" />
+									{% endif %}
+								</div>	
+								<div class="txt">
+									<div class="subject">
+										<a href="/board/bview/{{board.b_no}}/"><span class="orange">{{board.b_header}}</span> {{board.b_title}}</a>
+									</div>
+									<div class="conf">
+										<a href='/board/bview/{{board.b_no}}/'>
+											{{board.b_content}}
+										</a>
+									</div>
+									<div class="data">
+										<p>작성자 <span>{{board.member.m_nickName}}</span></p>
+										<p>등록일 <span>{{board.b_date}}</span></p>
+										<p>조회수 <span>{{board.b_hit}}</span></p>
+									</div>
+								</div>
+							</li>
+								{% endfor %}
+							{% else %}
+							<li>
+								<div class="txt">
+									<div class="subject">
+										<span class="orange"></span>데이터가 없습니다.
+									</div>
+								</div>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+
+					<div class="searchWrap">
+						<form method='get' action="{% url 'board:blist' %}">
+							<div class="search">
+								<ul>
+									<li class="web"><img src="/static/images/txt/txt_search.gif" alt="search" /></li>
+									<li class="se">
+										<select name='type'>
+											<option value="b_title" {% if searchType == "b_title" %}selected{% endif %}>제목</option>
+											<option value="b_content" {% if searchType == "b_content" %}selected{% endif %}>내용</option>
+											<option value="b_title_content" {% if searchType == "b_title_content" %}selected{% endif %}>제목+내용</option>
+										</select>
+									</li>
+									<li><input type="text" name='cl' class="searchInput" /></li>
+									<li class="web">
+                    <button type="submit"><img src="/static/images/btn/btn_search.gif" alt="검색" /></button>
+                	</li>
+                	<li class="mobile">
+                    <button type="submit"><img src="/static/images/btn/btn_search_m.gif" alt="검색" /></button>
+                	</li>
+								</ul>
+							</div>
+						</form>
+					</div>
+
+					<div class="btnAreaList">
+						<div class="bwright">
+							<ul>
+								<li><a href="/board/bwrite/" class="sbtnMini">글쓰기</a></li>
+							</ul>
+						</div>
+
+						<!-- 페이징이동1 -->
+						<div class="allPageMoving1">
+
+						{% if blist.has_previous %}
+						<a href="/board/blist/?npage=1" class="n"><img src="/static/images/btn/btn_pre2.gif" alt="처음으로"/></a>
+						<a href="/board/blist/?npage={{blist.previous_page_number}}" class="pre"><img src="/static/images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
+						{% else %}
+						<a href="#" class="n"><img src="/static/images/btn/btn_pre2.gif" alt="처음으로"/></a>
+						<a href="#" class="pre"><img src="/static/images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
+						{% endif %}
+
+						{% for page in blist.paginator.page_range %}
+							{% if page != npage %}
+								<a href="/board/blist/?npage={{page}}">{{page}}</a>
+							{% else %}
+								<strong>{{page}}</strong>
+							{% endif %}
+						{% endfor %}
+
+						{% if blist.has_next %}
+						<a href="/board/blist/?npage={{blist.next_page_number}}" class="next"><img src="/static/images/btn/btn_next1.gif" alt="뒤페이지로"/></a>
+						<a href="/board/blist/?npage={{blist.paginator.num_pages}}" class="n"><img src="/static/images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
+						{% else %}
+						<a href="#" class="next"><img src="/static/images/btn/btn_next1.gif" alt="뒤페이지로"/></a>
+						<a href="#" class="n"><img src="/static/images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
+						{% endif %}
+						</div>
+						<!-- //페이징이동1 -->
+					</div>
+
+
+					<!-- //포토 구매후기 -->
+
+
+				</div>
+			</div>
+			<!-- //contents -->
+
+		</div>
+	</div>
+	<!-- //container -->
+
+	
+	<div class="site-footer">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="widget">
+						<h3>About Passport<span class="text-primary">.</span> </h3>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div> <!-- /.widget -->
+					<div class="widget">
+						<h3>Connect</h3>
+						<ul class="list-unstyled social">
+							<li><a href="#"><span class="icon-instagram"></span></a></li>
+							<li><a href="#"><span class="icon-twitter"></span></a></li>
+							<li><a href="#"><span class="icon-facebook"></span></a></li>
+							<li><a href="#"><span class="icon-linkedin"></span></a></li>
+							<li><a href="#"><span class="icon-pinterest"></span></a></li>
+							<li><a href="#"><span class="icon-dribbble"></span></a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+				<div class="col-lg-2 ml-auto">
+					<div class="widget">
+						<h3>Links</h3>
+						<ul class="list-unstyled float-left links">
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">News</a></li>
+							<li><a href="#">Careers</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+				<div class="col-lg-2">
+					<div class="widget">
+						<h3>Company</h3>
+						<ul class="list-unstyled float-left links">
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">News</a></li>
+							<li><a href="#">Careers</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+
+				<div class="col-lg-3">
+					<div class="widget">
+						<h3>Contact</h3>
+						<address>43 Raymouth Rd. Baltemoer, London 3910</address>
+						<ul class="list-unstyled links mb-4">
+							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+							<li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+			</div> <!-- /.row -->
+
+			<div class="row mt-5">
+				<div class="col-12 text-center">
+					<p class="mb-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
+					</p>
+				</div>
+			</div> <!-- /.container -->
+		</div> <!-- /.site-footer -->
+
+
+
+
+
+
+</div>
+</div>
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'js/tiny-slider.js'%}"></script>
+    <script src="{% static 'js/aos.js'%}"></script>
+    <script src="{% static 'js/navbar.js'%}"></script>
+    <script src="{% static 'js/counter.js'%}"></script>
+    <script src="{% static 'js/rellax.js'%}"></script>
+    <script src="{% static 'js/flatpickr.js'%}"></script>
+    <script src="{% static 'js/glightbox.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+</body>
+</html>

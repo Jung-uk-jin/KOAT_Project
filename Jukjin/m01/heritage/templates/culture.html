@@ -1,0 +1,514 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
+  <link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
+  <link rel="stylesheet" href="{% static 'css/aos.css'%}">
+  <link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <link rel="stylesheet" href="{% static 'css/content.css'%}"> <!--새로 추가 해야 됨-->
+
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
+
+	<style>
+	.grid {
+			font-weight: 700;
+			margin: 150px 200px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;	
+    }
+
+		.grid div:hover{
+			background: rgb(232,247,237);
+		}
+
+    .grid div {
+      background-color: rgb(246,253,250);
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto; /* 섹션을 가운데 정렬 */
+    }
+
+		#section1, #section3{
+			background-color: #F7F7F7;
+		}
+
+		.item {
+      display: flex; /* 글과 이미지를 나란히 배치 */
+      flex-direction: row; /* 기본: 가로 정렬 */
+      gap: 20px; /* 이미지와 글 사이 간격 */
+      align-items: center; /* 수직 정렬 */
+      margin-bottom: 30px; /* 각 아이템 사이 간격 */
+    }
+
+		.item img{
+			width:200px;
+			height: 200px;
+		}
+
+		/*상단이동버튼*/
+		.btns {
+			display: flex;
+			position: fixed;
+			right: .4rem;
+			bottom: .4rem;
+		}
+
+		.btns > div {
+			padding: .6rem 1.5rem;
+			background: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			border:  1px solid black;
+			border-radius: 5px;
+			transition: .2s;
+			color: #111;
+			margin-right: .4rem;
+		}
+
+		.moveTopBtn:hover {
+			color: #000;
+			background: rgb(246,253,250);
+		}
+
+		/* ------ */
+
+		@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+		* {
+			font-family: Pretendard;
+			user-select: none;
+		}
+
+		.list > div {
+			margin-bottom: 1rem;
+			margin-left: .4rem;
+			font-size: 1.4rem;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close">
+				<span class="icofont-close js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+	<nav class="site-nav mt-3">
+		<div class="container">
+			<div class="site-navigation">
+				<div class="row">
+					<div class="col-6 col-lg-3">
+						<a href="/" class="logo m-0 float-start">Sterial</a>
+					</div>
+					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
+						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
+							<li class="active"><a href="/">Home</a></li>
+							<li><a href="about.html">About us</a></li>
+							<li class="has-children">
+								<a href="#">즐길거리</a>
+								<ul class="dropdown">
+									<li><a href="#">???</a></li>
+									<li class="has-children">
+										<a href="#">먹거리</a>
+										<ul class="dropdown">
+											<li><a href="#">Sub Menu One</a></li>
+											<li><a href="#">Sub Menu Two</a></li>
+											<li><a href="#">Sub Menu Three</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Menu Three</a></li>
+								</ul>
+							</li>
+							<li><a href="/admin/">admin관리자</a></li>
+							<li><a href="/board/bview/{{board.bview}}">상세보기</a></li>
+							<li><a href="/board/blist/">게시판</a></li>
+
+						</ul>
+					</div>
+					<div class="col-6 col-lg-3 text-lg-end">
+						<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
+							<li class="cta-button"><a href="contact.html">Contact Us</a></li>
+						</ul>
+
+						<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
+							<span></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="hero overlay">
+
+		<div class="img-bg rellax">
+			<img src="/static/images/hero_2.jpg" alt="Image" class="img-fluid">
+		</div>
+
+		<div class="container">
+			<div class="row align-items-center justify-content-start">
+				<div class="col-lg-5">
+					<h1 class="heading" data-aos="fade-up">UNESCO Heritage in Korea</h1>
+					<p class="mb-5" data-aos="fade-up">광고 받습니다.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = title_icon>
+		<img src="/static/images/favicon.png">
+	</div>
+
+	<div id="heritage_div">
+		<div class="grid">
+			<!-- 각 셀 -->
+			<div onclick="scrollToSection(1)" class ="cell">세계문화유산</div>
+			<div onclick="scrollToSection(2)" class ="cell">무형문화유산</div>
+			<div onclick="scrollToSection(3)" class ="cell">세계기록유산</div>
+		</div>
+	</div>
+
+		<!-- 각 섹션 -->
+		<div id="section1" class="section">
+			<div style="margin: 30px 0 50px 0; ">
+			<h2 style="font-weight: bold; font-size: 40px;">세계문화유산</h2>
+			</div>
+
+			<div class ="item">
+				<img src="/static/images/석굴암.jpg">
+				<div class="content">
+					<h2 style="font-weight: bold;">석굴암</h2>
+					<p>
+						석굴암은 서기 751년 신라 경덕왕 때 당시 재상이었던 김대성이 창건하기 시작하여 서기 774년인 신라 혜공왕 때 완공하였으며, 건립 당시의 명칭은 석불사로 칭하였다.
+						<br><br>
+						석굴암의 석굴은 백색의 화강암재를 사용하여 토함산 중턱에 인공으로 석굴을 축조하고 그 내부 공간에는 본존불인 석가여래불상을 중심으로 그 주벽에 보살상 및 제자상과 금강역사상, 천왕상 등 총 39체의 불상을 조각하였다. 석굴암의 석굴은 장방형의 전실과 원형의 주실이 통로로 연결되어 있는데 360여 개의 판석으로 원형주실의 궁륭천장 등을 교묘하게 구축한 건축 기법은 세계에 유례가 없다. 
+						석굴암의 입구쪽에 위치하고 있는 평면방형의 전실에는 좌우로 4구씩 8부신장을 두고 통로 좌우 입구에는 금강역사상을 조각하였으며, 좁은 통로에는 2구씩의 사천왕상을 조각하였다.
+					</p>
+				</div>
+			</div>
+
+			<div class ="item">
+				<img src="/static/images/종묘.jpg">
+				<div class="content">
+					<h2 style="font-weight: bold;">종묘</h2>
+					<p>
+						종묘는 조선 왕조의 역사를 담고 있는 가장 중요한 유적 중 하나로, 조선 왕과 왕비의 신위를 모신 제례 시설입니다. 
+						56,503평에 달하는 경내는 정전, 영녕전 등 여러 건물로 구성되어 있으며, 매년 왕실의 제사를 모시는 종묘제례가 거행됩니다.
+						<br><br>
+						정전은 19칸으로 이루어진 웅장한 건물이며, 전 세계에서 유례를 찾기 힘든 독창적인 건축 양식을 자랑합니다. 
+						현재 유네스코 세계문화유산으로 등재되어 있으며, 한국의 전통 문화를 대표하는 상징적인 장소입니다.
+					</p>
+				</div>
+			</div>
+
+			<div class ="item">
+				<img src="/static/images/해인사.jpg">
+				<div class="content">
+					<h2 style="font-weight: bold;">해인사 장경판전</h2>
+					<p>
+						해인사 장경판전은 13세기에 만들어진 세계적 문화유산인 고려 대장경판 8만여 장을 보존하는 보고로서 해인사의 현존 건물 중 가장 오래된 건물이다.
+						장경판전은 정면 15칸이나 되는 큰 규모의 두 건물을 남북으로 나란히 배치하였다. 장경판전 남쪽의 건물을 수다라장, 북쪽의 건물을 법보전이라 하며 동쪽과 서쪽에 작은 규모의 동·서사간판전이 있다.
+						<br><br>
+						건물을 간결한 방식으로 처리하여 판전으로서 필요로 하는 기능만을 충족시켰을 뿐 장식적 의장을 하지 않았으며, 전·후면 창호의 위치와 크기가 서로 다르다. 통풍의 원활, 방습의 효과, 실내 적정 온도의 유지, 
+						판가의 진열 장치 등이 매우 과학적이며, 합리적으로 되어 있는 점은 대장경판이 지금까지 온전하게 보존되어 있는 중요한 이유 중의 하나라고 평가받고 있다.
+					</p>
+				</div>
+			</div>
+
+			<div class ="item">
+				<img src="/static/images/제주화산.jpg">
+				<div class="content">
+					<h2 style="font-weight: bold;">제주 화산섬과 용암동굴</h2>
+					<p>
+						종묘는 조선 왕조의 역사를 담고 있는 가장 중요한 유적 중 하나로, 조선 왕과 왕비의 신위를 모신 제례 시설입니다. 
+						56,503평에 달하는 경내는 정전, 영녕전 등 여러 건물로 구성되어 있으며, 매년 왕실의 제사를 모시는 종묘제례가 거행됩니다.
+						<br><br>
+						정전은 19칸으로 이루어진 웅장한 건물이며, 전 세계에서 유례를 찾기 힘든 독창적인 건축 양식을 자랑합니다. 
+						현재 유네스코 세계문화유산으로 등재되어 있으며, 한국의 전통 문화를 대표하는 상징적인 장소입니다.
+					</p>
+				</div>
+			</div>
+
+			<div class ="item">
+				<img src="/static/images/돌.jpg">
+				<div class="content">
+					<h2 style="font-weight: bold;">고창ㆍ화순ㆍ강화 고인돌 유적</h2>
+					<p>
+						고인돌은 선사시대 돌무덤의 일종으로 영어로는 돌멘(Dolmen)이라고 한다. 고인돌은 거석기념물의 하나이며 피라미드(Pyramid), 
+						오벨리스크(Obelisk)등 이집트나 아프리카 대륙의 각종 석조물과 영국의 스톤헨지, 프랑스 카르낙의 열석(列石)등이 모두 거석문화의 산물이다.<br><br>
+						우리나라 청동기시대의 대표적인 무덤 중의 하나인 고인돌은 세계적인 분포를 보이고 있으며 지역에 따라 시기와 형태가 다르게 나타나고 있다.<br><br>
+						동북아시아 지역이 세계적인 분포권에서 가장 밀집된 곳으로 그 중 우리나라가 그 중심지역이라고 할 수 있다. 우리나라에는 전국적으로 약 30,000여 기에가까운 고인돌이 분포하고 있는 것으로 알려져 있는데 그중 세계유산으로 등재된 고창·화순·강화고인돌유적(Gochang, Hwasun and Ganghwa Dolmen Sites)은 밀집분포도, 
+						형식의 다양성으로 고인돌의 형성과 발전과정을 규명하는 중요한 유적이며 유럽, 중국, 일본과도 비교할 수 없는 독특한 특색을 가지고 있다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="section2" class="section">
+			<div style="margin: 30px 0 50px 0; ">
+				<h2 style="font-weight: bold; font-size: 40px;">무형문화유산</h2>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/종묘제례.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">종묘 제례</h2>
+						<p>
+							종묘제례란 조선시대 역대 왕과 왕비의 신위를 모셔 놓은 사당(종묘)에서 지내는 제사를 가리키며, 󰡐대제(大祭)󰡑라고도 부른다. 
+							종묘는 사직과 더불어 조선시대에는 국가 존립의 근본이 되는 중요한 상징물이었으며, 정전(19실)과 영녕전(16실)이 있다.
+						</p>
+					</div>
+					<img src="/static/images/종묘 제례악.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">종묘 제례악</h2>
+						<p>
+							종묘제례악은 조선시대 역대 왕과 왕비의 신위를 모신 사당(종묘)에서 제사(종묘제례)를 지낼 때 무용과 노래와 악기를 사용하여 연주하는 음악을 가리키며, ‘종묘악’이라고도 한다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/강강술래.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">강강술래</h2>
+						<p>
+							강강술래는 손잡고 원을 그리며 가무하는 기본형을 바탕으로 여러 가지 놀이가 결합된 가무놀이다. 강강술래라고 부른 이유는 노래의 매소절마다 ‘강강술래’라는 받는 소리가 붙기 때문이다. 강강술래의 말뜻은 정확히 밝혀지는 바 없다. 
+							전통적으로 강강술래는 우리나라의 대표적인 세시절기인 설, 대보름, 단오, 백중, 추석, 9월 중구 밤에 연행되었으며 특히 팔월 추석날 밤에 대대적인 강강술래 판이 펼쳐졌다.<br><br>
+							강강술래는 노래, 무용, 음악이 삼위일체의 형태로 이루어진 원시종합예술이다. 춤을 추는 여성들 중에서 노래 잘하는 한 사람이 설소리(앞소리)를 하면 모든 사람들이 뒷소리를 받는 선후창의 형태로 노래되며, 
+							노랫소리에 맞춰 많은 여성들이 손에 손을 잡고 둥글게 원을 그리며 춤을 춘다. 민요와 민속무용이 일체화되며, 북이나 장구 등 한국의 전통적인 농악기로 반주를 하여 민속음악이 흥을 더한다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/판소리.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">판소리</h2>
+						<p>
+							판소리는 한 명의 소리꾼이 고수(북치는 사람)의 장단에 맞추어 창(소리), 말(아니리), 몸짓(너름새)을 섞어가며 긴 이야기를 엮어가는 것을 말한다. 
+							우리나라 시대적 정서를 나타내는 전통예술로 삶의 희로애락을 해학적으로 음악과 어울려서 표현하며 청중도 참여한다는 점에서 가치가 크다.<br><br>
+							판소리는 느린 진양조, 중모리, 보통 빠른 중중모리, 휘모리 등 극적 내용에 따라 느리고 빠른 장단으로 구성된다. 고수의 반주는 소리를 살리기도 하고 죽이기도 하면서 “얼씨구”, “좋다”, “으이”, “그렇지” 등의 감탄사를 내는데, 이를 추임새라고 한다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/매 사냥.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">매 사냥</h2>
+						<p>
+							매사냥은 야생 상태에서 사냥을 위해 매를 사육하고 조련하는 전통적인 활동이다. 아시아에서 발원하여 무역과 문화교류를 통해 다른 지역으로 확산됐으며, 과거에 매사냥은 식량 확보 수단으로 사용되었으나, 
+							현재는 자연과의 융화를 추구하는 야외활동을 자리매김 했으며 60개 이상 국가에서 전승되고 있다.<br><br>
+							매사냥꾼들의 문화적 배경은 다양하지만, 이들은 보편적인 가치와 전통, 관습을 공유하고 있다. 매사냥은 멘토링, 가족 내 학습, 공식적인 훈련 등 다양한 방법을 통해 하나의 문화적 전통으로 세대를 이어 전승되고 있다.
+						</p>
+					</div>
+				</div>
+		</div>
+		<div id="section3" class="section">
+			<div style="margin: 30px 0 50px 0; ">
+				<h2 style="font-weight: bold; font-size: 40px;">세계기록유산</h2>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/훈민정음.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">훈민정음</h2>
+						<p>
+							『훈민정음(해례본)』은 1446년 음력 9월에 간행된 1책의 목판본으로, 새로 만든 문자 '훈민정음'의 창제 목적과 이 문자의 음가 및 운용법, 
+							그리고 이들에 대한 해설과 용례를 붙인 책이다. 세종이 직접 작성한 ‘예의(例義)’ 부분과 정인지(鄭麟趾)를 비롯하여 신숙주(申叔舟)·성삼문(成三問)·최항(崔恒)·박팽년(朴彭年)·강희안(姜希顔)·이개(李塏)·이선로(李善老) 등 집현전 8명의 학자들이 만든 ‘해례(解例)’ 두 부분으로 구성되어 있다. 
+							그 동안 이 책의 서명을 문자 이름인 훈민정음과 똑같이 『훈민정음(訓民正音)』이라고 부르거나, 또 해례가 붙어 있고 『훈민정음(언해본)』과 구분하기 위해서 ‘훈민정음 해례본’ 또는 ‘훈민정음 원본’ 등으로 명명해 온 것이다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/조선왕조실록.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">조선왕조실록</h2>
+						<p>
+							조선왕조실록은 조선왕조의 시조인 태조로부터 철종까지 25대 472년간(1392~1863)의 역사를 연월일 순서에 따라 편년체로 기록한 책으로 총 1,893권 888책으로 되어 있는 오래되고 방대한 양의 역사서이다. 
+							조선왕조실록은 조선시대의 정치, 외교, 군사, 제도, 법률, 경제, 산업, 교통, 통신, 사회, 풍속, 미술, 공예, 종교 등 각 방면의 역사적 사실을 망라하고 있어 세계적으로 그 유례가 없는 귀중한 역사 기록물이다. 
+							또한 조선왕조실록은 그 역사기술에 있어 매우 진실성과 신빙성이 높은 역사기록이라는 점에서 의의가 크다.<br><br>
+							조선왕조실록 정족산본 1,181책, 태백산본 848책, 오대산본 27책, 기타 산엽본 21책을 포함해서 총 2,077책이 1973년 국보로 지정되었고, 1997년 10월에 유네스코 세계기록유산으로 등재되었다. 
+							이후 오대산 사고본은 2006년 서울대학교로 반환된 47책과 2018년 일본에서 매입한 1책이 국보로 추가 지정되었으며 현재 오대산 사고본 75책은 국립조선왕조실록박물관에서 관리하고 있다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/직지심체.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">직지심체요절</h2>
+						<p>
+							「백운화상초록불조직지심체요절」(이하 불조직지심체요절이라 함)은 백운화상이 75세였던 고려 공민왕 21년(1372)에 노안을 무릅쓰고 선도(禪徒)들에게 선도(禪道)와 선관(禪觀)의 안목을 자각(自覺)케 하고자 함은 물론, 선풍(禪風)을 전등(傳燈)하여 법맥(法脈)을 계승케 하고자 저술한 것으로서, 
+							그 제자 석찬과 달담이 비구니 묘덕의 시주를 받아 청주 흥덕사에서 1377년 7월에 금속활자로 인쇄하였다.<br><br>
+							이 책은 금속활자를 이용하여 인쇄하였는데, 인쇄술을 보다 편리하고 경제적이며 교정을 쉽게 하여 주었고 이 모든 것은 책의 신속한 생산에 공헌하였다. 또한 활자 인쇄술에 적합한 먹, 
+							즉 기름먹을 발명하는 계기가 되었으며, 한국이 혁신한 실용적인 활판 인쇄술은 동양 인쇄사에 지대한 영향을 끼쳤고, 유럽등지로 전파된 것으로 보인다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/난중일기.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">난중일기</h2>
+						<p>
+							『난중일기』는 이순신이 1592년 1월 1일부터 1598년 11월 17일까지 7년간의 군중 생활을 직접 기록한 친필일기이다.<br><br>
+							『난중일기』는 개인의 일기 형식의 기록이지만, 전쟁 기간 중 해군의 최고 지휘관이 직접 매일 매일의 전투 상황과 개인적 소회를 현장감 있게 다루었다는 점에서 역사적으로나 세계사적으로 유례를 찾을 수 없는 기록물이다. 또한 전투상황에 대한 상세한 기록뿐 아니라 당시의 기후나 지형, 일반 서민들의 삶에 대한 기록도 전하고 있어 과거의 자연지형 및 환경, 서민의 생활상을 연구하는 중요한 자료로도 활용되고 있다. 
+							문장이 간결하면서도 유려하며, 현재까지도 대한민국 국민이 애송하는 시(詩)도 다수 포함되어 있어 문학사적 가치도 매우 높다.
+						</p>
+					</div>
+				</div>
+	
+				<div class ="item">
+					<img src="/static/images/어보와어책.jpg">
+					<div class="content">
+						<h2 style="font-weight: bold;">조선왕실 어보와 어책</h2>
+						<p>
+							조선왕조의 왕위는 세습이었다. 국왕의 자리를 이을 아들이나 손자 등(또는 왕실의 승계자)은 국본(國本)으로서 왕위에 오르기 전에 왕세자나 왕세손에 책봉되는 전례(典禮)를 거쳐야 했다. 
+							어보와 어책은 일차적으로 이와 같은 봉작(封爵) 전례의 예물로 제작했다. 이에는 통치자로서 알아야할 덕목을 함축적으로 표현한 문구가 들어있다. 왕세자나 왕세손에 책봉되면 그 징표로 국왕에게서 옥인(玉印), 죽책(竹冊), 교명(敎命)을 받음으로써 왕권의 계승자로서 정통성을 인정받았다. 이들이 성혼한 경우에는 이들의 빈(嬪)도 같은 과정을 거쳤다. 왕세자나 왕세손이 국왕에 즉위하면 즉위식에서 왕비도 금보(金寶), 옥책(玉冊), 교명(敎命)을 받았다. 왕과 왕비가 죽은 뒤에는 묘호(廟號)와 시호(諡號)가 정해지면 시보(諡寶)와 시책(諡冊)을 받았다. 
+							왕과 왕비가 일생에 걸쳐 받은 책보는 신주와 함께 종묘에 봉안되었다. 살아서는 왕조의 영속성을 상징하고 죽어서도 죽은 자의 권위를 보장하는 신물이었다.
+					</div>
+				</div>
+		</div>
+
+		<div class="btns">
+			<div class="moveTopBtn">TOP</div>
+		</div>
+
+  <script>
+		const $topBtn = document.querySelector(".moveTopBtn");
+
+    function scrollToSection(sectionNumber) {
+      const section = document.getElementById(`section${sectionNumber}`);
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+		
+		// 버튼 클릭 시 맨 위로 이동
+		$topBtn.onclick = () => {
+			window.scrollTo({ top: 0, behavior: "smooth" });  
+		}
+  </script>
+
+
+
+	<div class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="widget">
+						<h3>About Passport<span class="text-primary">.</span> </h3>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div> <!-- /.widget -->
+					<div class="widget">
+						<h3>Connect</h3>
+						<ul class="list-unstyled social">
+							<li><a href="#"><span class="icon-instagram"></span></a></li>
+							<li><a href="#"><span class="icon-twitter"></span></a></li>
+							<li><a href="#"><span class="icon-facebook"></span></a></li>
+							<li><a href="#"><span class="icon-linkedin"></span></a></li>
+							<li><a href="#"><span class="icon-pinterest"></span></a></li>
+							<li><a href="#"><span class="icon-dribbble"></span></a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+				<div class="col-lg-2 ml-auto">
+					<div class="widget">
+						<h3>Links</h3>
+						<ul class="list-unstyled float-left links">
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">News</a></li>
+							<li><a href="#">Careers</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+				<div class="col-lg-2">
+					<div class="widget">
+						<h3>Company</h3>
+						<ul class="list-unstyled float-left links">
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">News</a></li>
+							<li><a href="#">Careers</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+
+				<div class="col-lg-3">
+					<div class="widget">
+						<h3>Contact</h3>
+						<address>43 Raymouth Rd. Baltemoer, London 3910</address>
+						<ul class="list-unstyled links mb-4">
+							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+							<li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+			</div> <!-- /.row -->
+
+			<div class="row mt-5">
+				<div class="col-12 text-center">
+					<p class="mb-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
+					</p>
+				</div>
+			</div> <!-- /.container -->
+		</div> <!-- /.site-footer -->
+
+		<!-- Preloader -->
+		<div id="overlayer"></div>
+		<div class="loader">
+			<div class="spinner-border text-primary" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
+
+
+		<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'js/tiny-slider.js'%}"></script>
+    <script src="{% static 'js/aos.js'%}"></script>
+    <script src="{% static 'js/navbar.js'%}"></script>
+    <script src="{% static 'js/counter.js'%}"></script>
+    <script src="{% static 'js/rellax.js'%}"></script>
+    <script src="{% static 'js/flatpickr.js'%}"></script>
+    <script src="{% static 'js/glightbox.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+	</body>
+	</html>

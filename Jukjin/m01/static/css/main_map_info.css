@@ -66,3 +66,15 @@ hhead::before {
   background-color: rgba(0, 0, 0, 0.5); 
   margin-top: 0px !important;
 }
+#vdcont {
+  position: relative;
+  z-index: 2; /* 비디오 위에 표시 */
+  background-color: rgba(0, 0, 0, 0.6); /* 반투명한 배경 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

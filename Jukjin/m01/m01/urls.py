@@ -13,5 +13,6 @@ urlpatterns = [
     path('inside/', include('inside.urls')),
     path('food/', include('food.urls')),
     path('heritage/', include('heritage.urls')),
+    path('package_pay/', include('package_pay.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

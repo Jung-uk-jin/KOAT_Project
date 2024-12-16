@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'comment',
     'food',
     'location',
+    'package',
 ]
 
 MIDDLEWARE = [

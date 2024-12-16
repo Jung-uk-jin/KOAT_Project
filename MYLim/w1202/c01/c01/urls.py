@@ -11,6 +11,7 @@ urlpatterns = [
     path('comment/',include('comment.urls')),
     path('location/',include('location.urls')),
     path('food/',include('food.urls')),
+    path('package/',include('package.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

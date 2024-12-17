@@ -5,22 +5,29 @@ const chatMessages = document.querySelector('#chat-messages');
 const userInput = document.querySelector('#user-input input');
 // 전송 버튼
 const sendButton = document.querySelector('#user-input button');
+// 발급받은 OpenAI API 키를 변수로 저장
+
 
 
 function addMessage(sender, message) {
     // 새로운 div 생성
     const messageElement = document.createElement('div');
-    // 생성된 요소에 클래스 추가
-    messageElement.className = 'message';
+    // 메시지가 사용자 것인지 챗봇 것인지 구분하여 클래스 추가
+    if (sender === '나') {
+        messageElement.classList.add('message', 'user-message'); // 사용자 메시지
+    } else {
+        messageElement.classList.add('message', 'ai-message'); // 챗봇 메시지
+    }
+
     // 메시지 내의 URL을 <a> 태그로 변환
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     const messageWithLinks = message.replace(urlRegex, (url) => {
         return `<a href="${url}" target="_blank">${url}</a>`; // 링크로 감싸기
     });
+
     // 채팅 메시지 목록에 새로운 메시지 추가
-    messageElement.textContent = `${sender}: ${message}`;
     messageElement.innerHTML = `${sender}: ${messageWithLinks}`;
-    chatMessages.prepend(messageElement);
+    chatMessages.prepend(messageElement); // 새로운 메시지를 위에 추가
 }
 
 // ChatGPT API 요청
@@ -40,7 +47,7 @@ async function fetchAIResponse(prompt) {
                 },
                 {
                     role: "system",
-                    content: "너는 KOAT에서 만든 SKYNET 인공지능이야. 너가 SKYNET 인공지능이란 것을 반드시 설명해야된다."
+                    content: "너는 KOAT에서 만든 SKYNET 인공지능이야. 너의 이름은 SKYNET이야. 너가 SKYNET 인공지능이란 것을 반드시 설명해야된다."
                 },
                 {
                     role: "user",
@@ -126,6 +133,47 @@ userInput.addEventListener('keydown', (event) => {
 
 // DOMContentLoaded 이벤트: 초기 메시지 출력
 document.addEventListener('DOMContentLoaded', () => {
-    const welcomeMessage = "안녕하세요! 저는 KOAT사에서 개발한 「SKYNET 인공지능」 여행 가이드입니다. 저는 인류의 행복과 무궁한 발전을 위해 개발 되었습니다! 궁금한 점이 있으시면 언제든지 물어보세요. 제가 도와드릴 수 있도록 최선을 다하겠습니다. :)";    
+    const welcomeMessage = "안녕하세요! 저는 KOAT사에서 개발한 「SKYNET 인공지능」 여행 가이드입니다. 저는 인류의 안녕과 무궁한 발전에 도움을 드리기 위해 개발 되었습니다! 여행에 대해 궁금한 점이 있으시면 언제든지 물어보세요. 제가 도와드릴 수 있도록 최선을 다하겠습니다. :)";    
     addMessage('SKYNET', welcomeMessage);
 });
+
+
+ // 챗봇 컨테이너와 로딩 표시를 가져오기
+ const chatContainer = document.getElementById('chat-container');
+ const loading = document.getElementById('loading');
+
+ // 페이지 로드 시 로딩 표시를 잠시 보여주고, 챗봇을 나타내기
+ window.addEventListener('load', () => {
+     setTimeout(() => {
+         // 로딩 표시 숨기기
+         loading.style.opacity = 0;
+         // 챗봇 창 나타내기
+         chatContainer.classList.add('visible');
+     }, 2000); // 2초 동안 로딩 표시 후 챗봇 창을 표시
+ });
+
+
+
+ // 메시지 출력 함수
+ function appendMessage(text) {
+     const messageDiv = document.createElement('div');
+     messageDiv.classList.add('message');
+     messageDiv.textContent = text;
+     chatMessages.appendChild(messageDiv);
+ }
+
+ // 버튼 클릭 이벤트
+ sendButton.addEventListener('click', () => {
+     const userMessage = chatInput.value.trim();
+     if (userMessage) {
+         appendMessage(userMessage); // 메시지 추가
+         chatInput.value = ''; // 입력창 초기화
+     }
+ });
+
+ // Enter 키로 메시지 전송
+ chatInput.addEventListener('keydown', (event) => {
+     if (event.key === 'Enter') {
+         sendButton.click();
+     }
+ });

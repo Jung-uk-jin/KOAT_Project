@@ -5,47 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>챗봇</title>
     <style>
-        
         body {
             display: flex;
+            overflow: hidden; /* body에는 스크롤을 추가하지 않음 */
             flex-direction: column;  /* 세로로 정렬 */
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color:#ccc;
+            background-color: #ebe6e6;
+            animation: fadeout 2s ease-out forwards;
         }
+
+
         
         #ai_chat_title {
-            margin: 0;  /* 기본 마진 제거 */
-            text-align: center;  /* 가운데 정렬 */
             
+            transform: translateX(-50%);  /* 수평 중앙 정렬 */
+            font-family: 'Georgia', serif;
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #2c3e50;
+            text-transform: uppercase;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeInUp 2s ease-out forwards;
         }
+
+        /* h1 태그 애니메이션: 천천히 나타나고 위로 올라옴 */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(200px); /* 아래에서 시작 */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* 제자리로 돌아옴 */
+            }
+        }
+        
 
         .message {
             border-top: 1px solid #ccc;
             padding: 10px;
             margin-top: 5px;
+            border-radius: 20px;
             background-color: #e6e6e6;
+            
         }
         
-        #chat-container {
+        #chat-container {   
+            position: fixed;
             flex: 1;
+            border: 1px solid rgb(204, 203, 203);
             width: 400px;
-            height: 600px;
+            height: 800px;
             display: flex;
-            flex-direction: column;
-            border: 1px solid #ccc;
+            flex-direction: column;          
             max-width: 600px;
             margin-top: 20px;  /* h2와 사이에 공간 추가 */
             
         }
+
+        /* 사용자 메시지 스타일 */
+        .user-message {
+            background-color: rgb(70, 111, 224);
+            color: white;
+            align-self: flex-end; /* 우측 정렬 */
+            border-radius: 10px;
+            padding: 8px;
+            max-width: 70%;
+            word-wrap: break-word;
+            margin-bottom: 10px;
+        }
         
+        
+        /* 챗봇 메시지 스타일 */
+        .ai-message {
+            background-color: rgb(248, 173, 87);
+            color: black;
+            align-self: flex-start; /* 좌측 정렬 */
+            border-radius: 10px;
+            padding: 8px;
+            max-width: 70%;
+            word-wrap: break-word;
+            margin-bottom: 10px;
+        }
+   
+
         #chat-messages {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: scroll;
             padding: 10px;
             display: flex;
+            
             flex-direction: column-reverse;
         }
         
@@ -67,11 +122,10 @@
             padding: 10px 15px;
             cursor: pointer;
         }
-
     </style>
 </head>
 <body>
-    <h2 id="ai_chat_title">AI SKYNET</h2>
+    <h1 id="ai_chat_title">SKYNET</h1>
     <div id="chat-container">
         <div id="chat-messages"></div>
         <div id="user-input">
@@ -81,6 +135,8 @@
     </div>
 
 
-    <script src="/static/js/chatbot.js"></script>
+    <script src="/static/js/chatbot.js">
+        
+    </script>
 </body>
 </html>

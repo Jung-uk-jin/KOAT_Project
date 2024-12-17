@@ -1,0 +1,80 @@
+.slider__wrap {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-top: 20px;
+}
+.slider__img {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+}
+.slider__inner {
+  display: flex;
+  transition: all 400ms ease-in-out;
+}
+.slider {
+  width: 400px;
+  height: 300px;
+  flex-shrink: 0;
+}
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* .slider__btn a {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+} */
+/* .slider__btn a.prev {
+  left: 10px;
+}
+.slider__btn a.next {
+  right: 10px;
+} */
+ /*동영상*/
+
+
+/* 헤더 백그라운드 영상 */
+.dvd-fluid {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  top: -115px;
+  left: 0;
+}
+
+hhead::before {
+  content: none !important;
+}
+
+.hhead {
+  background-color: rgba(0, 0, 0, 0.5); 
+  margin-top: 0px !important;
+}
+#vdcont {
+  position: relative;
+  z-index: 2; /* 비디오 위에 표시 */
+  background-color: rgba(0, 0, 0, 0.6); /* 반투명한 배경 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

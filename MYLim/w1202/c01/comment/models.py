@@ -11,6 +11,7 @@ class Comment(models.Model):
   c_pw = models.CharField(max_length=10, null=True, blank=True)
   c_content = models.TextField()
   c_date = models.DateTimeField(auto_now=True)
+  parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
   
   def __str__(self):
     return f"{self.c_no},{self.c_content},{self.c_date}"

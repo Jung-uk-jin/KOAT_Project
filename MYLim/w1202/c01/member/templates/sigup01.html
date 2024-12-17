@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block container-block  %}
+	
+
+<div class="hero overlay">
+	<div class="img-bg rellax">
+		<img src="/static/images/hero_2.jpg" alt="Image" class="img-fluid">
+	</div>
+	<div class="container">
+		<div class="row align-items-center justify-content-start">
+			<div class="col-lg-6 mx-auto text-center">
+				<h1 class="heading" data-aos="fade-up">Sign up</h1>
+				<p data-aos="fade-up">Koat의 회원이 되어 더 많은 서비스를 누려보세요!</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		// 전체 동의 클릭
+		$(".agreeall[value='yes']").click(function () { 
+			if (confirm('전부 동의하십니까?')) {
+				$(".dcchk").prop('checked', true);
+				$(".ndcchk").prop('checked', false);
+			};
+		});
+
+	  // 전체 비동의 클릭
+		$(".agreeall[value='no']").click(function () { 
+			if (confirm('전부 비동의하십니까?')) {
+				$(".ndcchk").prop('checked', true);
+				$(".dcchk").prop('checked', false);
+			};
+		});
+
+		// 개별 동의 상태 변경 시 전체 동의/비동의 동작 업데이트	
+		$(".dcchk, .ndcchk").not(".agreeall").on("change", function () {
+			const allAgreed = $(".dcchk").not(".agreeall").length === $(".dcchk:checked").not(".agreeall").length;
+			const allDisagreed = $(".ndcchk").not(".agreeall").length === $(".ndcchk:checked").not(".agreeall").length;
+
+			$(".agreeall[value='yes']").prop('checked', allAgreed);
+			$(".agreeall[value='no']").prop('checked', allDisagreed);
+		});
+
+	}); // jquery
+	
+	function dpchk(){ // 다음단계 클릭
+		$(".dcchk").each(function(){ //체크 확인
+			chk = 1
+			if ($(this).is(":checked")) {   
+				chk += 1                          //  동의를 한 경우
+			} else {				
+				chk -= 1													// 동의가 안된경우
+			};
+		});
+		if(chk < 2){                          // 체크에 따른 값으로 판별
+			alert('모두 동의를 해 주셔야 합니다.')	
+		}else{
+			alert('다음 단계로 넘어갑니다')
+			location.href = "/member/sigup02/"
+		}
+	}; // 다음단계 클릭
+
+	</script>
+
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12"	data-aos="fade-up" data-aos-delay="0">
+				<h2 class="heading mb-5">Member Policy</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+				<form action="#">
+					<div class="row">
+						<div class="col-12 mb-3 polgd">
+							<p class="form-control">약관 1번과 2번을 잘 읽고 동의해주시기 바랍니다.</p>
+						</div>
+					<div class="all_bd">	
+						<div class="col-6 mb-3">
+								<p class="form-control agreebox">서비스 이용 약관 01</p>
+						</div>
+						<div class="col-6 mb-3">
+								<label><input class="dcchk agree1" type="radio" name="agree1" value="yes">동의</label>
+								<label><input class="ndcchk agree1" type="radio" name="agree1" value="no">비동의</label>
+						</div>
+				</div>
+				<div class="col-12 mb-3">
+						<textarea readonly cols="30" rows="7" class="form-control">제가 당신의 모든 정보를 무기한으로 보관하겠습니다.</textarea>
+				</div>
+				<div class="all_bd">	
+						<div class="col-6 mb-3">
+								<p class="form-control agreebox">서비스 이용 약관 02</p>
+						</div>
+						<div class="col-6 mb-3">
+								<label><input class="dcchk agree2" type="radio" name="agree2" value="yes">동의</label>
+								<label><input class="ndcchk agree2" type="radio" name="agree2" value="no">비동의</label>
+						</div>
+				</div>
+				<div class="col-12 mb-3">
+						<textarea readonly cols="30" rows="7" class="form-control">당신의 정보를 제 3자에게 제공할 것입니다.</textarea>
+				</div>
+				<div class="all_bd">
+						<div class="col-6 mb-3">
+								<p class="form-control agreebox">약관 전체 동의</p>
+						</div>
+						<div class="col-6 mb-3">
+								<label><input class="dcchk agreeall" type="radio" name="agreeall" value="yes">동의</label>
+								<label><input class="ndcchk agreeall" type="radio" name="agreeall" value="no">비동의</label>
+						</div>
+				</div>
+						<div class="col-12">
+							<input type="button" onclick="dpchk()" value="다음 단계" class="btn btn-primary dpchk">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock container-block  %}

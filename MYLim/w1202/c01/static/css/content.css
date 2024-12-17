@@ -285,9 +285,9 @@
 
 .otherTab{width:100%; margin:0; overflow:hidden;}
 .otherTab ul{width:100%; border-bottom:2px #5a524c solid; overflow:hidden;}
-.otherTab ul li{float:left; padding:0 5px 0 0;}
+.otherTab ul li{float:left; padding:0 5px 0 0; box-sizing: border-box;}
 .otherTab ul li.last{padding:0;}
-.otherTab ul li a{display:block; width:163px; height:40px; line-height:40px; background:#ebebeb; font-weight:600; font-size:14px; text-align:center;}
+.otherTab ul li a{display:block; width:250px; height:40px; line-height:40px; background:#ebebeb; font-weight:600; font-size:14px; text-align:center;}
 .otherTab ul li a span{color:#f7703c;}
 .otherTab ul li a.on{background:#5a524c; color:#fff;}
 .otherTab ul li a.on span{color:#fff;}
@@ -362,20 +362,23 @@
 .replyWrite ul li.in p.password{position:absolute; right:-2px; top:0; line-height:20px;} 
 .replyWrite ul li.btn{margin:1px 0 0 50px;}
 .replyWrite p.ntic{clear:both; padding:5px 0;}
-.replyType{width:100%; height:58px; border:1px #d9d9d9 solid; padding:0; font-family:'Nanum Gothic';}
+.replyType{width:100%; height:150px; border:1px #d9d9d9 solid; padding:10px; font-family:'Nanum Gothic';}
 .replyBtn{display:block; width:110px; height:85px; line-height:85px; color:#fff; font-size:14px; font-weight:600; background:#5a524c; text-align:center;}
 .replyBtn:hover{color:#fff; text-decoration:none;}
 .replyBox{width:100%; border-top:1px #d9d9d9 solid; overflow:hidden;}
 .replyBox ul{position:relative; border-bottom:1px #d9d9d9 solid; margin:15px 0 0 0; padding:0 20px 15px 20px;}
 .replyBox ul li.name{font-size:14px; font-weight:600; color:#555; padding:0 0 10px 0;}
 .replyBox ul li.name span{font-size:12px; color:#888; font-weight:normal;}
-.replyBox ul li.txt{width:100%; color:#888; line-height:1.5; font-size:13px; word-break:keep-all;}
+.replyBox ul li.txt{width:100%; color:#888; line-height:1.5; font-size:14px; word-break:keep-all;}
 .replyBox ul li.btn{text-align:right; height:20px; padding:3px 0 0 0;}
 .replyBox ul li.btn .rebtn{display:inline-block; width:43px; height:23px; line-height:22px; color:#777; 
   font-weight:600; text-align:center; background:url('../images/btn/btn_daybtn.gif') left top no-repeat;}
 .replyBox ul li.btn .rebtn:hover{color:#777;}
 .replynum{width:82px; height:20px; line-height:20px; border:1px #d9d9d9 solid; padding:0 0 0 5px;}
 .finReply{margin:50px 0 0 0;}
+
+/* 대댓글 */
+.replyBox2{width:100%; overflow:hidden; background-color: #f8f8f8;}
 
 /* AMOUNT */
 .amount{position:relative; width:100%; border:6px #999 solid; margin:50px 0 0 0; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; overflow:hidden;}
@@ -754,6 +757,7 @@
   color: #4288c8;
 }
 
+/* 좋아요 부분 */
 .greatbox p {
   font-size: 14px;
   margin: 0; /* 기본 여백 제거 */
@@ -819,7 +823,7 @@
 
 /* SEARCH */
 .searchWrap{width:100%; background:#f1f1f1; padding:10px 0 9px 0; margin:40px 0 0 0;}
-.search{width:380px; margin:0 auto; text-align:center; overflow:hidden;}
+.search{width:400px; margin:0 auto; text-align:center; overflow:hidden;}
 .search ul li{float:left; }
 .search ul li button{border:None;}
 .search ul li.se{margin:0 12px 0 0;}

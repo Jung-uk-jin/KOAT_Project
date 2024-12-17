@@ -118,14 +118,6 @@
 		
 	</div>
 
-
-	<h1>상품 결제</h1>
-	<p>상품 이름: 예시 상품</p>
-	<p>가격: 1000원</p>
-	<form method="POST" action="/kakao_pay_request/">
-			{% csrf_token %}
-			<button type="submit">카카오페이로 결제하기</button>
-	</form>
 	<div class="section">
 		<div class="container">
 
@@ -142,7 +134,10 @@
 														<!-- 상품 이름과 가격 -->
 														<h3><a href="">{{ list.p_name }}</a></h3>
 														<p>{{ list.p_price }}원</p>
-														<form method="POST" action="{% url 'kakao_pay_request' list.p_no %}">
+														<form method="POST" action="{% url 'kakao_pay_request' %}">
+															<input type="hidden" name="p_name" value="{{list.p_name}}">
+															<input type="hidden" name="p_price" value="{{list.p_price}}">
+
 															{% csrf_token %}
 															<button type="submit">결제</button>
 													</form>

@@ -13,7 +13,7 @@ urlpatterns = [
     path('location/',include('location.urls')),
     path('food/',include('food.urls')),
     path('package/',include('package.urls')),
-    path('kakao_pay_request/<int:p_no>/', views.kakao_pay_request, name='kakao_pay_request'),  # 카카오페이 결제
+    path('kakao_pay_request/', views.kakao_pay_request, name='kakao_pay_request'),  # 카카오페이 결제
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

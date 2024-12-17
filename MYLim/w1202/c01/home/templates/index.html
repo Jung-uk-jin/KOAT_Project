@@ -1,38 +1,49 @@
-<!-- /*
-* Template Name: Sterial
-* Template Author: Untree.co
-* Tempalte URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 {% load static %}
 <!doctype html>
 <html lang="en">
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<meta name="author" content="Untree.co">
-	<link rel="shortcut icon" href="favicon.png">
-
-	<meta name="description" content="" />
-	<meta name="keywords" content="bootstrap, bootstrap5" />
-	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
-	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
-
-	<link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
-	<link rel="stylesheet" href="{% static 'css/aos.css'%}">
-	<link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
-	<link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
-	<link rel="stylesheet" href="{% static 'css/style.css'%}">
-
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
+  <link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
+  <link rel="stylesheet" href="{% static 'css/aos.css'%}">
+  <link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+	<link rel="stylesheet" href="{% static 'css/main_map_info.css'%}">
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac0b6c80466a2f9f681b4021d09253c3"></script>
+	<script type="module" src="/static/js/map copy.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
+	<style>
+		#right_fixed{width:118px;border: 1px solid #111; position: fixed; right: 0; top: 169px; z-index: 1000;}
+
+    #right_fixed .ai_chatting{width: 118px; height: 118px; 
+      box-sizing: border-box; padding-top: 30px; background-color: white;background-image: url('/static/images/스카이넷.webp');
+			background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+			background-size: cover; /* 배경 이미지가 div 크기에 맞게 크기 조정 */}
+
+    #right_fixed .ai_chatting div:nth-child(1){width: 38px; height: 40px; margin: 0 auto;
+   		background-size: cover; background-size: cover;}
+    
+    #right_fixed .ai_chatting div:nth-child(2){width: 100%; text-align: center;
+    font-size: 13px; color: #111; letter-spacing: -0.26px;}
+		
+    #right_fixed .top{height: 30px; text-align: center; font-size: 13px; color: #333; letter-spacing: -1px; background: #f3f3f3;
+    border-top: 1px solid #ddd; line-height: 30px;}
+
+
+	</style>
 </head>
 <body>
 
@@ -51,42 +62,39 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">KOAT</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="about.html">About us</a></li>
+							<li class="active"><a href="/">Home</a></li>
 							<li class="has-children">
-								<a href="#">Dropdown</a>
+								<a href="#">지역/즐길거리</a>
 								<ul class="dropdown">
-									<li><a href="#">Menu One</a></li>
+									<li><a href="/location/location">지역</a></li>
 									<li class="has-children">
-										<a href="#">Menu Two</a>
+										<a href="#">즐길거리</a>
 										<ul class="dropdown">
-											<li><a href="#">Sub Menu One</a></li>
-											<li><a href="#">Sub Menu Two</a></li>
-											<li><a href="#">Sub Menu Three</a></li>
+											<li><a href="/food/eat/">한국 대표 음식</a></li>
+											<li><a href="#">한국 문화 유산</a></li>
 										</ul>
 									</li>
-									<li><a href="#">Menu Three</a></li>
+									<li><a href="chatbot/bot/">챗봇</a></li>
 								</ul>
 							</li>
-							{% if not request.session.session_m_id %}
-							<li><a href="/member/login/">로그인</a></li>
-							<li><a href="/admin/">admin</a></li>
 							<li><a href="/board/blist/">게시판</a></li>
-							{% else %}
-							<li><a href="/member/logout/">로그아웃</a></li>
-							<li><a href="/admin/">admin</a></li>
-							<li><a href="/board/blist/">게시판</a></li>
-							{% endif %}
-
+								{% if request.session.session_m_auth == 0%}
+									<li><a href="/admin/">admin</a></li>
+								{% else %}
+								{% endif %}
 						</ul>
 					</div>
 					<div class="col-6 col-lg-3 text-lg-end">
 						<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
-							<li class="cta-button"><a href="contact.html">Contact Us</a></li>
+							{% if not request.session.session_m_id %}
+							<li class="cta-button"><a href="/member/login/">로그인</a></li>
+							{% else %}
+							<li class="cta-button"><a href="/member/logout/">로그아웃</a></li>
+							{% endif %}
 						</ul>
 
 						<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
@@ -98,13 +106,11 @@
 			
 		</div>
 	</nav>
-
-	
-
 	<div class="hero overlay">
 
 		<div class="img-bg rellax">
-			<img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid">
+			{% comment %} <img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid"> {% endcomment %}
+			<video class="dvd-fluid" id="backvd" src="/static/videos/main_video.mp4" autoplay muted loop ></video>
 		</div>
 
 		<div class="container">
@@ -114,126 +120,98 @@
 					<h1 class="heading" data-aos="fade-up">It's a Big World Out There, Go Explore</h1>
 					<p class="mb-5" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
 
-					<div data-aos="fade-up">
-						<a href="https://www.youtube.com/watch?v=5n-e6lOhVq0" class="play-button align-items-center d-flex glightbox3" >
-							<span class="icon-button me-3">
-								<span class="icon-play"></span>
+					<div data-aos="">  <!--fade-up-->
+						{% comment %} <a class="play-button align-items-center d-flex glightbox3" >  <!-- href="https://youtu.be/3P1CnWI62Ik?si=IqEDS-2dOJLLyPQ_"--> {% endcomment %}
+							<span class="icon-button me-3" id="vdcont">▶
+								{% comment %} <span class="icon-play" id="playIc" ></span>
+								<span class="icon-pause" id="puseIc" ></span> {% endcomment %}
 							</span>
-							<span class="caption">Watch Video</span>
-						</a>
+							{% comment %} <span class="caption">Watch Video</span> {% endcomment %}
+						{% comment %} </a> {% endcomment %}
 					</div>
 				</div>
-
-				
 			</div>
 		</div>
+	</div>
 
+
+
+	<!--사이드 바-->
+	<div id="right_fixed">
+		<div class="ai_chatting"></div>
+		<div class="top"><a href="javascript:void(0);" onclick="openSmallWindow('chatbot/bot/')">SKYNET과 상담</a></div>
+	</div>
+	<!--사이드 바-->
+
+
+	
+	<script>
+	// 사이드바 자바스크립트
+		function openSmallWindow(url) {
+    	window.open(url, 'AIChatWindow', 'width=470,height=700');
+  	}
+		const video = document.getElementById('backvd');
+		const controlBtn = document.getElementById('vdcont');
+	// 사이드바 자바스크립트
+
+
+
+
+
+		controlBtn.addEventListener('click', () => {
+				if (video.paused) {
+						video.play();
+						controlBtn.textContent = '▶';
+				} else {
+						video.pause();
+						controlBtn.textContent = '■';
+				}
+		});
 		
+</script>
+	<div class="Map_API" style="width: 100%; height: 600px; background-color: lightgray; border: 1px solid black; display: flex; justify-content: center;">
+    <!-- 설명 부분 50% -->
+    <div style="width: 30%; height: 100%; padding: 10px; overflow-y: auto;">
+        <h2 style="font-weight: 800; font-size: 45px; color: black;">한국의 지역</h2>	
+				<h2 id='descriptionText' style="font-weight: 800; font-size: 40px; color: black; margin-bottom: 30px;"></h2>
+				<!--<div id = 'main_info_image'></div>-->
+				<section id="sliderType04">
+						<div class="slider__wrap">
+								<div id="slider__img" class="slider__img">
+										<div class="slider__inner">
+												<!-- 슬라이더 이미지가 JavaScript로 동적으로 추가됩니다. -->
+										</div>
+								</div>
+								<div class="slider__btn">
+										<a href="#" class="prev" role="button"></a>
+										<a href="#" class="next" role="button"></a>
+								</div>
+						</div>
+				</section>
+    </div>
+
+    <!-- 지도 표시 영역 50% -->
+    <div id="map" style="width: 40%; height: 100%;"></div>
+		<script>
+			let mapContainer = document.getElementById('map'),
+			mapOption = {
+			center: new kakao.maps.LatLng(35.966826, 127.9786567),
+			level: 13   
+			};
+
+			let map = new kakao.maps.Map(mapContainer, mapOption),
+			customOverlay = new kakao.maps.CustomOverlay({});
+
+			map.setZoomable(false);
+			map.setDraggable(false);
+		</script>
 	</div>
-
-
-	<div class="section section-2">
-		<div class="container">
-			<div class="row align-items-center justify-content-between">
-				<div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
-					<div class="image-stack mb-5 mb-lg-0">
-						<div class="image-stack__item image-stack__item--bottom" data-aos="fade-up"  >
-							<img src="/static/images/img_v_1.jpg" alt="Image" class="img-fluid rellax ">
-						</div>
-						<div class="image-stack__item image-stack__item--top" data-aos="fade-up" data-aos-delay="100"  data-rellax-percentage="0.5">
-							<img src="/static/images/img_v_2.jpg" alt="Image" class="img-fluid">
-						</div>
-					</div>
-
-				</div>
-				<div class="col-lg-4 order-lg-1">
-
-					<div>
-						<h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Explore All Corners of The World With Us</h2>
-
-						<p data-aos="fade-up" data-aos-delay="200">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-						<p data-aos="fade-up" data-aos-delay="300">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-						<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Read more</a></p>
-					</div>
-				</div>
-				
-			</div>
-
-		</div>		
-	</div>
-
-	<div class="section service-section-1">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-3 mb-4 mb-lg-0">
-					<div class="heading-content" data-aos="fade-up">
-						<h2>Our <span class="d-block">Services</span></h2>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">View All</a></p>
-					</div>
-				</div>
-				<div class="col-lg-9">
-					<div class="row">
-						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="100">
-							<div class="service-1">
-								<span class="icon">
-									<img src="/static/images/svg/01.svg" alt="Image" class="img-fluid">
-								</span>
-								<div>
-									<h3>Tourism</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="200">
-							<div class="service-1">
-								<span class="icon">
-									<img src="/static/images/svg/02.svg" alt="Image" class="img-fluid">
-								</span>
-								<div>
-									<h3>Package Tours</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="300">
-							<div class="service-1">
-								<span class="icon">
-									<img src="/static/images/svg/03.svg" alt="Image" class="img-fluid">
-								</span>
-								<div>
-									<h3>Travel Insurance</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="400">
-							<div class="service-1">
-								<span class="icon">
-									<img src="/static/images/svg/04.svg" alt="Image" class="img-fluid">
-								</span>
-								<div>
-									<h3>Airport Lounge Access</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
 	<div class="section section-3" data-aos="fade-up" data-aos-delay="100">
 		<div class="container">
 			<div class="row align-items-center justify-content-between  mb-5">
 				<div class="col-lg-5" data-aos="fade-up">
-					<h2 class="heading mb-3">Discover Hundred of Travel Destinations</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+					<h2 class="heading mb-3">지역 메뉴 또는 계졀이 들어갈 자리입니다.</h2>
+					<p>DB를 이용햐여 출력 (추천수에 따른 지역 추천)</p>
 				</div>		
 				<div class="col-lg-5 text-md-end" data-aos="fade-up" data-aos-delay="100">
 					<div id="destination-controls">
@@ -256,33 +234,33 @@
 				<div class="destination">
 					<div class="thumb">
 						<img src="/static/images/img-1.jpg" alt="Image" class="img-fluid">
-						<div class="price">$430</div>
+						<div class="price">서울</div>
 					</div>
 					<div class="mt-4">
-						<h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-						<span class="meta">Maldives, Repbulic Maldives</span>
+						<h3><a href="#">주 여행지</a></h3>
+						<span class="meta">주 먹거리</span>
 					</div>
 				</div>
 
 				<div class="destination">
 					<div class="thumb">
 						<img src="/static/images/img-2.jpg" alt="Image" class="img-fluid">
-						<div class="price">$560</div>
+						<div class="price">경기</div>
 					</div>
 					<div class="mt-4">
-						<h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-						<span class="meta">Maldives, Repbulic Maldives</span>
+						<h3><a href="#">주 여행지</a></h3>
+						<span class="meta">주 먹거리</span>
 					</div>
 				</div>
 
 				<div class="destination">
 					<div class="thumb">
 						<img src="/static/images/img-3.jpg" alt="Image" class="img-fluid">
-						<div class="price">$490</div>
+						<div class="price">강원</div>
 					</div>
 					<div class="mt-4">
-						<h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-						<span class="meta">Maldives, Repbulic Maldives</span>
+						<h3><a href="#">주 여행지</a></h3>
+						<span class="meta">주 먹거리</span>
 					</div>
 				</div>
 
@@ -342,6 +320,39 @@
 					</div>
 				</div>
 
+				<div class="destination">
+					<div class="thumb">
+						<img src="/static/images/img-4.jpg" alt="Image" class="img-fluid">
+						<div class="price">$490</div>
+					</div>
+					<div class="mt-4">
+						<h3><a href="#">Paradise Beach, Palawan Island</a></h3>
+						<span class="meta">Maldives, Repbulic Maldives</span>
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<img src="/static/images/img-4.jpg" alt="Image" class="img-fluid">
+						<div class="price">$490</div>
+					</div>
+					<div class="mt-4">
+						<h3><a href="#">Paradise Beach, Palawan Island</a></h3>
+						<span class="meta">Maldives, Repbulic Maldives</span>
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<img src="/static/images/img-4.jpg" alt="Image" class="img-fluid">
+						<div class="price">$490</div>
+					</div>
+					<div class="mt-4">
+						<h3><a href="#">Paradise Beach, Palawan Island</a></h3>
+						<span class="meta">Maldives, Repbulic Maldives</span>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
@@ -349,289 +360,209 @@
 
 	<div class="section">
 		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-5 mb-4 mb-lg-0 order-lg-2" data-aos="fade-up">
-					<img src="/static/images/img-1.jpg" alt="Image" class="img-fluid">
-				</div>
-				<div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-					<h2 class="heading mb-4">Sweet Memories Come To Life Again</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-					<p class="my-4" data-aos="fade-up" data-aos-delay="200"><a href="#" class="btn btn-primary">Read more</a></p>
-				</div>	
-			</div>
-		</div>
-	</div>
 
-	<div class="section bg-light">
-		
-
-
-
-		<h2 class="heading mb-5 text-center">Testimonials</h2>
-
-		<div class="text-center mb-5">
-			<div id="prevnext-testimonial">
-				<span class="prev me-3" data-controls="prev">
-					<span class="icon-chevron-left"></span>
-
-				</span>
-				<span class="next" data-controls="next">
-					<span class="icon-chevron-right"></span>
-
-				</span>
-			</div>
-		</div>
-
-		<div class="wide-slider-testimonial-wrap">
-			<div class="wide-slider-testimonial">
-				<div class="item">
-					<blockquote class="block-testimonial">
-						<div class="author">
-							<img src="/static/images/person_1.jpg" alt="Free template by TemplateUX">
-							<h3>John Doe</h3>
-							<p class="position mb-5">CEO, Founder</p>
-						</div>
-						<p>
-							<div class="quote">&ldquo;</div>
-						&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-					</blockquote>
-				</div>
-
-				<div class="item">
-					<blockquote class="block-testimonial">
-						<div class="author">
-							<img src="/static/images/person_2.jpg" alt="Free template by TemplateUX">
-							<h3>James Woodland</h3>
-							<p class="position mb-5">Designer at Facebook</p>
-						</div>
-						<p>
-							<div class="quote">&ldquo;</div>
-						&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.&rdquo;</p>
-
-					</blockquote>
-				</div>
-
-				<div class="item">
-					<blockquote class="block-testimonial">
-						<div class="author">
-							<img src="/static/images/person_3.jpg" alt="Free template by TemplateUX">
-							<h3>Rob Smith</h3>
-							<p class="position mb-5">Product Designer at Twitter</p>
-						</div>
-						<p>
-							<div class="quote">&ldquo;</div>
-						&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-					</blockquote>
-				</div>
-
-				<div class="item">
-					<blockquote class="block-testimonial">
-						<div class="author">
-							<img src="/static/images/person_1.jpg" alt="Free template by TemplateUX">
-							<h3>John Doe</h3>
-							<p class="position mb-5">CEO, Founder</p>
-						</div>
-						<p>
-							<div class="quote">&ldquo;</div>
-						&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-					</blockquote>
-				</div>
-
-				<div class="item">
-					<blockquote class="block-testimonial">
-						<div class="author">
-							<img src="/static/images/person_2.jpg" alt="Free template by TemplateUX">
-							<h3>James Woodland</h3>
-							<p class="position mb-5">Designer at Facebook</p>
-						</div>
-						<p>
-							<div class="quote">&ldquo;</div>
-						&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.&rdquo;</p>
-
-					</blockquote>
-				</div>
-
-				<div class="item">
-					<blockquote class="block-testimonial">
-						<div class="author">
-							<img src="/static/images/person_3.jpg" alt="Free template by TemplateUX">
-							<h3>Rob Smith</h3>
-							<p class="position mb-5">Product Designer at Twitter</p>
-						</div>
-						<p>
-							<div class="quote">&ldquo;</div>
-						&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-					</blockquote>
-				</div>
-			</div>
-		</div>
-
-
-
-	</div> <!-- /.untree_co-section -->
-
-	<div class="section">
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-5 mb-4 mb-lg-0">
-					<img src="/static/images/img_v_2.jpg" alt="Image" class="img-fluid">
-				</div>
-				<div class="col-lg-5 mt-4 mt-lg-0"  data-aos="fade-up" data-aos-delay="100">
-
-					<h2 class="heading mb-5">Frequently Asked <br> Questions</h2>
-
-					<div class="custom-accordion" id="accordion_1">
-						<div class="accordion-item">
-							<h2 class="mb-0">
-								<button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How to download and register?</button>
-							</h2>
-
-							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion_1">
-								<div class="accordion-body">
-									Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+			<div class="row" style="display: flex; justify-content: space-between; align-items: center;">
+				<div class="col-6"data-aos="fade-up" data-aos-delay="0">
+					<h2 class="heading mb-5">최신글</h2>
+					<div class="row align-items-stretch">
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_1.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">최신1</a></h3>
+									<p>최신1</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
 								</div>
 							</div>
-						</div> <!-- .accordion-item -->
-
-						<div class="accordion-item">
-							<h2 class="mb-0">
-								<button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How to create your paypal account?</button>
-							</h2>
-							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion_1">
-								<div class="accordion-body">
-									A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_2.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">최신2</a></h3>
+									<p>최신2</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
 								</div>
 							</div>
-						</div> <!-- .accordion-item -->
-						<div class="accordion-item">
-							<h2 class="mb-0">
-								<button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How to link your paypal and bank account?</button>
-							</h2>
-
-							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion_1">
-								<div class="accordion-body">
-									When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_3.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">최신3</a></h3>
+									<p>최신3</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
 								</div>
 							</div>
-
-						</div> <!-- .accordion-item -->
-
-
-						<div class="accordion-item">
-							<h2 class="mb-0">
-								<button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">We are better than others?</button>
-							</h2>
-
-							<div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion_1">
-								<div class="accordion-body">
-									When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
+						</div>
+					</div>
+					<div class="row align-items-stretch">
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_1.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">최신4</a></h3>
+									<p>최신1</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
 								</div>
 							</div>
-
-						</div> <!-- .accordion-item -->
-
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_2.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">최신5</a></h3>
+									<p>최신2</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_3.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">최신6</a></h3>
+									<p>최신3</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6"data-aos="fade-up" data-aos-delay="0">
+					<h2 class="heading mb-5">인기글</h2>
+					<div class="row align-items-stretch">
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_1.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">인기1</a></h3>
+									<p>최신1</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_2.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">인기2</a></h3>
+									<p>최신2</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_3.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">인기3</a></h3>
+									<p>최신3</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row align-items-stretch">
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_1.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">인기4</a></h3>
+									<p>최신1</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_2.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">인기5</a></h3>
+									<p>최신2</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+							<div class="media-entry">
+								<a href="#">
+									<img src="/static/images/gal_3.jpg" alt="Image" class="img-fluid rounded">
+								</a>
+								<div class="bg-white m-body">
+									<span class="date">May 14, 2020</span>
+									<h3><a href="#">인기6</a></h3>
+									<p>최신3</p>
+									<a href="single.html" class="more d-flex align-items-center float-start">
+										<span class="label">더 보기</span>
+									</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
-
-	<div class="section">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-12"data-aos="fade-up" data-aos-delay="0">
-					
-					<h2 class="heading mb-5">Recent Posts</h2>
-				</div>
-			</div>
-			<div class="row align-items-stretch">
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-					<div class="media-entry">
-						<a href="#">
-							<img src="/static/images/gal_1.jpg" alt="Image" class="img-fluid">
-						</a>
-						<div class="bg-white m-body">
-							<span class="date">May 14, 2020</span>
-							<h3><a href="#">Far far away, behind the word mountains</a></h3>
-							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-
-							<a href="single.html" class="more d-flex align-items-center float-start">
-								<span class="label">Read More</span>
-								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-					<div class="media-entry">
-						<a href="#">
-							<img src="/static/images/gal_2.jpg" alt="Image" class="img-fluid">
-						</a>
-						<div class="bg-white m-body">
-							<span class="date">May 14, 2020</span>
-							<h3><a href="#">Far far away, behind the word mountains</a></h3>
-							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-
-							<a href="single.html" class="more d-flex align-items-center float-start">
-								<span class="label">Read More</span>
-								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-					<div class="media-entry">
-						<a href="#">
-							<img src="/static/images/gal_3.jpg" alt="Image" class="img-fluid">
-						</a>
-						<div class="bg-white m-body">
-							<span class="date">May 14, 2020</span>
-							<h3><a href="#">Far far away, behind the word mountains</a></h3>
-							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-							<a href="single.html" class="more d-flex align-items-center float-start">
-								<span class="label">Read More</span>
-								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-					<div class="media-entry">
-						<a href="#">
-							<img src="/static/images/gal_4.jpg" alt="Image" class="img-fluid">
-						</a>
-						<div class="bg-white m-body">
-							<span class="date">May 14, 2020</span>
-							<h3><a href="#">Far far away, behind the word mountains</a></h3>
-							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-							<a href="single.html" class="more d-flex align-items-center float-start">
-								<span class="label">Read More</span>
-								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-							</a>
-						</div>
-					</div>
-				</div>
 			</div>	
 		</div>		
 	</div>
 
 
-
-	<div class="py-5 bg-primary">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7 text-center mb-3 mb-lg-0 text-lg-start">
-					<h3 class="text-white m-0">Begin your adventurous journey here.</h3>
-				</div>		
-				<div class="col-lg-5 text-center text-lg-end">
-					<a href="#" class="btn btn-outline-white">Get started</a>
-				</div>
-			</div>		
-		</div>		
-	</div>
 
 	<div class="site-footer">
 		<div class="container">
@@ -712,15 +643,16 @@
 			</div>
 		</div>
 
+		{% comment %} <script src="/static/js/main_map_info_slider.js"></script> {% endcomment %}
 
 		<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
-		<script src="{% static 'js/tiny-slider.js'%}"></script>
-		<script src="{% static 'js/aos.js'%}"></script>
-		<script src="{% static 'js/navbar.js'%}"></script>
-		<script src="{% static 'js/counter.js'%}"></script>
-		<script src="{% static 'js/rellax.js'%}"></script>
-		<script src="{% static 'js/flatpickr.js'%}"></script>
-		<script src="{% static 'js/glightbox.min.js'%}"></script>
-		<script src="{% static 'js/custom.js'%}"></script>
+    <script src="{% static 'js/tiny-slider.js'%}"></script>
+    <script src="{% static 'js/aos.js'%}"></script>
+    <script src="{% static 'js/navbar.js'%}"></script>
+    <script src="{% static 'js/counter.js'%}"></script>
+    <script src="{% static 'js/rellax.js'%}"></script>
+    <script src="{% static 'js/flatpickr.js'%}"></script>
+    <script src="{% static 'js/glightbox.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
 	</body>
 	</html>

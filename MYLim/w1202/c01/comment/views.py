@@ -39,3 +39,22 @@ def cupdate(request):
   list_qs = list(Comment.objects.filter(c_no=qs.c_no).values())
   context = {'result':'success','comment':list_qs}
   return JsonResponse(context)
+
+def reply(request):
+  m_id = request.session['session_m_id']
+  member = Member.objects.get(m_id=m_id)
+  b_no = request.POST.get('b_no')
+  parent_c_no = request.POST.get('parent_c_no')
+  c_content = request.POST.get('c_content') # 답글 내용
+  
+  print(parent_c_no)
+  print(c_content)
+  
+  board = Board.objects.get(b_no=b_no)
+  parent_comment = Comment.objects.get(c_no=parent_c_no)
+  
+  qs = Comment.objects.create(member=member,board=board,c_content=c_content,parent_comment=parent_comment)
+  list_qs = list(Comment.objects.filter(c_no=qs.c_no).values())
+  context = {'result':'success','comment':list_qs}
+  
+  return JsonResponse(context)

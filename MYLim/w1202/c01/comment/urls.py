@@ -6,4 +6,5 @@ urlpatterns = [
     path('cwrite/',views.cwrite,name='cwrite'),
     path('cdelete/',views.cdelete,name='cdelete'),
     path('cupdate/',views.cupdate,name='cupdate'),
+    path('reply/',views.reply,name='reply'),
 ]

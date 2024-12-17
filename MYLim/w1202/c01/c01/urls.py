@@ -9,6 +9,10 @@ urlpatterns = [
     path('board/',include('board.urls')),
     path('member/',include('member.urls')),
     path('comment/',include('comment.urls')),
+    path('location/',include('location.urls')),
+    path('heritage/',include('heritage.urls')),
+    path('food/',include('food.urls')),
+    path('chatbot/',include('chatbot.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,3 +1,5 @@
+{% extends "bbase.html" %}
+{% block container-block %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -44,7 +46,7 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
+
 	<!-- include summernote css/js -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
@@ -85,30 +87,33 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="/" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">KOAT</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About us</a></li>
+							<li><a href="/">Home</a></li>
+							<li class="active"><a href="about.html">지역</a></li>
 							<li class="has-children">
-								<a href="#">Dropdown</a>
+								<a href="#">즐길거리</a>
 								<ul class="dropdown">
-									<li><a href="#">Menu One</a></li>
+									<li><a href="#">관광지</a></li>
 									<li class="has-children">
-										<a href="#">Menu Two</a>
+										<a href="#">먹거리</a>
 										<ul class="dropdown">
-											<li><a href="#">Sub Menu One</a></li>
-											<li><a href="#">Sub Menu Two</a></li>
+											<li><a href="#">한국 대표 음식</a></li>
+											<li><a href="#">맛집</a></li>
 											<li><a href="#">Sub Menu Three</a></li>
 										</ul>
 									</li>
 									<li><a href="#">Menu Three</a></li>
 								</ul>
 							</li>
-							<li><a href="services.html">Services</a></li>
-							<li class="active"><a href="/">게시판</a></li>
-
+							{% if not request.session.session_m_id %}
+								<li><a href="/member/login/">로그인</a></li>
+							{% else %}
+								<li><a href="/member/logout/">로그아웃</a></li>
+							{% endif %}
+							<li><a href="/board/blist/">게시판</a></li>
 						</ul>
 					</div>
 					<div class="col-6 col-lg-3 text-lg-end">
@@ -154,12 +159,13 @@
 			</div>
 		</div>
 	</div>
-	<div id="container">
 
+	<!-- container -->	
+	<div id="container">
 		<div id="location">
 			<ol>
-				<li><a href="#">HOME</a></li>
-				<li><a href="#">게시판</a></li>
+				<li><a href="/">HOME</a></li>
+				<li><a href="/board/blist/">게시판</a></li>
 				<li class="last">여행 후기</li>
 			</ol>
 		</div>
@@ -192,8 +198,11 @@
 											<td>
 													<ul class="pta">
 															<li class="pt5">
-																	<select>
-																			<option value="">카테고리</option>
+																	<select name='b_header' id='b_header'>
+																			<option value="">선택</option>
+																			<option value="지역">지역</option>
+																			<option value="관광지">관광지</option>
+																			<option value="먹거리/맛집">먹거리/맛집</option>
 																	</select>
 															</li>
 													</ul>
@@ -225,51 +234,75 @@
 											</td>
 									</tr>
 									
-									<!-- 이미지 파일 -->
+									<!-- 이미지 파일 업로드 -->
 									<tr>
 										<th scope="row"><span>이미지 파일</span></th>
 										<td>
-												<input type="file" name="b_file" class="fileType" onchange="readURL(this)">
+												<input type="file" name="b_file" class="fileType" onchange="readURL(this)" multiple>
 												<input type="checkbox" name="delete_image" id="delete_image">
 												<label for="delete_image">이미지를 전체를 삭제합니다</label>
 										</td>
-								</tr>
-								<!-- 이미지 미리보기 -->
-								<tr>
-										<th><span>이미지</span></th>
-										<td id='txt'>
-												<img id="preview" style="width:200px; display: none; border: 1px solid #ccc;" alt="이미지 미리보기">
-										</td>
-								</tr>
-							</tbody>
-							
+									</tr>
+
+									<!-- 이미지 미리보기 -->
+									<tr>
+											<th><span>이미지</span></th>
+											<td id="txt">
+													<div id="image_previews"></div>  <!-- 미리보기할 이미지들이 나오는 div -->
+											</td>
+									</tr>							
 							<script>
-								//이미지 미리보기
-								function readURL(input) {
-									if (input.files && input.files[0]) {
-											var reader = new FileReader(); // FileReader 객체 생성
-											reader.onload = function(e) {
-													const preview = document.getElementById('preview');
-													preview.src = e.target.result; // 이미지 데이터를 미리보기로 설정
-													preview.style.display = 'block'; // 이미지 요소 표시
-											};
-											reader.readAsDataURL(input.files[0]); // 파일을 DataURL로 읽음
-									} else {
-											const preview = document.getElementById('preview');
-											preview.src = ""; // 이미지 초기화
-											preview.style.display = 'none'; // 이미지 숨기기
+										// 여러 이미지 미리보기
+										function readURL(input) {
+											const previewContainer = document.getElementById('image_previews');
+											previewContainer.innerHTML = ''; // 기존 미리보기 이미지들 초기화
+									
+											// 선택된 파일들 처리
+											if (input.files && input.files.length) {
+													for (let i = 0; i < input.files.length; i++) {
+															const reader = new FileReader(); // FileReader 객체 생성
+															reader.onload = function(e) {
+																	// 미리보기 이미지 컨테이너 생성
+																	const imageContainer = document.createElement('div');
+																	const imgElement = document.createElement('img');
+																	imgElement.style.width = '300px';
+																	imgElement.style.border = '1px solid #ccc';
+																	imgElement.src = e.target.result; // 이미지 데이터를 미리보기로 설정
+																	imgElement.alt = "이미지 미리보기";
+									
+																	imageContainer.appendChild(imgElement);
+																	previewContainer.appendChild(imageContainer); // 미리보기와 체크박스를 div에 추가
+															};
+															reader.readAsDataURL(input.files[i]); // 각 파일을 DataURL로 읽음
+													}
+											}
 									}
-							}
+
 
 								//Summernote 초기화 스크립트
 									$(document).ready(function() {
 											$('#summernote').summernote({
 													height: 300,                 // 에디터 높이
-													minHeight: null,             // 최소 높이
-													maxHeight: null,             // 최대 높이
+													minHeight: 200,             // 최소 높이
+													maxHeight: 400,             // 최대 높이
 													focus: true,                 // 에디터 로딩 후 포커스를 맞출지 여부
 													lang: "ko-KR",               // 한글 설정
-													placeholder: '최대 2048자까지 쓸 수 있습니다' // placeholder 설정
+													placeholder: '내용을 입력하세요.', // placeholder 설정
+
+													toolbar: [
+													// [groupName, [list of button]]
+													['fontname', ['fontname']],
+													['fontsize', ['fontsize']],
+													['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+													['color', ['forecolor','color']],
+													['table', ['table']],
+													['para', ['ul', 'ol', 'paragraph']],
+													['height', ['height']],
+													['insert',['picture','link','video']],
+													['view', ['fullscreen', 'help']]
+													],
+													fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+													fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 											});
 									});
 							</script>
@@ -296,98 +329,4 @@
 		</div>
 	</div>
 	<!-- //container -->
-
-	
-
-
-	<div class="site-footer">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="widget">
-						<h3>About Passport<span class="text-primary">.</span> </h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-					</div> <!-- /.widget -->
-					<div class="widget">
-						<h3>Connect</h3>
-						<ul class="list-unstyled social">
-							<li><a href="#"><span class="icon-instagram"></span></a></li>
-							<li><a href="#"><span class="icon-twitter"></span></a></li>
-							<li><a href="#"><span class="icon-facebook"></span></a></li>
-							<li><a href="#"><span class="icon-linkedin"></span></a></li>
-							<li><a href="#"><span class="icon-pinterest"></span></a></li>
-							<li><a href="#"><span class="icon-dribbble"></span></a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-				<div class="col-lg-2 ml-auto">
-					<div class="widget">
-						<h3>Links</h3>
-						<ul class="list-unstyled float-left links">
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="#">Careers</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-				<div class="col-lg-2">
-					<div class="widget">
-						<h3>Company</h3>
-						<ul class="list-unstyled float-left links">
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="#">Careers</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-
-				<div class="col-lg-3">
-					<div class="widget">
-						<h3>Contact</h3>
-						<address>43 Raymouth Rd. Baltemoer, London 3910</address>
-						<ul class="list-unstyled links mb-4">
-							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-							<li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-			</div> <!-- /.row -->
-
-			<div class="row mt-5">
-				<div class="col-12 text-center">
-					<p class="mb-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
-					</p>
-				</div>
-			</div> <!-- /.container -->
-		</div> <!-- /.site-footer -->
-
-		<!-- Preloader -->
-		<div id="overlayer"></div>
-		<div class="loader">
-			<div class="spinner-border text-primary" role="status">
-				<span class="visually-hidden">Loading...</span>
-			</div>
-		</div>
-
-
-		<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
-    <script src="{% static 'js/tiny-slider.js'%}"></script>
-    <script src="{% static 'js/aos.js'%}"></script>
-    <script src="{% static 'js/navbar.js'%}"></script>
-    <script src="{% static 'js/counter.js'%}"></script>
-    <script src="{% static 'js/rellax.js'%}"></script>
-    <script src="{% static 'js/flatpickr.js'%}"></script>
-    <script src="{% static 'js/glightbox.min.js'%}"></script>
-    <script src="{% static 'js/custom.js'%}"></script>
-	</body>
-	</html>
+	{% endblock container-block %}

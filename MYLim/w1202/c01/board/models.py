@@ -10,9 +10,16 @@ class Board(models.Model):
   b_title = models.CharField(max_length=30)
   b_content = models.TextField()
   b_hit = models.IntegerField(default=0)
-  b_header = models.CharField(max_length=10)
+  b_header = models.CharField(max_length=10, null=True, blank=True)
   b_date = models.DateTimeField(auto_now=True)
-  b_file = models.ImageField(blank=True, null=True,upload_to='board')
+  b_file = models.ManyToManyField('BoardFile', blank=True)  # ManyToManyField로 이미지 여러 개 연결
   
   def __str__(self):
-    return f"{self.b_no},{self.b_title},{self.b_date}"
+      return f"{self.b_no},{self.b_title},{self.b_date}"
+
+class BoardFile(models.Model):
+  b_board = models.ForeignKey(Board, related_name='files', on_delete=models.CASCADE)  # Board와 연결
+  b_file = models.ImageField(upload_to='board/', null=True, blank=True)  # 이미지 파일 필드
+  
+  def __str__(self):
+      return f"File for {self.b_board.b_title}"

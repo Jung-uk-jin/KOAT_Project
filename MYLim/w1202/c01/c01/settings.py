@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     'board',
     'member',
     'comment',
+    'location',
+    'food',
+    'heritage',
+    'chatbot',
 ]
 
 MIDDLEWARE = [

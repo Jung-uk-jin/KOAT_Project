@@ -209,7 +209,7 @@ a {
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: inherit;
   text-decoration: none; }
-
+    
 pre,
 code,
 kbd,
@@ -552,7 +552,11 @@ progress {
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-.5 * var(--bs-gutter-x));
-  margin-left: calc(-.5 * var(--bs-gutter-x)); }
+  margin-left: calc(-.5 * var(--bs-gutter-x)); 
+
+  /* 콘텐츠 중앙정렬 추가 */
+  justify-content: center;
+}
   .row > * {
     -ms-flex-negative: 0;
     flex-shrink: 0;
@@ -2531,6 +2535,17 @@ textarea.form-control-lg {
   color: #000;
   background-color: #f17945;
   border-color: #f17945; }
+
+  
+.btn-primary.dpchk {
+  width: 100%;
+  text-align: center;
+}
+
+.btn-primary.dpchk>input{
+  text-align: center;
+}
+
   .btn-primary:hover {
     color: #000;
     background-color: #f38d61;
@@ -6585,6 +6600,12 @@ textarea.form-control-lg {
 .mb-3 {
   margin-bottom: 1rem !important; }
 
+.mb-3_5 {
+  margin-bottom: 1rem !important;
+  width: 50%;
+  margin: auto;
+} 
+
 .mb-4 {
   margin-bottom: 1.5rem !important; }
 
@@ -9853,7 +9874,10 @@ textarea {
   .section .heading {
     font-size: 46px;
     color: #343661;
-    font-weight: 700; }
+    font-weight: 700; 
+
+    text-align: center;
+  }
     @media (max-width: 991.98px) {
       .section .heading {
         font-size: 30px; } }
@@ -10499,3 +10523,86 @@ textarea {
       .site-footer .social li a:hover {
         background: #f59b74;
         color: #fff; }
+
+        
+
+/*         css 변경사항        */     
+.dcchk {
+  width: 100px;
+  vertical-align: middle;
+  margin: 0px -35px 0px 50px;
+}
+
+.ndcchk {
+  width: 100px;
+  vertical-align: middle;
+  margin: 0px -35px 0px 50px;
+}
+div.mb-3 > label{
+  font-size: 16px;
+  letter-spacing: 0em;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 45px;
+}
+        
+.all_bd {
+  display: flex;
+  height: 50px;
+}
+
+div.polgd {
+  text-align: center;
+  vertical-align: middle;
+}
+
+p.agreebox{
+  border: none;
+}
+
+.form-control, .custom-select{
+  margin-bottom: -10px;
+}
+
+#dup {
+  margin-bottom: -9px;
+}
+
+#mon {
+  margin-top: 9px;
+}
+
+span.typex {
+  border: none;
+}
+
+span.memup{
+  text-align: center;
+}
+
+.gdst{
+  font: caption;
+  display: flex;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.gdst>label{
+  margin-right: 15px;
+}
+
+div#logbtm {
+  display: flex;
+  justify-content: space-between;
+}
+
+div#scidpw {
+  width: 270px;
+  display: flex;
+}
+
+.icoct>li{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 13px;
+}

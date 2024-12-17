@@ -1,312 +1,99 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="favicon.png">
-  <meta name="description" content="" />
-  <meta name="keywords" content="bootstrap, bootstrap5">
-  <meta name="csrf-token" content="{{ csrf_token }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
-  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
-  <link rel="stylesheet" href="{% static 'css/tiny-slider.css'%}">
-  <link rel="stylesheet" href="{% static 'css/aos.css'%}">
-  <link rel="stylesheet" href="{% static 'css/flatpickr.min.css'%}">
-  <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
-  <link rel="stylesheet" href="{% static 'css/style.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css'%}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css'%}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'css/content.css'%}" />
-	<script type="text/javascript" src="{% static 'js/jquery.min.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/top_navi.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/left_navi.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/main.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/common.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/idangerous.swiper-2.1.min.js'%}"></script>
-	<script type="text/javascript" src="{% static 'js/jquery.anchor.js'%}"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	
+{% extends "base.html" %}
+{% block container-block  %}
 
 
-});
+<div class="hero overlay">
+	<div class="img-bg rellax">
+		<img src="/static/images/hero_2.jpg" alt="Image" class="img-fluid">
+	</div>
+	<div class="container">
+		<div class="row align-items-center justify-content-start">
+			<div class="col-lg-6 mx-auto text-center">
+				<h1 class="heading" data-aos="fade-up">Sign in</h1>
+				<p data-aos="fade-up">사이트에 로그인하세요</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		const csrfToken = $("meta[name='csrf-token']").attr("content");
+		$("#sBtn").click(function(){  //
+			m_id = $("#id").val()
+			m_password = $("#pw").val()
+			if (m_id.length < 1 || m_password.length < 1) {
+				alert('아이디 또는 패스워드를 입력해 주세요');
+				return false;
+			}
+			saveId = $("#saveId").prop(":checked") ? "0" : "1";
+			$.ajax({
+				headers:{"X-CSRFToken":csrfToken},
+				url:"/member/loginChk/",
+				type:"post",
+				data:{"m_id":m_id,"m_password":m_password,"saveId":saveId},
+				success:function(data){
+					if (data.result == "success"){
+						alert("로그인이 되었습니다.")
+						location.href = "/"
+					}else{
+						alert("아이디 또는 패스워드가 일치하지 않습니다. 다시 입력하세요.")
+					}
+				},
+				error:function(){
+					alert("실패")
+				}
+			})//ajax
+
+			// input 초기화
+			$("#id").val("") //input에 빈공백추가
+			$("#pw").val("")
+			$("#id").focus()
+
+		})//btn
+	})//jquery
+
+
 </script>
-</head>
 
-<body>
-  <!--- 헤더 부분 -->
-	<div class="site-mobile-menu site-navbar-target">
-		<div class="site-mobile-menu-header">
-			<div class="site-mobile-menu-close">
-				<span class="icofont-close js-menu-toggle"></span>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12"	data-aos="fade-up" data-aos-delay="0">
+				<h2 class="heading mb-5">로그인</h2>
 			</div>
 		</div>
-		<div class="site-mobile-menu-body"></div>
-	</div>
-
-	<nav class="site-nav mt-3">
-		<div class="container">
-
-			<div class="site-navigation">
-				<div class="row">
-					<div class="col-6 col-lg-3">
-						<a href="/" class="logo m-0 float-start">Sterial</a>
-					</div>
-					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
-						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="about.html">About us</a></li>
-							<li class="has-children">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="#">Menu One</a></li>
-									<li class="has-children">
-										<a href="#">Menu Two</a>
-										<ul class="dropdown">
-											<li><a href="#">Sub Menu One</a></li>
-											<li><a href="#">Sub Menu Two</a></li>
-											<li><a href="#">Sub Menu Three</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Menu Three</a></li>
-								</ul>
-							</li>
-							<li><a href="services.html">Services</a></li>
-							<li><a href="/board/blist/">Board</a></li>
-
-						</ul>
-					</div>
-					<div class="col-6 col-lg-3 text-lg-end">
-						<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
-							<li class="cta-button"><a href="contact.html">Contact Us</a></li>
-						</ul>
-
-						<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
-							<span></span>
-						</a>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-	</nav>
-	<div class="hero overlay">
-
-		<div class="img-bg rellax">
-			<img src="/static/images/hero_1.jpg" alt="Image" class="img-fluid">
-		</div>
-
-		<div class="container">
-			<div class="row align-items-center justify-content-start">
-				<div class="col-lg-5">
-
-					<h1 class="heading" data-aos="fade-up">It's a Big World Out There, Go Explore</h1>
-					<p class="mb-5" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-					<div data-aos="fade-up">
-						<a href="https://www.youtube.com/watch?v=5n-e6lOhVq0" class="play-button align-items-center d-flex glightbox3" >
-							<span class="icon-button me-3">
-								<span class="icon-play"></span>
-							</span>
-							<span class="caption">Watch Video</span>
-						</a>
-					</div>
-				</div>
-
-				
-			</div>
-		</div>
-
-		
-	</div>
-  <!--- 헤더 부분 끝 -->
-	<!-- container -->
-	<div id="container">
-
-		<div id="location">
-			<ol>
-				<li><a href="#">HOME</a></li>
-				<li><a href="#">MEMBERSHIP</a></li>
-				<li class="last">로그인</li>
-			</ol>
-		</div>
-		
-		<div id="outbox">		
-			<div id="left">
-				<div id="title2">MEMBERSHIP<span>멤버쉽</span></div>
-				<ul>	
-					<li><a href="#" id="leftNavi1">로그인</a></li>
-					<li><a href="#" id="leftNavi2">회원가입</a></li>
-					<li><a href="#" id="leftNavi3">아이디/<span>비밀번호 찾기</span></a></li>
-					<li><a href="#" id="leftNavi4">회원약관</a></li>
-					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
-					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
-				</ul>			
-			</div><script type="text/javascript">initSubmenu(1,0);</script>
-
-
-			<!-- contents -->
-			<div id="contents">
-				<div id="member">
-					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
-					<h3>회원 로그인</h3>
-					<div class="informbox">
-						<div class="inform">
-							<ul>
-								<li><input type="text" class="loginType" id='id' onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password" class="passType" id='pw' onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-							</ul>
-							<script>
-								$(function(){
-									const csrfToken = $("meta[name='csrf-token']").attr("content");
-									$('.sbtn').click(function(){
-										if($('#id').val().length<2){
-											alert('아이디는 2자리 이상 입력하셔야 합니다.')
-											$('#id').focus()
-											return false;
-										}
-										m_id = $('#id').val()
-										m_password = $('#pw').val()
-
-										$.ajax({
-											headers:{'X-CSRFToken':csrfToken},
-											url:'/member/loginChk/',
-											type:'post',
-											data:{'m_id':m_id,'m_password':m_password},
-											success:function(data){
-												if(data.result=='success'){
-													alert('로그인이 되었습니다.')
-													location.href='/'
-												}else{
-													alert('아이디 또는 패스워드를 확인해주세요.')
-												}
-											},
-											error:function(){
-												alert('실패')
-											}
-										})
-										// input 박스 초기화
-										$('#id').val('')
-										$('#pw').val('')
-										$('#id').focus()
-									});
-								});
-							</script>
-							<div class="btn"><a class="sbtn">로그인</a></div>
-							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
-
-							<div class="point">
-								<p>아이디와 비밀번호를 잊으셨나요?</p>
-								<a href="#" class="nbtn">아이디/비밀번호 찾기</a>
-							</div>
+		<div class="row">
+			<div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+				<form action="{% url 'member:login' %}" method="post" name="loginFrm">
+					<div class="row">
+						<div class="col-6 mb-3">
+							<input type="text" id="id" class="form-control loginType" placeholder="Id">
+							<br>
+							<input type="password" id="pw" class="form-control passType" placeholder="Password">
+							<br>
+						<div id="logbtm">
+							<div id="idcoki">
+								<input type='checkbox' name="saveId" id="saveId" value="1" {% if saveId %} checked {% endif %} >
+								<label for="saveId">아이디저장</label>
+							</div>	
+						</div>	
+					</div>	
+					<div>
+						<div class="mb-3_5">
+							<input type="button" id="sBtn" value="로그인" class="btn btn-primary dpchk">
 						</div>
 					</div>
-				</div>
+					<div id="scidpw">
+						<p><a href="/member/srchid/">아이디 찾기</a></p>&nbsp;|&nbsp;<p><a href="/member/srchpw/">비밀번호 찾기</a></p>&nbsp;|&nbsp;<p><a href="/member/sigup01/">회원가입</a></p>
+					</div>
+					</div>
+				</form>
 			</div>
-			<!-- //contents -->
-
-
 		</div>
 	</div>
-	<!-- //container -->
-
-
-
-
-	<div class="site-footer">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="widget">
-						<h3>About Passport<span class="text-primary">.</span> </h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-					</div> <!-- /.widget -->
-					<div class="widget">
-						<h3>Connect</h3>
-						<ul class="list-unstyled social">
-							<li><a href="#"><span class="icon-instagram"></span></a></li>
-							<li><a href="#"><span class="icon-twitter"></span></a></li>
-							<li><a href="#"><span class="icon-facebook"></span></a></li>
-							<li><a href="#"><span class="icon-linkedin"></span></a></li>
-							<li><a href="#"><span class="icon-pinterest"></span></a></li>
-							<li><a href="#"><span class="icon-dribbble"></span></a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-				<div class="col-lg-2 ml-auto">
-					<div class="widget">
-						<h3>Links</h3>
-						<ul class="list-unstyled float-left links">
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="#">Careers</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-				<div class="col-lg-2">
-					<div class="widget">
-						<h3>Company</h3>
-						<ul class="list-unstyled float-left links">
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="#">Careers</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-
-				<div class="col-lg-3">
-					<div class="widget">
-						<h3>Contact</h3>
-						<address>43 Raymouth Rd. Baltemoer, London 3910</address>
-						<ul class="list-unstyled links mb-4">
-							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-							<li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
-						</ul>
-					</div> <!-- /.widget -->
-				</div> <!-- /.col-lg-3 -->
-
-			</div> <!-- /.row -->
-
-			<div class="row mt-5">
-				<div class="col-12 text-center">
-					<p class="mb-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
-					</p>
-				</div>
-			</div> <!-- /.container -->
-		</div> <!-- /.site-footer -->
-
-
-
-
-
-
 </div>
-</div>
-<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
-    <script src="{% static 'js/tiny-slider.js'%}"></script>
-    <script src="{% static 'js/aos.js'%}"></script>
-    <script src="{% static 'js/navbar.js'%}"></script>
-    <script src="{% static 'js/counter.js'%}"></script>
-    <script src="{% static 'js/rellax.js'%}"></script>
-    <script src="{% static 'js/flatpickr.js'%}"></script>
-    <script src="{% static 'js/glightbox.min.js'%}"></script>
-    <script src="{% static 'js/custom.js'%}"></script>
-</body>
-</html>
+
+{% endblock container-block  %}

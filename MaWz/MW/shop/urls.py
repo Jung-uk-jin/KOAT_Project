@@ -3,5 +3,6 @@ from . import views
 
 app_name = "shop"
 urlpatterns = [
-    path('smain/', views.smain,name="smain"),           #  로그인   (로그인 페이지)
+    path('hotels/', views.hotels, name='hotels'),
+    path('api/hotels/', views.get_hotel_data, name='get_hotel_data'),
 ]

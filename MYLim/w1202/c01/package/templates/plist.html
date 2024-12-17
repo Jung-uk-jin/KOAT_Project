@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="{% static 'css/glightbox.min.css'%}">
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
   <link rel="stylesheet" href="{% static 'css/package.css'%}">
+	<link rel="stylesheet" href="{% static 'css/main_map_info.css'%}">
 
 
 	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
@@ -46,35 +47,41 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">Sterial</a>
+						<a href="/" class="logo m-0 float-start">KOAT</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About us</a></li>
+							<li class="active"><a href="/">Home</a></li>
 							<li class="has-children">
-								<a href="#">Dropdown</a>
+								<a href="#">지역/즐길거리</a>
 								<ul class="dropdown">
-									<li><a href="#">Menu One</a></li>
+									<li><a href="/location/location">지역</a></li>
 									<li class="has-children">
-										<a href="#">Menu Two</a>
+										<a href="#">즐길거리</a>
 										<ul class="dropdown">
-											<li><a href="#">Sub Menu One</a></li>
-											<li><a href="#">Sub Menu Two</a></li>
-											<li><a href="#">Sub Menu Three</a></li>
+											<li><a href="/food/eat/">한국 대표 음식</a></li>
+											<li><a href="#">한국 문화 유산</a></li>
 										</ul>
 									</li>
 									<li><a href="#">Menu Three</a></li>
 								</ul>
 							</li>
-							<li><a href="services.html">Services</a></li>
-							<li class="active"><a href="blog.html">Blog</a></li>
-
+							<li><a href="/board/blist/">게시판</a></li>
+							<li><a href="/admin/">admin</a></li>
+							<li><a href="/package/plist/">패키지</a></li>
+								{% if request.session.session_m_auth == 0%}
+									<li><a href="/admin/">admin</a></li>
+								{% else %}
+								{% endif %}
 						</ul>
 					</div>
 					<div class="col-6 col-lg-3 text-lg-end">
 						<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
-							<li class="cta-button"><a href="contact.html">Contact Us</a></li>
+							{% if not request.session.session_m_id %}
+							<li class="cta-button"><a href="/member/login/">로그인</a></li>
+							{% else %}
+							<li class="cta-button"><a href="/member/logout/">로그아웃</a></li>
+							{% endif %}
 						</ul>
 
 						<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
@@ -92,22 +99,18 @@
 	<div class="hero overlay">
 
 		<div class="img-bg rellax">
-			<img src="/static/images/hero_2.jpg" alt="Image" class="img-fluid">
+			<img src="/static/images/package/package_image.webp" alt="Image" class="img-fluid">
 		</div>
 		<div class="container">
 			<div class="row align-items-center justify-content-start">
 				<div class="col-lg-6 mx-auto text-center">
 
 					<h1 class="heading" data-aos="fade-up">패키지</h1>
-					<p class="mb-4" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+					<p class="mb-4" data-aos="fade-up" style="font-size: 30px;">Adventure awaits. The first step towards new experiences</p>
 
 					<div data-aos="fade-up">
 						<a href="https://www.youtube.com/watch?v=5n-e6lOhVq0" class="play-button glightbox3 w-100 text-center" >
 							<div class="d-inline-flex align-items-center ">
-								<span class="icon-button me-3">
-									<span class="icon-play"></span>
-								</span>
-								<span class="caption">Watch Video</span>
 							</div>
 						</a>
 					</div>
@@ -117,41 +120,34 @@
 
 		
 	</div>
-
 	<div class="section">
-		<div class="container">
-
-			
-			<div class="row align-items-stretch">
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-						<div class="bg-white m-body">
-							{% if plist %}
-								<div class="product-list">
-										{% for list in plist %}
-												<div class="product-item">
-														<!-- 이미지 처리 -->
-														<img src="/static/images/package/{{list.p_name}}.jpg"  alt="{{ list.p_name }}" class="product-image">
-														<!-- 상품 이름과 가격 -->
-														<h3><a href="">{{ list.p_name }}</a></h3>
-														<p>{{ list.p_price }}원</p>
-														<form method="POST" action="{% url 'kakao_pay_request' %}">
-															<input type="hidden" name="p_name" value="{{list.p_name}}">
-															<input type="hidden" name="p_price" value="{{list.p_price}}">
-
-															{% csrf_token %}
-															<button type="submit">결제</button>
-													</form>
-												</div>
-										{% endfor %}
-								</div>
-								{% endif %}
-						</div>
+		<div class="container custom-grid">
+			{% if plist %}
+				{% for list in plist %}
+					<div class="product-card">
+						<!-- 이미지 -->
+						<img src="/static/images/package/{{ list.p_name }}.jpg" alt="{{ list.p_name }}" class="product-image">
+						<!-- 제목 -->
+						<h3 class="product-title">{{ list.p_name }}</h3>
+						<!-- 가격 -->
+						{% load humanize %}
+						<p class="product-price">{{ list.p_price|intcomma }}원</p>
+						<!-- 결제 버튼 -->
+						<form method="POST" action="{% url 'kakao_pay_request' %}">
+							<input type="hidden" name="p_name" value="{{ list.p_name }}">
+							<input type="hidden" name="p_price" value="{{ list.p_price }}">
+							{% csrf_token %}
+							<button type="submit" class="payment-button">결제</button>
+						</form>
 					</div>
-				</div>
-
-
-
-
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+	
+	<div class="section" style="margin-top: -200px;">
+		<div class="container">
+			<div class="row align-items-stretch">
 				<nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
 					<ul class="custom-pagination pagination">
 						<li class="page-item prev"><a class="page-link" href="#">Previous</a></li>
@@ -244,7 +240,78 @@
 				<span class="visually-hidden">Loading...</span>
 			</div>
 		</div>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+  const itemsPerPage = 8;  // 한 페이지에 보여줄 상품 수
+  const products = document.querySelectorAll('.product-card'); // 모든 상품 카드
+  const totalPages = Math.ceil(products.length / itemsPerPage); // 총 페이지 수
+  const pagination = document.querySelector('.pagination'); // 페이지네이션 버튼 컨테이너
+  let currentPage = 1;  // 현재 페이지 (기본값 1)
 
+  // 페이지에 맞게 상품을 필터링하여 보이도록 하는 함수
+  function showPage(page) {
+    const start = (page - 1) * itemsPerPage; // 시작 인덱스
+    const end = start + itemsPerPage; // 끝 인덱스
+    products.forEach((product, index) => {
+      // 상품을 표시하거나 숨기는 로직
+      if (index >= start && index < end) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  }
+
+  // 페이지네이션 버튼을 생성하는 함수
+  function generatePagination() {
+    pagination.innerHTML = '';  // 기존 페이지네이션 버튼 초기화
+
+    // "Previous" 버튼
+    const prevButton = document.createElement('li');
+    prevButton.classList.add('page-item');
+    prevButton.innerHTML = '<a class="page-link" href="#">Previous</a>';
+    prevButton.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+
+    pagination.appendChild(prevButton);
+
+    // 페이지 번호 버튼들
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement('li');
+      pageButton.classList.add('page-item');
+      pageButton.classList.toggle('active', i === currentPage); // 현재 페이지 활성화
+      pageButton.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      pageButton.addEventListener('click', () => {
+        currentPage = i;
+        showPage(currentPage);
+      });
+      pagination.appendChild(pageButton);
+    }
+
+    // "Next" 버튼
+    const nextButton = document.createElement('li');
+    nextButton.classList.add('page-item');
+    nextButton.innerHTML = '<a class="page-link" href="#">Next</a>';
+    nextButton.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
+
+    pagination.appendChild(nextButton);
+  }
+
+  // 페이지네이션 생성 및 초기 페이지 표시
+  generatePagination();
+  showPage(currentPage);
+});
+
+		</script>
 
 		<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
     <script src="{% static 'js/tiny-slider.js'%}"></script>

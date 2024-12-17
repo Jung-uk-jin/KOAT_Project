@@ -4,8 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    /* 전체 페이지를 화면 크기 100%로 설정하고, flexbox로 정렬 */
+    body {
+      display: flex;
+      justify-content: center; /* 가로 중앙 정렬 */
+      align-items: center;     /* 세로 중앙 정렬 */
+      height: 100vh;           /* 화면 높이 100% */
+      margin: 0;               /* 기본 여백 제거 */
+      font-family: Arial, sans-serif; /* 폰트 설정 */
+    }
+
+    /* 텍스트와 링크 스타일 */
+    .content {
+      text-align: center;
+    }
+
+    .content h2 {
+      margin-bottom: 20px;
+    }
+
+    .content a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50; /* 버튼 색상 */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px; /* 둥근 모서리 */
+    }
+
+    .content a:hover {
+      background-color: #45a049; /* hover시 색상 변경 */
+    }
+  </style>
 </head>
 <body>
-  <h2>결제 성공</h2>
+  <div class="content">
+    <h2>결제 성공</h2>
+    <a href="/">메인 페이지로 가기</a> <!-- 메인 페이지 링크 -->
+  </div>
 </body>
 </html>

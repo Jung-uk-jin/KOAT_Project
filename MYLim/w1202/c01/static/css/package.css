@@ -1,29 +1,125 @@
-.product-list {
-  display: flex;
-  flex-wrap: wrap; /* 아이템이 넘치면 다음 줄로 넘어가게 함 */
-  gap: 20px; /* 각 아이템 간의 간격 */
-  justify-content: space-between; /* 아이템을 왼쪽에서 오른쪽으로 고르게 정렬 */
-  max-width: calc(400px * 4 + 60px); /* 한 줄에 4개의 아이템을 담을 수 있는 너비 (아이템 간격 포함) */
-  margin: 0 auto; /* 가운데 정렬을 위해 추가 */
+/* 부모 컨테이너 */
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개 */
+  gap: 20px; /* 카드 간격 */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.product-item {
-  width: 400px; /* 이미지 크기를 400px로 고정 */
-  height: 300px; /* 높이를 300px로 고정 */
+/* 각 상품 카드 */
+.product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
   border: 1px solid #ccc;
+  border-radius: 8px; /* 둥근 모서리 */
   padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 310px; /* 정사각형 크기 */
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
+/* 이미지 스타일 */
 .product-image {
-  width: 100%;
-  height: auto; /* 비율에 맞게 이미지 크기 조정 */
-  max-width: 400px; /* 최대 너비는 400px로 설정 */
-  max-height: 300px; /* 최대 높이는 300px로 설정 */
-  object-fit: cover; /* 이미지가 비율에 맞게 잘리도록 함 */
+  width: 275px;
+  height: 175px;
+  object-fit: cover; /* 이미지 비율 유지하면서 잘림 */
+  border-radius: 4px;
+}
+
+/* 제목 스타일 */
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+/* 가격 스타일 */
+.product-price {
+  font-size: 16px;
+  color: #555;
+  margin: 5px 0;
+  font-weight: 700;
+  margin-top: -10px;
+}
+
+/* 결제 버튼 스타일 */
+.payment-button {
+  background-color: #53a1f5;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.payment-button:hover {
+  background-color: #2f8fdc;
+}
+/* 페이지네이션 스타일 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.page-item {
+  display: inline-block;
+}
+
+.page-link {
+  padding: 12px 24px;
+  text-decoration: none;
+  color: #007bff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  color: white;
+}
+
+.page-item .page-link:hover {
+  background-color: #f1f1f1;
+}
+
+/* Previous, Next 버튼 크기 키우기 및 사이드로 이동 */
+.page-item.prev .page-link,
+.page-item.next .page-link {
+  font-size: 18px;
+  padding: 14px 28px;
+  font-weight: bold;
+}
+
+/* Previous, Next 버튼 사이드로 이동 */
+.page-item.prev {
+  margin-right: auto;  /* 왼쪽으로 이동 */
+}
+
+.page-item.next {
+  margin-left: auto;   /* 오른쪽으로 이동 */
+}
+
+/* 비활성화된 페이지 번호 스타일 */
+.page-item:not(.active) .page-link {
+  color: #007bff; /* 기본 색상 */
+  background-color: #fff;
+}
+
+/* active 상태의 링크를 강조 표시 */
+.page-item.active .page-link {
+  background-color: #007bff;
+  color: white;
 }
 

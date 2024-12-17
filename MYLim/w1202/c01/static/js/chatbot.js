@@ -5,6 +5,7 @@ const chatMessages = document.querySelector('#chat-messages');
 const userInput = document.querySelector('#user-input input');
 // 전송 버튼
 const sendButton = document.querySelector('#user-input button');
+// 발급받은 OpenAI API 키를 변수로 저장
 
 
 
@@ -46,7 +47,7 @@ async function fetchAIResponse(prompt) {
                 },
                 {
                     role: "system",
-                    content: "너는 KOAT에서 만든 SKYNET 인공지능이야. 너가 SKYNET 인공지능이란 것을 반드시 설명해야된다."
+                    content: "너는 KOAT에서 만든 SKYNET 인공지능이야. 너의 이름은 SKYNET이야. 너가 SKYNET 인공지능이란 것을 반드시 설명해야된다."
                 },
                 {
                     role: "user",

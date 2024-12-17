@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>챗봇</title>
     <style>
-        
         body {
             display: flex;
+            overflow: hidden; /* body에는 스크롤을 추가하지 않음 */
             flex-direction: column;  /* 세로로 정렬 */
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             background-color: #ebe6e6;
+            animation: fadeout 2s ease-out forwards;
         }
+
+
         
         #ai_chat_title {
-            font-family: 'Georgia', serif; /* 고전적이고 고급스러운 세리프 폰트 */
-            font-size: 50px; /* 큰 폰트 크기 */
-            font-weight: bold; /* 굵은 글씨체 */
-            letter-spacing: 2px; /* 글자 간격을 넓혀 더욱 강렬한 인상 */
-            text-align: center;  /* 중앙 정렬 */
-            color: #2c3e50; /* 진한 색상, 우아한 느낌 */
-            text-transform: uppercase; /* 모든 글자를 대문자로 변환 */
+            
+            transform: translateX(-50%);  /* 수평 중앙 정렬 */
+            font-family: 'Georgia', serif;
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #2c3e50;
+            text-transform: uppercase;
             margin-top: 10px;
             opacity: 0;
             animation: fadeInUp 2s ease-out forwards;
@@ -33,7 +38,7 @@
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
-                transform: translateY(500px); /* 아래에서 시작 */
+                transform: translateY(200px); /* 아래에서 시작 */
             }
             100% {
                 opacity: 1;
@@ -52,26 +57,30 @@
         }
         
         #chat-container {   
+            position: fixed;
             flex: 1;
+            border: 1px solid rgb(204, 203, 203);
             width: 400px;
-            height: 600px;
+            height: 800px;
             display: flex;
             flex-direction: column;          
             max-width: 600px;
             margin-top: 20px;  /* h2와 사이에 공간 추가 */
+            
         }
 
         /* 사용자 메시지 스타일 */
         .user-message {
             background-color: rgb(70, 111, 224);
             color: white;
-            align-self: flex-end; /* 좌측 정렬 */
+            align-self: flex-end; /* 우측 정렬 */
             border-radius: 10px;
             padding: 8px;
             max-width: 70%;
             word-wrap: break-word;
             margin-bottom: 10px;
         }
+        
         
         /* 챗봇 메시지 스타일 */
         .ai-message {
@@ -85,13 +94,13 @@
             margin-bottom: 10px;
         }
    
-        
-        
+
         #chat-messages {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: scroll;
             padding: 10px;
             display: flex;
+            
             flex-direction: column-reverse;
         }
         
@@ -113,9 +122,6 @@
             padding: 10px 15px;
             cursor: pointer;
         }
-
-        
-
     </style>
 </head>
 <body>

@@ -11,6 +11,7 @@ from django.http import JsonResponse
 
 ### 게시판 리스트
 def blist(request):
+  print("test")
   npage = int(request.GET.get('npage',1))
   qs = Board.objects.all().order_by('-b_no')
   cl = request.GET.get('cl','')

@@ -161,18 +161,35 @@ def scrape_hotel_data(city_name, check_in, check_out, rooms, adults, children):
     
     for idx, item in enumerate(items):
         try:
-            name = item.select_one("h3.sc-jrAGrp.sc-kEjbxe.eDlaBj.dscgss").text.strip()
-            cost = item.select_one("ul > li:nth-child(3) > div > div > div > div > span").find_next_sibling().text.strip()
-            hlink_element = item.select_one("button.ab069-box.ab069-bg-base-transparent.ab069-fill-inherit.ab069-text-inherit.ab069-w-full.ab069-cursor-pointer > img")
-            hlink = hlink_element['src']
+            # name = item.select_one("h3.sc-jrAGrp.sc-kEjbxe.eDlaBj.dscgss").text.strip()
+            # cost = item.select_one("ul > li:nth-child(3) > div > div > div > span.PropertyCardPrice__Value").text.strip().replace(",", "")
+            # # cost = item.select_one("ul > li:nth-child(3) > div > div > div > div > span").find_next_sibling().text.strip()
+            # hlink_element = item.select_one("button.ab069-box img")
+            # # hlink_element = item.select_one("button.ab069-box.ab069-bg-base-transparent.ab069-fill-inherit.ab069-text-inherit.ab069-w-full.ab069-cursor-pointer > img")
+            # hlink = hlink_element['src']
             
-            hd = item.select_one("li:nth-child(1) > div > div > a")
-            hdirect = hd['src']
+            # hd = item.select_one("li:nth-child(1) > div > div > a")
+            # hdirect = hd['src']
+
+            name = item.select_one("h3.sc-jrAGrp.sc-kEjbxe.eDlaBj.dscgss").text.strip()
+            cost = int(item.select_one("ul > li:nth-child(3) > div > div > div > span.PropertyCardPrice__Value")
+                        .text.strip().replace(",", ""))
+            hlink_element = item.select_one("button.ab069-box img")
+            hlink = hlink_element['src']
+            # href = hlink['src'] if hlink else "https://i.pinimg.com/736x/d0/14/73/d01473fbb3094de59b2402ea88672ef2.jpg"
+
+            # print("----------------")
+            # print(name)
+            # print(cost)
+            # print(hlink)
+            # print(hlink)
+            # print("----------------")
+
 
             if not all([name, cost, hlink]):
                 continue
             
-            hotel_data.append({'name': name, 'cost': cost, 'hlink': hlink, 'hdirect': hdirect})
+            hotel_data.append({'name': name, 'cost': cost, 'hlink': hlink, 'hdirect': hlink})
             
         except Exception as e:
             print(f"정보 추출 실패: {e}")

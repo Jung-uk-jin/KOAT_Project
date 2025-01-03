@@ -17,12 +17,6 @@ def plist(request):
     context = {"plist":qs}
     return render(request, 'plist.html',context)
 
-# 결제 요청 처리
-def plist(request):
-    # 모든 상품 리스트를 가져옵니다.
-    qs = Package.objects.all()
-    context = {"plist": qs}
-    return render(request, 'plist.html', context)
 
 def kakao_pay_request(request):
     if request.method == "POST":

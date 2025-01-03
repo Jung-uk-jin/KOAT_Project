@@ -24,25 +24,31 @@
       margin-bottom: 20px;
     }
 
-    .content a {
+    .content button {
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
-      background-color: #4CAF50; /* 버튼 색상 */
+      background-color: #ed8447; /* 버튼 색상 */
       color: white;
       text-decoration: none;
       border-radius: 5px; /* 둥근 모서리 */
     }
 
-    .content a:hover {
-      background-color: #45a049; /* hover시 색상 변경 */
+    .content button:hover {
+      background-color: #ed8447; /* hover시 색상 변경 */
     }
   </style>
+  <script>
+    // 버튼을 클릭했을 때 창을 닫는 함수
+    function closeWindow() {
+        window.close(); // 새 창을 닫습니다
+    }
+</script>
 </head>
 <body>
   <div class="content">
-    <h2>결제 성공</h2>
-    <a href="/">메인 페이지로 가기</a> <!-- 메인 페이지 링크 -->
+      <h2>결제 성공</h2>
+      <button onclick="closeWindow()">창 닫기</button> <!-- 버튼 클릭 시 창 닫기 -->
   </div>
 </body>
 </html>

@@ -73,7 +73,13 @@ try:
                 hlink = item.select_one("button.ab069-box img")
                 href = hlink['src'] if hlink else "https://i.pinimg.com/736x/d0/14/73/d01473fbb3094de59b2402ea88672ef2.jpg"
                 writer.writerow([no, name, cost, href])
-                print(f"추출 완료: {no}, {name}, {cost}, {href}")
+
+                hotelp_element = item.select_one("a.PropertyCard__Link")
+                hotelp = hotelp_element['href']
+                # print(hotelp)
+
+                # print(f"추출 완료: {no}, {name}, {cost}, {href}")
+                print(f"추출 완료: {no}, {name}, {cost}, {href}, {hotelp}")
             except Exception as e:
                 print(f"정보 추출 실패: {e}")
 except Exception as e:

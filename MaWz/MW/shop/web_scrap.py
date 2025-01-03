@@ -178,6 +178,9 @@ def scrape_hotel_data(city_name, check_in, check_out, rooms, adults, children):
             hlink = hlink_element['src']
             # href = hlink['src'] if hlink else "https://i.pinimg.com/736x/d0/14/73/d01473fbb3094de59b2402ea88672ef2.jpg"
 
+            hotelp_element = item.select_one("a.PropertyCard__Link")
+            hotelp = hotelp_element['href']
+
             # print("----------------")
             # print(name)
             # print(cost)
@@ -189,7 +192,7 @@ def scrape_hotel_data(city_name, check_in, check_out, rooms, adults, children):
             if not all([name, cost, hlink]):
                 continue
             
-            hotel_data.append({'name': name, 'cost': cost, 'hlink': hlink, 'hdirect': hlink})
+            hotel_data.append({'name': name, 'cost': cost, 'hlink': hlink, 'hdirect': hotelp})
             
         except Exception as e:
             print(f"정보 추출 실패: {e}")

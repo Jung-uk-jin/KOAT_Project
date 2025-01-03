@@ -165,11 +165,12 @@
 					const div = document.createElement('div');
 					div.classList.add('col-6', 'col-sm-6', 'col-md-6', 'col-lg-3', 'mb-4');
 					div.innerHTML = `
-					<div class="media-entry">
-												<img src="${hotel.hlink}" alt="Image" class="img-fluid" style="width: 260px; height: 190px;">
+					<div class="media-entry" id="searchhotellist">
+												<img src="${hotel.hlink}" alt="Image" class="img-fluid" id="hotelimg" style="width: 260px; height: 190px;">
 												<div class="bg-white m-body">
 													<h3><a>${hotel.name}</a></h3>
 													<p>${hotel.cost}₩</p>
+													<a href="https://agoda.com/${hotel.hdirect}" class="btn btn-primary" id="hoteltxt" target="_blank">바로가기</a>
 													</div>
 													</div>
 							`;

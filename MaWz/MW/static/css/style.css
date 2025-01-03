@@ -10611,6 +10611,18 @@ div#scidpw {
   align-items: center !important;
 }
 
+/* 호텔 검색 결과창 */
+#searchhotellist {
+  box-sizing: border-box;
+  width: 300px;
+  height: 405px;
+  border: 3px solid gray;
+}
+
+#hotelimg {
+  padding: 5px 0px 0px 20px;
+}
+
 
 /* 헤더 백그라운드 영상 */
 .dvd-fluid {

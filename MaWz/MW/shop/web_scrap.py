@@ -171,17 +171,37 @@ def scrape_hotel_data(city_name, check_in, check_out, rooms, adults, children):
             # hd = item.select_one("li:nth-child(1) > div > div > a")
             # hdirect = hd['src']
 
+            # 각 요소를 추출하기 전에 디버깅 정보 출력
+            name_element = item.select_one("h3.sc-jrAGrp.sc-kEjbxe.eDlaBj.dscgss")
+            cost_element = item.select_one("ul > li:nth-child(3) > div > div > div > span.PropertyCardPrice__Value")
+            hlink_element = item.select_one("div.Overlay")
+            hotelp_element = item.select_one("a.PropertyCard__Link")
+
+            # 요소 확인 로그
+            print(f"name_element: {name_element}")
+            print(f"cost_element: {cost_element}")
+            print(f"hlink_element: {hlink_element}")
+            print(f"hotelp_element: {hotelp_element}") 
+
+
             name = item.select_one("h3.sc-jrAGrp.sc-kEjbxe.eDlaBj.dscgss").text.strip()
             cost = int(item.select_one("ul > li:nth-child(3) > div > div > div > span.PropertyCardPrice__Value")
                         .text.strip().replace(",", ""))
-            hlink_element = item.select_one("button.ab069-box img")
-            hlink = hlink_element['src']
+            hlink_element = item.select_one("div.Overlay > button > img")
+            # hlink_element = item.select_one("button.ab069-box img")
+            hurl = hlink_element['srcset']
             # href = hlink['src'] if hlink else "https://i.pinimg.com/736x/d0/14/73/d01473fbb3094de59b2402ea88672ef2.jpg"
+            # 쉼표로 분리하고 첫 번째 항목 추출
+            first_url = hurl.split(',')[0].strip()
+
+            # 프로토콜 추가
+            if first_url.startswith("//"):
+                hlink = "https:" + first_url[:-8]
 
             hotelp_element = item.select_one("a.PropertyCard__Link")
             hotelp = hotelp_element['href']
 
-            # print("----------------")
+            # print("---------- ------")
             # print(name)
             # print(cost)
             # print(hlink)
@@ -197,6 +217,8 @@ def scrape_hotel_data(city_name, check_in, check_out, rooms, adults, children):
         except Exception as e:
             print(f"정보 추출 실패: {e}")
             continue
+
+
 
     return hotel_data
 
